@@ -50,8 +50,8 @@
             @endforeach
         </div>
         {{-- Inventory Sidebar --}}
-        <div class="lg:min-w-[25%] bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow ml-8 mt-32 bg-white p-10">
-            {{-- insert here --}}
+        <div class="lg:min-w-[25%] max-w-[25%] bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow ml-8 mt-32 bg-white p-10">
+            <livewire:inventory />
         </div>
         @livewireScripts
     </body>
