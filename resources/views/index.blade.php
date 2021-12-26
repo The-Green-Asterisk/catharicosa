@@ -23,23 +23,38 @@
         <script src="https://cdn.tailwindcss.com"></script>
         @livewireStyles
     </head>
-    <body class="bg-gradient-to-br from-stone-100 to-slate-200 bg-fixed">
-        <div name="notes" class="lg:w-3/4 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow m-auto mt-32 bg-white p-32">
-            {{-- User writes a "notelette", upon Enter notelette gets saved. User highlights a text area, the text area becomes associated with another table object (quest, NPC, location). First order of business should probably be making these tables. --}}
-            <div name="note">
-                @foreach ($notes as $note)
-                    <div class="mb-10">
-                        <div class="flex justify-between">
-                            <h1 class="font-bold">{{ $note->title }}</h1>
-                            <p class="text-sm italic text-gray-400">created {{ $note->created_at->diffForHumans() }}</p>
-                        </div>
-                        <p>{{ $note->body }}</p>
-                        @foreach ($note->notelettes as $notelette)
-                            <p class="italic">{{ $notelette->body }}</p>
-                        @endforeach
+    <body class="bg-gradient-to-br from-stone-100 to-slate-200 bg-fixed flex">
+        {{-- Category Sidebar --}}
+        <div class="lg:w-1/4 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow mr-10 mt-32 bg-white p-10">
+            {{-- Category title --}}
+            <h1 class="text-lg underline font-bold decoration-4">Quests</h1>
+                <livewire:slider :categories="$quests" />
+                {{-- Category Title --}}
+            <h1 class="text-lg underline font-bold decoration-4">NPCs</h1>
+                <livewire:slider :categories="$npcs" />
+                {{-- Category Title --}}
+            <h1 class="text-lg underline font-bold decoration-4">Locations</h1>
+                <livewire:slider :categories="$locations" />
+        </div>
+        {{-- Main Body --}}
+        <div name="notes" class="lg:max-w-3/4 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow m-auto mt-32 bg-white p-32">
+            {{-- Notes --}}
+            @foreach ($notes as $note)
+                <div class="mb-10">
+                    <div class="flex justify-between">
+                        <h2 class="font-bold">{{ $note->title }}</h2>
+                        <p class="text-sm italic text-gray-400">created {{ $note->created_at->diffForHumans() }}</p>
                     </div>
-                @endforeach
-            </div>
+                    <p>{{ $note->body }}</p>
+                    @foreach ($note->notelettes as $notelette)
+                        <p class="italic">{{ $notelette->body }}</p>
+                    @endforeach
+                </div>
+            @endforeach
+        </div>
+        {{-- Inventory Sidebar --}}
+        <div>
+            {{-- insert here --}}
         </div>
         @livewireScripts
     </body>
