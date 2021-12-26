@@ -25,14 +25,11 @@
     </head>
     <body class="bg-gradient-to-br from-stone-100 to-slate-200 bg-fixed flex">
         {{-- Category Sidebar --}}
-        <div class="lg:w-1/4 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow mr-10 mt-32 bg-white p-10">
-            {{-- Category title --}}
+        <div class="lg:w-[25%] bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow mr-8 mt-32 bg-white p-10">
             <h1 class="text-lg underline font-bold decoration-4">Quests</h1>
                 <livewire:slider :categories="$quests" />
-                {{-- Category Title --}}
             <h1 class="text-lg underline font-bold decoration-4">NPCs</h1>
                 <livewire:slider :categories="$npcs" />
-                {{-- Category Title --}}
             <h1 class="text-lg underline font-bold decoration-4">Locations</h1>
                 <livewire:slider :categories="$locations" />
         </div>
@@ -53,7 +50,7 @@
             @endforeach
         </div>
         {{-- Inventory Sidebar --}}
-        <div>
+        <div class="lg:min-w-[25%] bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow ml-8 mt-32 bg-white p-10">
             {{-- insert here --}}
         </div>
         @livewireScripts
