@@ -25,7 +25,7 @@ class Inventory extends Component
         {
             if ($this->sheetNumber === "")
             {
-                $this->error = "";
+                $this->error = null;
                 return;
             }
             $fileURL = 'https://character-service.dndbeyond.com/character/v3/character/' . $this->sheetNumber;
@@ -42,7 +42,7 @@ class Inventory extends Component
                 : $this->name = null;
         }else{
             $this->sheetNumber = "";
-            $this->error = "";
+            $this->error = null;
         }
     }
 
