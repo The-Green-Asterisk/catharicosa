@@ -25,16 +25,19 @@
     </head>
     <body class="bg-gradient-to-br from-stone-100 to-slate-200 bg-fixed flex">
         {{-- Category Sidebar --}}
-        <div class="lg:w-[25%] bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow mr-8 mt-32 bg-white p-10">
-            <h1 class="text-lg underline font-bold decoration-4">Quests</h1>
-                <livewire:slider :categories="$quests" />
-            <h1 class="text-lg underline font-bold decoration-4">NPCs</h1>
-                <livewire:slider :categories="$npcs" />
-            <h1 class="text-lg underline font-bold decoration-4">Locations</h1>
-                <livewire:slider :categories="$locations" />
+        <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'lg:min-w-[25%] max-w-[25%] h-screen mr-8' : 'h-fit mr-2'" class="transition-all bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow mt-32 bg-white">
+            <img src="/storage/scrollicon.png" class="float-right m-3 h-6" @click="toggle()" />
+            <div x-show="open" class="m-10">
+                <h1 class="text-lg underline font-bold decoration-4">Quests</h1>
+                    <livewire:slider :categories="$quests" />
+                <h1 class="text-lg underline font-bold decoration-4">NPCs</h1>
+                    <livewire:slider :categories="$npcs" />
+                <h1 class="text-lg underline font-bold decoration-4">Locations</h1>
+                    <livewire:slider :categories="$locations" />
+            </div>
         </div>
         {{-- Main Body --}}
-        <div name="notes" class="lg:max-w-3/4 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow m-auto mt-32 bg-white p-32">
+        <div name="notes" class="h-screen lg:max-w-3/4 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow m-auto mt-32 bg-white p-32 overflow-y-auto overflow-hidden">
             {{-- Notes --}}
             @foreach ($notes as $note)
                 <div class="mb-10">
@@ -50,8 +53,11 @@
             @endforeach
         </div>
         {{-- Inventory Sidebar --}}
-        <div class="lg:min-w-[25%] max-w-[25%] bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow ml-8 mt-32 bg-white p-10">
-            <livewire:inventory />
+        <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'lg:min-w-[25%] max-w-[25%] h-screen ml-8' : 'ml-2 h-fit'" class="bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow mt-32 bg-white overflow-y-auto overflow-hidden">
+            <img src="/storage/backpack.png" :class="open ? 'm-3 h-6 absolute' : 'm-3 h-6'" @click="toggle()" />
+            <div x-show="open">
+                <livewire:inventory />
+            </div>
         </div>
         @livewireScripts
     </body>
