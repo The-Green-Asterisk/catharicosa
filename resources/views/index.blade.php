@@ -1,7 +1,7 @@
 <x-layout>
     <div class="flex">
         {{-- Category Sidebar --}}
-        <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'lg:min-w-[25%] max-w-[25%] h-screen mr-8' : 'h-fit mr-2'" class="transition-all bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-r shadow bg-white border-l-0">
+        <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'lg:min-w-[25%] max-w-[25%] h-screen mr-8' : 'h-fit mr-2'" class="transition-all bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-r shadow bg-white overflow-y-auto overflow-hidden border-l-0">
             <img src="/storage/scrollicon.png" class="float-right m-3 h-6" @click="toggle()" />
             <div x-show="open" class="m-10 transition-all">
                 <h1 class="text-lg underline font-bold decoration-4">Quests</h1>

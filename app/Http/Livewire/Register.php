@@ -31,13 +31,15 @@ class Register extends Component
     {
         $this->validate();
 
-        User::create([
+        $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
         ]);
 
-        return redirect('/');
+        auth()->login($user);
+
+        return redirect('/')->with('success', 'Welcome, traveler!<br />Your information has been recorded. Now, go! Enjoy yourself!');
     }
 
     public function render()
