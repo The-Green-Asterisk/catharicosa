@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Livewire\Register;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [NoteController::class, 'show'])->name('home');
-Route::get('register', [RegisterController::class, 'create']);
+Route::get('/register', Register::class);

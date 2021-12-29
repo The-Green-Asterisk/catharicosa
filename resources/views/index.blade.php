@@ -13,7 +13,7 @@
             </div>
         </div>
         {{-- Main Body --}}
-        <div name="notes" class="h-screen lg:max-w-3/4 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow m-auto bg-white overflow-y-auto overflow-hidden">
+        <x-panel class="h-screen lg:max-w-3/4 overflow-y-auto overflow-hidden">
             {{-- Notes --}}
             @foreach ($notes as $note)
                 <div class="mx-32 my-10 transition-all">
@@ -27,7 +27,7 @@
                     @endforeach
                 </div>
             @endforeach
-        <div></div></div>
+        </x-panel>
         {{-- Inventory Sidebar --}}
         <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'lg:min-w-[25%] max-w-[25%] h-screen ml-8' : 'ml-2 h-fit'" class="bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-l shadow bg-white overflow-y-auto overflow-hidden border-r-0 transition-all">
             <img src="/storage/backpack.png" :class="open ? 'm-3 h-6 absolute' : 'm-3 h-6'" @click="toggle()" />

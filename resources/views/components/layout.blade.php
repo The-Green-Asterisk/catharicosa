@@ -24,7 +24,12 @@
         @livewireStyles
     </head>
     <body class="bg-gradient-to-br from-stone-100 to-slate-200 bg-fixed">
-        <div name="header" class="w-screen"><img src="storage/catharicosa-logo.png" class="h-28 m-5" /></div>
+        <div name="header" class="w-screen flex justify-between content-center">
+            <img src="storage/catharicosa-logo.png" class="h-28 m-5" />
+            <div class="flex flex-col justify-center">
+                <x-anchor-button href="/register">Sign Up</x-anchor-button>
+            </div>
+        </div>
         {{ $slot }}
         @livewireScripts
     </body>
