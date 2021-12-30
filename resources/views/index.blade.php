@@ -14,8 +14,9 @@
                 </div>
             </div>
             {{-- Main Body --}}
-            <x-panel class="h-screen lg:max-w-3/4 overflow-y-auto overflow-hidden">
+            <x-panel class="h-screen lg:max-w-3/4 overflow-y-auto overflow-hidden flex-col">
                 {{-- Notes --}}
+                <livewire:new-note />
                 @foreach ($notes as $note)
                     <div class="mx-32 my-10 transition-all">
                         <div class="flex justify-between">

@@ -27,7 +27,7 @@ class Session extends Component
     {
 
         if (auth()->attempt($this->validate())) {
-            redirect('/')->with('success', 'Welcome back, traveler! I\'ve kept your seat warm!');
+            redirect('/')->with('success', 'Welcome back, traveler! I\'ve kept your seat warm, and your stein cold!');
         }else{
             throw ValidationException::withMessages([
                 'password' => 'I\'m sorry, I couldn\'t validate that information. Try again.'

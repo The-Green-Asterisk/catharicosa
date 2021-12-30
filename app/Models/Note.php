@@ -9,6 +9,9 @@ class Note extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'body', 'user_id'];
+
+
     public function notelettes()
     {
         return $this->hasMany(Notelette::class);

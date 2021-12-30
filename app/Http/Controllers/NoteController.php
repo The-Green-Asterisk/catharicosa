@@ -11,13 +11,18 @@ class NoteController extends Controller
 {
     public function show()
     {
-        $user = auth()->user()->id;
+        if (auth()->check() === true ){
+            $user = auth()->user()->id;
+            $data = [
+                'notes' => Note::all()->where('user_id', $user)->sortBy('created_at', SORT_REGULAR, 1),
+                'quests' => Quest::all()->where('user_id', $user),
+                'npcs' => NPC::all()->where('user_id', $user),
+                'locations' => Location::all()->where('user_id', $user),
+            ];
+        }else{
+            $data = ['coconut' => 'lime'];
+        }
 
-        return view('index', [
-            'notes' => Note::all()->where('user_id', $user),
-            'quests' => Quest::all()->where('user_id', $user),
-            'npcs' => NPC::all()->where('user_id', $user),
-            'locations' => Location::all()->where('user_id', $user),
-        ]);
+        return view('index', $data);
     }
 }
