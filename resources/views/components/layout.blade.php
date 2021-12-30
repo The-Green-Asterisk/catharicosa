@@ -21,8 +21,8 @@
     </head>
     <body class="bg-gradient-to-br from-stone-100 to-slate-200 bg-fixed">
         <div name="header" class="w-screen flex justify-between content-center">
-            <img src="storage/catharicosa-logo.png" class="h-28 m-5" />
-            <div class="flex flex-col justify-center mr-10">
+            <a href="/"><img src="storage/catharicosa-logo.png" class="h-28 m-5" /></a>
+            <div class="flex flex-col justify-center text-center mr-10">
                 @auth
                     <span>Welcome, {{ auth()->user()->name }}</span>
                 @else

@@ -10,7 +10,7 @@
                         <input type="text" wire:model="email" class="w-full border rounded my-2" placeholder="email" autocomplete="email">
                         @error('email') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
 
-                        <input type="password" id="password" name="password" wire:model="password" class="w-full border rounded my-2" placeholder="password" autocomplete="new-password">
+                        <input type="password" id="password" name="password" wire:model="password" class="w-full border rounded my-2" placeholder="password" autocomplete="current-password">
                         @error('password') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
 
                         <hr />

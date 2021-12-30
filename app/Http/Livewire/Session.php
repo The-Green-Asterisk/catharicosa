@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class Session extends Component
@@ -12,7 +13,7 @@ class Session extends Component
 
     protected $rules = [
         'email' => 'required|email|exists:users,email',
-            'password' => 'required'
+        'password' => 'required'
     ];
 
     protected $listeners = ['sessionStore' => 'store'];
@@ -27,6 +28,10 @@ class Session extends Component
 
         if (auth()->attempt($this->validate())) {
             redirect('/')->with('success', 'Welcome back, traveler! I\'ve kept your seat warm!');
+        }else{
+            throw ValidationException::withMessages([
+                'password' => 'I\'m sorry, I couldn\'t validate that information. Try again.'
+            ]);
         };
     }
 

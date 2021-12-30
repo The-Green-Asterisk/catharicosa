@@ -1,6 +1,6 @@
 <div>
     <x-panel class="w-96 text-center p-4">
-        Sign Up for Catharicosa Notes
+        Thank you for patronizing this humble tavern! Please enter the following information so we can personalize your experience here at Catharicosa Notes!
         <form wire:submit.prevent="submit">
             <input type="text" wire:model="name" class="w-full border rounded my-2" placeholder="name" autocomplete="name">
             @error('name') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
