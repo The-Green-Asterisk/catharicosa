@@ -6,6 +6,7 @@ use App\Models\Location;
 use App\Models\Note;
 use App\Models\NPC;
 use App\Models\Quest;
+use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
@@ -24,5 +25,16 @@ class NoteController extends Controller
         }
 
         return view('index', $data);
+    }
+
+    public function addNotelette(Request $request, Note $note)
+    {
+        $note->notelettes()->create([
+            'user_id' => auth()->user()->id,
+            'body' => $request->input('body'),
+            'quest_id' => $request->input('quest_id'),
+            'npc_id' => $request->input('npc_id'),
+            'location_id' => $request->input('location_id'),
+        ]);
     }
 }

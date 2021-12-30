@@ -20,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [NoteController::class, 'show'])->name('home');
 Route::get('/register', Register::class)->middleware('guest');
 Route::get('/login', Session::class)->middleware('guest');
+Route::post('/notes/{note}/notelette', [NoteController::class, 'addNotelette'])->name('addNotelette');

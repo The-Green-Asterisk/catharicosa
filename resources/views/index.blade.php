@@ -23,7 +23,7 @@
                             <h2 class="font-bold">{{ $note->title }}</h2>
                             <p class="text-sm italic text-gray-400">created {{ $note->created_at->diffForHumans() }}</p>
                         </div>
-                        <p>{{ $note->body }}</p>
+                        <div x-data="{ 'note': {{ $note->id }}, noteId() { return this.note } }" @mouseup="console.log(window.getSelection().toString(), noteId())">{{ $note->body }}</div>
                         @foreach ($note->notelettes as $notelette)
                             <p class="italic">{{ $notelette->body }}</p>
                         @endforeach

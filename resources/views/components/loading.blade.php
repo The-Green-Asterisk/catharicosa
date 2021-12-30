@@ -33,7 +33,7 @@
         <h2 class="text-center text-black text-xl font-semibold">Loading....</h2>
     </div>
 </div>
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', () => {
         window.dispatchEvent(
             new CustomEvent('loading', { detail: { loading: true }})
@@ -42,13 +42,13 @@
             this.livewire.hook('message.sent', () => {
                 window.dispatchEvent(
                     new CustomEvent('loading', { detail: { loading: true }})
-                ));
-            }}, 300)
+                );
+            }}, 300);
         );
         this.livewire.hook('message.processed', (message, component) => {
             window.dispatchEvent(
                 new CustomEvent('loading', { detail: { loading: false }})
             );
-        })
+        });
     });
-</script>
+</script> --}}
