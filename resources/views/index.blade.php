@@ -18,7 +18,7 @@
                 {{-- Notes --}}
                 <livewire:new-note />
                 @foreach ($notes as $note)
-                    <div class="mx-32 my-10 transition-all">
+                    <div class="mx-32 my-10 transition-all" id="note">
                         <div class="flex justify-between">
                             <h2 class="font-bold">{{ $note->title }}</h2>
                             <p class="text-sm italic text-gray-400">created {{ $note->created_at->diffForHumans() }}</p>
@@ -34,10 +34,26 @@
                                 getBody() {
                                     formData.body = window.getSelection().toString()
                                 }
-                            }" @mouseup="getBody(); getNote(); submitData()">{{ $note->body }}</div>
+                            }" @mouseup="getBody(); getNote()"><textarea class="w-full">{{ $note->body }}</textarea></div>
                             <input type="hidden" x-model="formData.body" />
                             <input type="hidden" x-model="formData.note_id" />
                             <p x-text="message" class="text-xs text-red-600"></p>
+                            <div class="menu bg-white shadow p-2 border border-gray-100">
+                                <ul class="menu-options">
+                                    <lh>Quest</lh>
+                                    @foreach ($quests as $quest)
+                                        <li class="menu-option">{{ $quest->title }}</li>
+                                    @endforeach
+                                    <lh>NPC</lh>
+                                    @foreach ($npcs as $npc)
+                                        <li class="menu-option">{{ $npc->name }}</li>
+                                    @endforeach
+                                    <lh>Location</lh>
+                                    @foreach ($locations as $location)
+                                        <li class="menu-option">{{ $location->name }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </form>
                         @foreach ($note->notelettes as $notelette)
                             <p class="italic">{{ $notelette->body }}</p>
@@ -45,6 +61,39 @@
                     </div>
                 @endforeach
                 <script>
+                    const menu = document.querySelector(".menu");
+                    const menuOption = document.querySelector(".menu-option");
+                    let menuVisible = false;
+
+                    const toggleMenu = command => {
+                    menu.style.display = command === "show" ? "block" : "none";
+                    menuVisible = !menuVisible;
+                    };
+
+                    const setPosition = ({ top, left }) => {
+                    menu.style.left = `${left}px`;
+                    menu.style.top = `${top}px`;
+                    toggleMenu("show");
+                    };
+
+                    window.addEventListener("click", e => {
+                    if (menuVisible) toggleMenu("hide");
+                    });
+
+                    menuOption.addEventListener("click", e => {
+                    console.log("mouse-option", e.target.innerHTML);
+                    });
+
+                    document.addEventListener("select", e => {
+                    e.preventDefault();
+                    const origin = {
+                        left: e.pageX,
+                        top: e.pageY
+                    };
+                    setPosition(origin);
+                    return false;
+                    });
+
                     var csrf = document.querySelector('meta[name="csrf-token"]').content;
 
                     function noteletteForm(note_id, body, quest_id, npc_id, location_id) {
@@ -66,7 +115,8 @@
                                     body: JSON.stringify(this.formData)
                                 })
                                 .then(() => {
-                                    this.message = 'Form sucessfully submitted!'
+                                    this.message = 'Your notelette has been created!',
+                                    location.reload()
                                 })
                                 .catch(() => {
                                     this.message = 'Ooops! Something went wrong!'
