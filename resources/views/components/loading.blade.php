@@ -1,8 +1,4 @@
-<div
-    x-data="{ loading: false }"
-    x-show="loading"
-    @loading.window="loading = $event.detail.loading"
->
+<div x-data="{ loading: true }" x-show="loading" @loading.debounce.window="loading = $event.detail.loading">
     <style>
         .loader {
             border-top-color: #db3434;
@@ -33,22 +29,20 @@
         <h2 class="text-center text-black text-xl font-semibold">Loading....</h2>
     </div>
 </div>
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', () => {
+<script>
+    window.addEventListener('load', () => {
         window.dispatchEvent(
-            new CustomEvent('loading', { detail: { loading: true }})
+            new CustomEvent('loading', { detail: { loading: false }})
         );
-        setTimeout(function(){
-            this.livewire.hook('message.sent', () => {
-                window.dispatchEvent(
-                    new CustomEvent('loading', { detail: { loading: true }})
-                );
-            }}, 300);
-        );
+        this.livewire.hook('message.sent', () => {
+            window.dispatchEvent(
+                new CustomEvent('loading', { detail: { loading: true }})
+            )
+        });
         this.livewire.hook('message.processed', (message, component) => {
             window.dispatchEvent(
                 new CustomEvent('loading', { detail: { loading: false }})
             );
         });
     });
-</script> --}}
+</script>

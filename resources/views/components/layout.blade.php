@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
         <title>Catharicosa Notes</title>
 
@@ -22,7 +24,7 @@
     <x-loading />
     <body class="bg-gradient-to-br from-stone-100 to-slate-200 bg-fixed">
         <div name="header" class="w-screen flex justify-between content-center">
-            <a href="/"><img src="storage/catharicosa-logo.png" class="h-28 m-5" /></a>
+            <a href="/"><img src="/catharicosa-logo.png" class="h-28 m-5" /></a>
             <div class="flex flex-col justify-center text-center mr-10">
                 @auth
                     <span>Welcome, {{ auth()->user()->name }}</span>

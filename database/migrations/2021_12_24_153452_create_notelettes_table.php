@@ -18,9 +18,9 @@ class CreateNotelettesTable extends Migration
             $table->timestamps();
             $table->foreignId('user_id');
             $table->foreignId('note_id');
-            $table->foreignId('location_id');
-            $table->foreignId('npc_id');
-            $table->foreignId('quest_id');
+            $table->foreignId('location_id')->nullable();
+            $table->foreignId('npc_id')->nullable();
+            $table->foreignId('quest_id')->nullable();
             $table->text('body');
         });
     }

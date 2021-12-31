@@ -9,6 +9,8 @@ class Notelette extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['body', 'user_id', 'note_id', 'npc_id', 'quest_id', 'location_id'];
+
     public function note()
     {
         return $this->belongsTo(Note::class);

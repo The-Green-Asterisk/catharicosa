@@ -11,7 +11,6 @@ class Note extends Model
 
     protected $fillable = ['title', 'body', 'user_id'];
 
-
     public function notelettes()
     {
         return $this->hasMany(Notelette::class);
