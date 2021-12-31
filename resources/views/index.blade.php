@@ -25,34 +25,46 @@
                         </div>
                         <form action="/notes/{{ $note->id }}/notelette" id="notelette" method="POST" x-data="noteletteForm()" @submit.prevent="submitData">
                             @csrf
-                            <div x-data="{
-                                'note': {{ $note->id }},
-                                'body': 'test',
-                                getNote() {
-                                    formData.note_id = this.note
-                                },
-                                getBody() {
-                                    formData.body = window.getSelection().toString()
-                                }
-                            }" @mouseup="getBody(); getNote()"><textarea class="w-full">{{ $note->body }}</textarea></div>
-                            <input type="hidden" x-model="formData.body" />
-                            <input type="hidden" x-model="formData.note_id" />
+                            <div><textarea class="w-full">{{ $note->body }}</textarea></div>
                             <p x-text="message" class="text-xs text-red-600"></p>
                             <div class="menu bg-white shadow p-2 border border-gray-100">
                                 <ul class="menu-options">
                                     <lh>Quest</lh>
+                                    <hr />
                                     @foreach ($quests as $quest)
-                                        <li class="menu-option">{{ $quest->title }}</li>
+                                        <li class="menu-option"
+                                            x-data="{
+                                                'quest': {{ $quest->id }},
+                                                'note': {{ $note->id }},
+                                                getNote() { formData.note_id = this.note },
+                                                getBody() { formData.body = window.getSelection().toString() },
+                                                getQuest() { formData.quest_id = this.quest }
+                                            }" @click="getBody(); getNote(); getQuest(); console.log(formData.body); submitData()">{{ $quest->title }}</li>
                                     @endforeach
                                     <lh>NPC</lh>
+                                    <hr />
                                     @foreach ($npcs as $npc)
-                                        <li class="menu-option">{{ $npc->name }}</li>
+                                        <li class="menu-option"
+                                            x-data="{
+                                                'npc': {{ $npc->id }},
+                                                getNPC() { formData.npc_id = this.npc }
+                                            }" @click="getBody(); getNote(); getNPC(); submitData()">{{ $npc->name }}</li>
                                     @endforeach
                                     <lh>Location</lh>
+                                    <hr />
                                     @foreach ($locations as $location)
-                                        <li class="menu-option">{{ $location->name }}</li>
+                                        <li class="menu-option"
+                                            x-data="{
+                                                'location': {{ $location->id }},
+                                                getLocation() { formData.location_id = this.location }
+                                            }" @click="getBody(); getNote(); getLocation(); submitData()">{{ $location->name }}</li>
                                     @endforeach
                                 </ul>
+                                <input type="hidden" x-model="formData.body" />
+                                <input type="hidden" x-model="formData.note_id" />
+                                <input type="hidden" x-model="formData.quest_id" />
+                                <input type="hidden" x-model="formData.npc_id" />
+                                <input type="hidden" x-model="formData.location_id" />
                             </div>
                         </form>
                         @foreach ($note->notelettes as $notelette)
@@ -78,10 +90,6 @@
 
                     window.addEventListener("click", e => {
                     if (menuVisible) toggleMenu("hide");
-                    });
-
-                    menuOption.addEventListener("click", e => {
-                    console.log("mouse-option", e.target.innerHTML);
                     });
 
                     document.addEventListener("select", e => {

@@ -34,7 +34,7 @@ class NoteController extends Controller
             'body' => $request->input('body'),
             'quest_id' => $request->input('quest_id'),
             'npc_id' => $request->input('npc_id'),
-            'location_id' => $request->input('location_id'),
+            'location_id' => $request->input('location_id')
         ]);
 
         return redirect('/')->with('success', 'Your new notelette has been saved!');
