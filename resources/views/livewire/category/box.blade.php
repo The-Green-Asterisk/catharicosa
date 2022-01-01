@@ -15,7 +15,7 @@
         <p class="text-xs uppercase font-bold">Notelettes:</p>
         <hr/>
         @foreach ($category->notelettes as $notelette)
-            <p class="text sm">-{{ $notelette->body }}</p>
+            <x-notelette :notelette="$notelette" />
         @endforeach
     </x-dialog>
 </div>

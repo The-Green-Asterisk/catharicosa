@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use App\Models\Note;
+use App\Models\Notelette;
 use App\Models\NPC;
 use App\Models\Quest;
 use Illuminate\Http\Request;
@@ -38,5 +39,12 @@ class NoteController extends Controller
         ]);
 
         return redirect('/')->with('success', 'Your new notelette has been saved!');
+    }
+
+    public function destroyNotelette(Notelette $notelette)
+    {
+        $notelette->delete();
+
+        return back()->with('success', 'Notelette deleted!');
     }
 }
