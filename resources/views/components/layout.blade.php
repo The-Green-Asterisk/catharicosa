@@ -15,7 +15,7 @@
                 font-family: 'Nunito', sans-serif;
             }
             .menu {
-                width: 120px;
+                max-width: 500px;
                 z-index: 100;
                 position: fixed;
                 display: none;

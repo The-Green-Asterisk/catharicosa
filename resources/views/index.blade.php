@@ -14,57 +14,44 @@
                 </div>
             </div>
             {{-- Main Body --}}
-            <x-panel class="h-screen lg:max-w-3/4 overflow-y-auto overflow-hidden flex-col">
+            <x-panel class="h-screen lg:w-3/4 overflow-y-auto overflow-hidden flex-col">
                 {{-- Notes --}}
                 <livewire:new-note />
                 @foreach ($notes as $note)
-                    <div class="mx-32 my-10 transition-all" id="note">
+                    <div class="mx-32 my-10 transition-all">
                         <div class="flex justify-between">
                             <h2 class="font-bold">{{ $note->title }}</h2>
                             <p class="text-sm italic text-gray-400">created {{ $note->created_at->diffForHumans() }}</p>
                         </div>
-                        <form action="/notes/{{ $note->id }}/notelette" id="notelette" method="POST" x-data="noteletteForm()" @submit.prevent="submitData">
+                        <form action="/notes/{{ $note->id }}/notelette" id="notelette" method="POST" x-data="noteletteForm()" @contextmenu="formData.body = window.getSelection().toString()" @submit.prevent="submitData">
                             @csrf
-                            <div><textarea class="w-full">{{ $note->body }}</textarea></div>
+                            <div id="note"
+                                x-data="{
+                                    getNote() { formData.note_id = {{ $note->id }} }
+                                }">{{ $note->body }}</div>
                             <p x-text="message" class="text-xs text-red-600"></p>
-                            <div class="menu bg-white shadow p-2 border border-gray-100">
+                            <div class="menu bg-white shadow-lg p-2 border border-gray-100">
                                 <ul class="menu-options">
-                                    <lh>Quest</lh>
-                                    <hr />
+                                    <lh class="text-sm uppercase font-bold">Quest<hr /></lh>
                                     @foreach ($quests as $quest)
-                                        <li class="menu-option"
-                                            x-data="{
-                                                'quest': {{ $quest->id }},
-                                                'note': {{ $note->id }},
-                                                getNote() { formData.note_id = this.note },
-                                                getBody() { formData.body = window.getSelection().toString() },
-                                                getQuest() { formData.quest_id = this.quest }
-                                            }" @click="getBody(); getNote(); getQuest(); console.log(formData.body); submitData()">{{ $quest->title }}</li>
+                                        <li class="menu-option hover:bg-gray-200" style="cursor: pointer;" x-data="{ getNote() { formData.note_id = {{ $note->id }} },
+                                            getQuest() { formData.quest_id = {{ $quest->id }} }
+                                        }"
+                                            @click="getNote(); getQuest(); submitData()">{{ $quest->title }}</li>
                                     @endforeach
-                                    <lh>NPC</lh>
-                                    <hr />
+                                    <br />
+                                    <lh class="text-sm uppercase font-bold">NPC<hr /></lh>
                                     @foreach ($npcs as $npc)
-                                        <li class="menu-option"
-                                            x-data="{
-                                                'npc': {{ $npc->id }},
-                                                getNPC() { formData.npc_id = this.npc }
-                                            }" @click="getBody(); getNote(); getNPC(); submitData()">{{ $npc->name }}</li>
+                                        <li class="menu-option hover:bg-gray-200" style="cursor: pointer;" x-data="{ getNote() { formData.note_id = {{ $note->id }} }, getNPC() { formData.npc_id = {{ $npc->id }} } }"
+                                            @click="getNote(); getNPC(); submitData()">{{ $npc->name }}</li>
                                     @endforeach
-                                    <lh>Location</lh>
-                                    <hr />
+                                    <br />
+                                    <lh class="text-sm uppercase font-bold">Location<hr /></lh>
                                     @foreach ($locations as $location)
-                                        <li class="menu-option"
-                                            x-data="{
-                                                'location': {{ $location->id }},
-                                                getLocation() { formData.location_id = this.location }
-                                            }" @click="getBody(); getNote(); getLocation(); submitData()">{{ $location->name }}</li>
+                                        <li class="menu-option hover:bg-gray-200" style="cursor: pointer;" x-data="{ getNote() { formData.note_id = {{ $note->id }} }, getLocation() { formData.location_id = {{ $location->id }} } }"
+                                            @click="getNote(); getLocation(); submitData()">{{ $location->name }}</li>
                                     @endforeach
                                 </ul>
-                                <input type="hidden" x-model="formData.body" />
-                                <input type="hidden" x-model="formData.note_id" />
-                                <input type="hidden" x-model="formData.quest_id" />
-                                <input type="hidden" x-model="formData.npc_id" />
-                                <input type="hidden" x-model="formData.location_id" />
                             </div>
                         </form>
                         @foreach ($note->notelettes as $notelette)
@@ -78,28 +65,30 @@
                     let menuVisible = false;
 
                     const toggleMenu = command => {
-                    menu.style.display = command === "show" ? "block" : "none";
-                    menuVisible = !menuVisible;
+                        menu.style.display = command === "show" ? "block" : "none";
+                        menuVisible = !menuVisible;
                     };
 
                     const setPosition = ({ top, left }) => {
-                    menu.style.left = `${left}px`;
-                    menu.style.top = `${top}px`;
-                    toggleMenu("show");
+                        menu.style.left = `${left}px`;
+                        menu.style.top = `${top}px`;
+                        toggleMenu("show");
                     };
 
                     window.addEventListener("click", e => {
-                    if (menuVisible) toggleMenu("hide");
+                        if (menuVisible) toggleMenu("hide");
                     });
 
-                    document.addEventListener("select", e => {
-                    e.preventDefault();
-                    const origin = {
-                        left: e.pageX,
-                        top: e.pageY
-                    };
-                    setPosition(origin);
-                    return false;
+                    document.getElementById("note").addEventListener("contextmenu", e => {
+                        if (this.getSelection().getRangeAt(0).toString().length > 0) {
+                            e.preventDefault();
+                            const origin = {
+                                left: e.pageX,
+                                top: e.pageY
+                            };
+                            setPosition(origin);
+                            return false;
+                        }
                     });
 
                     var csrf = document.querySelector('meta[name="csrf-token"]').content;
@@ -148,7 +137,7 @@
         </div>
         <div class="text-3xl font-bold text-center m-10">Note-taking app for the meticulous tabletop player</div>
 
-        <div class="flex justify-between p-20">
+        <div class="flex justify-evenly">
             <div class="w-96 text-xl">Write notes as usual and then highlight details to mark them as "notelettes"</div>
             <div class="w-96 text-xl">Attach notelettes to NPCs, Locations, or Quests</div>
             <div class="w-96 text-xl">Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</div>
