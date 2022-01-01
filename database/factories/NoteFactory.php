@@ -18,7 +18,8 @@ class NoteFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'body' => $this->faker->sentences(3, true),
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'created_at'=>$this->faker->dateTimeBetween('-2 years' )
         ];
     }
 }

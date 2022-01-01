@@ -1,7 +1,7 @@
 <div
     x-show="open"
-    class="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm flex content-center">
-    <x-panel @click.away="open = false" class="z-50 w-72 p-4 text-center">
+    class="w-screen h-screen fixed inset-0 z-30 backdrop-blur-sm flex content-center">
+    <x-panel @click.away="open = false" {{ $attributes->merge(['class' => 'z-50 w-72 p-4']) }}>
         {{ $slot }}
     </x-panel>
 </div>

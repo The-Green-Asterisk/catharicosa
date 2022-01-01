@@ -33,7 +33,7 @@ class NoteController extends Controller
             'user_id' => auth()->user()->id,
             'body' => $request->input('body'),
             'quest_id' => $request->input('quest_id'),
-            'npc_id' => $request->input('npc_id'),
+            'n_p_c_id' => $request->input('npc_id'),
             'location_id' => $request->input('location_id')
         ]);
 

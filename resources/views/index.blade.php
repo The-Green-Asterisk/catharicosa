@@ -25,12 +25,12 @@
                         </div>
                         <form action="/notes/{{ $note->id }}/notelette" id="notelette" method="POST" x-data="noteletteForm()" @contextmenu="formData.body = window.getSelection().toString()" @submit.prevent="submitData">
                             @csrf
-                            <div id="note"
+                            <div class="note"
                                 x-data="{
                                     getNote() { formData.note_id = {{ $note->id }} }
                                 }">{{ $note->body }}</div>
                             <p x-text="message" class="text-xs text-red-600"></p>
-                            <div class="menu bg-white shadow-lg p-2 border border-gray-100">
+                            <div class="menu bg-white shadow-lg p-2 border border-gray-400">
                                 <ul class="menu-options">
                                     <lh class="text-sm uppercase font-bold">Quest<hr /></lh>
                                     @foreach ($quests as $quest)
@@ -79,17 +79,21 @@
                         if (menuVisible) toggleMenu("hide");
                     });
 
-                    document.getElementById("note").addEventListener("contextmenu", e => {
-                        if (this.getSelection().getRangeAt(0).toString().length > 0) {
-                            e.preventDefault();
-                            const origin = {
-                                left: e.pageX,
-                                top: e.pageY
-                            };
-                            setPosition(origin);
-                            return false;
-                        }
-                    });
+                    var notes = document.getElementsByClassName("note");
+
+                    for (var i=0; i<notes.length; i++){
+                        notes[i].addEventListener("contextmenu", e => {
+                            if (this.getSelection().getRangeAt(0).toString().length > 0) {
+                                e.preventDefault();
+                                const origin = {
+                                    left: e.pageX,
+                                    top: e.pageY
+                                };
+                                setPosition(origin);
+                                return false;
+                            }
+                        });
+                    }
 
                     var csrf = document.querySelector('meta[name="csrf-token"]').content;
 
@@ -132,6 +136,7 @@
             </div>
         </div>
     @else
+    {{-- Guest view --}}
         <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner" style="background-image: url('wizard.jpg');padding-left:736px;">
             <img src="hero-logo.png" class="h-96" />
         </div>

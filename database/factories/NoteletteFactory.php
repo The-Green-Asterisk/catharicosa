@@ -23,7 +23,7 @@ class NoteletteFactory extends Factory
             'body' => $this->faker->sentence,
             'location_id' => $location->id,
             'note_id' => $note->id,
-            'npc_id' => $npc->id,
+            'n_p_c_id' => $npc->id,
             'quest_id' => $quest->id,
             'user_id' => $user->id
         ];

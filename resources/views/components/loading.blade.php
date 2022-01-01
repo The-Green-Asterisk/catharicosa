@@ -24,7 +24,7 @@
             }
         }
     </style>
-    <div class="fixed inset-0 w-full h-screen z-20 overflow-hidden bg-white flex flex-col items-center justify-center">
+    <div class="fixed inset-0 w-full h-screen z-50 overflow-hidden bg-white flex flex-col items-center justify-center">
         <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
         <h2 class="text-center text-black text-xl font-semibold">Loading....</h2>
     </div>
