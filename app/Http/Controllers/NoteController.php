@@ -32,6 +32,7 @@ class NoteController extends Controller
     {
         $note->notelettes()->create([
             'user_id' => auth()->user()->id,
+            'note_id' => $request->input('note_id'),
             'body' => $request->input('body'),
             'quest_id' => $request->input('quest_id'),
             'n_p_c_id' => $request->input('npc_id'),

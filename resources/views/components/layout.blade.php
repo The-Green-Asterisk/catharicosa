@@ -14,31 +14,6 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
-            .menu {
-                max-width: 500px;
-                z-index: 100;
-                position: fixed;
-                display: none;
-                transition: 0.2s display ease-in;
-
-                .menu-options {
-                    list-style: none;
-                    padding: 10px 0;
-                    z-index: 100;
-
-                    .menu-option {
-                        font-weight: 500;
-                        z-index: 1;
-                        font-size: 14px;
-                        padding: 10px 40px 10px 20px;
-                        cursor: pointer;
-
-                            &:hover {
-                                background: rgba(0, 0, 0, 0.2);
-                            }
-                        }
-                    }
-                }
         </style>
 
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
