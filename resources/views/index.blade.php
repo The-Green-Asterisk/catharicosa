@@ -6,11 +6,11 @@
                 <img src="scrollicon.png" class="float-right m-3 h-6" @click="toggle()" />
                 <div x-show="open" class="m-10" x-transition>
                     <h1 class="text-lg underline font-bold decoration-4">Quests</h1>
-                        <livewire:slider :categories="$quests" />
+                        <livewire:slider :categories="$quests" :catName="'quests'" />
                     <h1 class="text-lg underline font-bold decoration-4">NPCs</h1>
-                        <livewire:slider :categories="$npcs" />
+                        <livewire:slider :categories="$npcs" :catName="'npcs'" />
                     <h1 class="text-lg underline font-bold decoration-4">Locations</h1>
-                        <livewire:slider :categories="$locations" />
+                        <livewire:slider :categories="$locations" :catName="'locations'" />
                 </div>
             </div>
             {{-- Main Body --}}

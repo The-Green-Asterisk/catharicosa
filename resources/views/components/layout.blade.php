@@ -44,5 +44,6 @@
             </div>
         @endif
         @livewireScripts
+        @livewire('modal')
     </body>
 </html>

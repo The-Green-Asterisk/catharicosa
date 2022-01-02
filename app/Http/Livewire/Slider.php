@@ -8,10 +8,13 @@ class Slider extends Component
 {
     public $categories;
 
+    public $catName;
+
     public function render()
     {
         return view('livewire.slider', [
-            'categories' => $this->categories
+            'categories' => $this->categories,
+            'catName' => $this->catName
         ]);
     }
 }
