@@ -25,37 +25,43 @@
                         </div>
                         <form action="/notes/{{ $note->id }}/notelette" id="notelette" method="POST" x-data="noteletteForm()" @contextmenu="formData.body = window.getSelection().toString()" @submit.prevent="submitData">
                             @csrf
-                            <div class="note"
-                                x-data="{
-                                    getNote() { formData.note_id = {{ $note->id }} }
-                                }">{{ $note->body }}</div>
+                            <div class="note" @contextmenu="formData.note_id = {{ $note->id }}">
+                                @foreach ($note->notelettes as $notelette)
+                                    @php
+                                        $noteletteBodies[] = "/$notelette->body/";
+                                        $replacements[] = "<span class='italic bg-red-100 rounded border border-red-300'>$notelette->body</span>";
+                                    @endphp
+                                @endforeach
+                                {!! preg_replace($noteletteBodies, $replacements, $note->body) !!}
+                            </div>
                             <p x-text="message" class="text-xs text-red-600"></p>
-                            <div class="menu bg-white shadow-lg p-2 border border-gray-400">
+                            <div class="menu bg-white shadow-lg p-2 w-52 border border-gray-400">
                                 <ul class="menu-options">
                                     <lh class="text-sm uppercase font-bold">Quest<hr /></lh>
                                     @foreach ($quests as $quest)
-                                        <li class="menu-option hover:bg-gray-200" style="cursor: pointer;" x-data="{ getNote() { formData.note_id = {{ $note->id }} },
-                                            getQuest() { formData.quest_id = {{ $quest->id }} }
-                                        }"
-                                            @click="getNote(); getQuest(); submitData()">{{ $quest->title }}</li>
+                                        <li class="menu-option hover:bg-gray-200 cursor-default"
+                                            x-data="{ getQuest() { formData.quest_id = {{ $quest->id }} } }"
+                                            @click="getQuest(); submitData()">{{ $quest->title }}</li>
                                     @endforeach
                                     <br />
                                     <lh class="text-sm uppercase font-bold">NPC<hr /></lh>
                                     @foreach ($npcs as $npc)
-                                        <li class="menu-option hover:bg-gray-200" style="cursor: pointer;" x-data="{ getNote() { formData.note_id = {{ $note->id }} }, getNPC() { formData.npc_id = {{ $npc->id }} } }"
-                                            @click="getNote(); getNPC(); submitData()">{{ $npc->name }}</li>
+                                        <li class="menu-option hover:bg-gray-200 cursor-default"
+                                            x-data="{ getNPC() { formData.npc_id = {{ $npc->id }} } }"
+                                            @click="getNPC(); submitData()">{{ $npc->name }}</li>
                                     @endforeach
                                     <br />
                                     <lh class="text-sm uppercase font-bold">Location<hr /></lh>
                                     @foreach ($locations as $location)
-                                        <li class="menu-option hover:bg-gray-200" style="cursor: pointer;" x-data="{ getNote() { formData.note_id = {{ $note->id }} }, getLocation() { formData.location_id = {{ $location->id }} } }"
-                                            @click="getNote(); getLocation(); submitData()">{{ $location->name }}</li>
+                                        <li class="menu-option hover:bg-gray-200 cursor-default"
+                                            x-data="{ getLocation() { formData.location_id = {{ $location->id }} } }"
+                                            @click="getLocation(); submitData()">{{ $location->name }}</li>
                                     @endforeach
                                 </ul>
                             </div>
                         </form>
                         @foreach ($note->notelettes as $notelette)
-                            <p class="italic">{{ $notelette->body }}</p>
+                            <x-notelette :notelette="$notelette" />
                         @endforeach
                     </div>
                 @endforeach
@@ -90,6 +96,7 @@
                                     top: e.pageY
                                 };
                                 setPosition(origin);
+
                                 return false;
                             }
                         });
