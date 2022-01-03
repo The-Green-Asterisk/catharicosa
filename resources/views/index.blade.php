@@ -32,7 +32,11 @@
                                         $replacements[] = "<span class='italic bg-red-100 rounded border border-red-300'>$notelette->body</span>";
                                     @endphp
                                 @endforeach
-                                {!! preg_replace($noteletteBodies, $replacements, $note->body) !!}
+                                @if (isset($noteletteBodies))
+                                    {!! preg_replace($noteletteBodies, $replacements, $note->body) !!}
+                                @else
+                                    {!! $note->body !!}
+                                @endif
                             </div>
                             <p x-text="message" class="text-xs text-red-600"></p>
                             <div class="menu z-20 bg-white absolute block shadow-lg p-2 w-52 border border-gray-400"
@@ -49,15 +53,13 @@
                                     <lh class="text-sm uppercase font-bold">NPC<hr /></lh>
                                     @foreach ($npcs as $npc)
                                         <li class="menu-option hover:bg-gray-200 cursor-default"
-                                            x-data="{ getNPC() { formData.npc_id = {{ $npc->id }} } }"
-                                            @click="getNPC(); submitData()">{{ $npc->name }}</li>
+                                            @click="formData.npc_id = {{ $npc->id }}; submitData()">{{ $npc->name }}</li>
                                     @endforeach
                                     <br />
                                     <lh class="text-sm uppercase font-bold">Location<hr /></lh>
                                     @foreach ($locations as $location)
                                         <li class="menu-option hover:bg-gray-200 cursor-default"
-                                            x-data="{ getLocation() { formData.location_id = {{ $location->id }} } }"
-                                            @click="getLocation(); submitData()">{{ $location->name }}</li>
+                                            @click="formData.location_id = {{ $location->id }}; submitData()">{{ $location->name }}</li>
                                     @endforeach
                                 </ul>
                             </div>

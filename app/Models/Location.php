@@ -9,6 +9,8 @@ class Location extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'description', 'user_id'];
+
     public function notelettes()
     {
         return $this->hasMany(Notelette::class);

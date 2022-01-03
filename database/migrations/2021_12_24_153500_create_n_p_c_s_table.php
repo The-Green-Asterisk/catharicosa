@@ -17,7 +17,7 @@ class CreateNPCSTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id');
-            $table->foreignId('location_id');
+            $table->foreignId('location_id')->nullable();
             $table->string('name');
             $table->text('description');
         });

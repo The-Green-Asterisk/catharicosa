@@ -9,6 +9,8 @@ class Quest extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'description', 'user_id'];
+
     public function notelettes()
     {
         return $this->hasMany(Notelette::class);
