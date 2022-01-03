@@ -1,5 +1,5 @@
 <div>
-    <x-panel class="w-1/4 mt-20 text-center p-4">
+    <x-panel class="w-1/4 min-w-min mt-20 text-center p-4">
         Do tell the tail of this fantastic new entry into your journal!
         <form wire:submit.prevent="submit">
             <input type="text" wire:model="heading" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="Name and/or Title">
@@ -10,14 +10,15 @@
 
             <div class="flex">
                 <div class="grow"></div>
-                <select wire:model='category' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
-                    <option label="Choose a category" />
-                    <option name="quest" label="Quest" value="quest" />
-                    <option name="npc" label="NPC" value="npc" />
-                    <option name="location" label="Location" value="location" />
-                </select>
-                @error('category') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
-
+                <div class="flex-col">
+                    <select wire:model='category' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
+                        <option label="Choose a category" />
+                        <option name="quest" label="Quest" value="quest" />
+                        <option name="npc" label="NPC" value="npc" />
+                        <option name="location" label="Location" value="location" />
+                    </select>
+                @error('category') <span class="error block text-xs text-red-600">{{ $message }}</span> @enderror
+                </div>
                 @if ($category === "npc")
                     <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
                         <option label="Where do they live?" />
