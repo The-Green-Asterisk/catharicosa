@@ -48,4 +48,11 @@ class NoteController extends Controller
 
         return back()->with('success', 'Notelette deleted!');
     }
+
+    public function destroyNote(Note $note)
+    {
+        $note->delete();
+
+        return back()->with('success', 'Note deleted!');
+    }
 }

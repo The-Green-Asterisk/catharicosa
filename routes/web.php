@@ -23,3 +23,4 @@ Route::get('/item', Item::class)->middleware('auth');
 Route::get('/login', Session::class)->middleware('guest');
 Route::post('/notes/{note}/notelette', [NoteController::class, 'addNotelette'])->name('addNotelette');
 Route::delete('/notelette/{notelette}/delete', [NoteController::class, 'destroyNotelette'])->name('destroyNotelette');
+Route::delete('/note/{note}/delete', [NoteController::class, 'destroyNote'])->name('destroyNote');

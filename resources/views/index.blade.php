@@ -19,9 +19,15 @@
                 <livewire:new-note />
                 @foreach ($notes as $note)
                     <div x-data="{ open: false, toggle() { this.open =! this.open } }" class="mx-32 my-10 transition-all" x-on:mouseleave="open = false">
-                        <div class="flex justify-between">
+                        <div class="flex items-center">
                             <h2 class="font-bold">{{ $note->title }}</h2>
+                            <div class="grow"></div>
                             <p class="text-sm italic text-gray-400">created {{ $note->created_at->diffForHumans() }}</p>
+                            <form method="POST" id="{{ 'delete' . $note->id }}" action="/note/{{ $note->id }}/delete">
+                                @csrf
+                                @method('DELETE')
+                                <input type="image" src="/trash.png" alt="Delete" height="15px" width="15px" class="opacity-50 hover:opacity-100" title="Delete Note" />
+                            </form>
                         </div>
                         <form action="/notes/{{ $note->id }}/notelette" id="notelette" method="POST" x-data="noteletteForm()" @contextmenu="formData.body = window.getSelection().toString()" @submit.prevent="submitData">
                             @csrf

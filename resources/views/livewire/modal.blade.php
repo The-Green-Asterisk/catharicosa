@@ -5,11 +5,19 @@
         <p class="text-lg font-bold mb-6">{{ $category->title ?? $category->name }}</p>
         <p class="text-xs uppercase font-bold">Description:</p>
         <p class="mb-6">{{ $category->description }}</p>
+        @if (isset($category->location->name))
+            <p class="text-xs uppercase font-bold">Location:</p>
+            <p class="mb-6">{{ $category->location->name }}</p>
+        @endif
         <p class="text-xs uppercase font-bold">Notelettes:</p>
         <hr/>
-        @foreach ($category->notelettes as $notelette)
-            <x-notelette :notelette="$notelette" />
-        @endforeach
+        @if ($category->notelettes->first() !== null)
+            @foreach ($category->notelettes as $notelette)
+                <x-notelette :notelette="$notelette" />
+            @endforeach
+        @else
+            <p class="mb-6">No notelettes yet!</p>
+        @endif
     </x-dialog>
     @endif
 </div>

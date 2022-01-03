@@ -1,5 +1,5 @@
 <div>
-    <div class="mb-10 overflow-y-scroll flex flex-row gap-x-2 shadow-inner">
+    <div class="mb-10 overflow-y-scroll flex flex-row gap-x-2 shadow-inner no-scrollbar">
         @foreach ($categories as $category)
             <livewire:category.box :category="$category" :catName="$catName" />
         @endforeach
