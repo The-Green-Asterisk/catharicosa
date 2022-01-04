@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 
 class Inventory extends Component
 {
+    public $savedDDB;
+
     public $inv;
 
     public $sheetNumber;
@@ -16,6 +19,7 @@ class Inventory extends Component
 
     public function mount()
     {
+        $this->savedDDB ?? $this->sheetNumber = auth()->user()->ddb;
         $this->getInv();
     }
 
@@ -44,6 +48,12 @@ class Inventory extends Component
             $this->sheetNumber = "";
             $this->error = null;
         }
+    }
+
+    public function save()
+    {
+        User::where('id', auth()->user()->id)->update(['ddb' => $this->sheetNumber]);
+        $this->getInv();
     }
 
     public function render()
