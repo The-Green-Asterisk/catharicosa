@@ -4,6 +4,6 @@
     <form method="POST" id="{{ 'delete' . $notelette->id }}" action="/notelette/{{ $notelette->id }}/delete">
         @csrf
         @method('DELETE')
-        <x-form-button class="text-xs">Delete</x-form-button>
+        <input type="image" src="images/trash.png" alt="Delete" height="15px" width="15px" class="opacity-50 hover:opacity-100" title="Delete Notelette" />
     </form>
 </div>

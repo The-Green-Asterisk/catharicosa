@@ -3,7 +3,7 @@
         <div class="flex">
             {{-- Category Sidebar --}}
             <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'lg:min-w-[25%] max-w-[25%] h-screen mr-8' : 'h-fit mr-2'" class="transition-all bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-r shadow bg-white overflow-y-auto overflow-hidden border-l-0">
-                <img src="scrollicon.png" class="float-right m-3 h-6" @click="toggle()" />
+                <img src="images/scrollicon.png" class="float-right m-3 h-6" @click="toggle()" />
                 <div x-show="open" class="m-10" x-transition>
                     <h1 class="text-lg underline font-bold decoration-4">Quests</h1>
                         <livewire:slider :categories="$quests" :catName="'quests'" />
@@ -26,7 +26,7 @@
                             <form method="POST" id="{{ 'delete' . $note->id }}" action="/note/{{ $note->id }}/delete">
                                 @csrf
                                 @method('DELETE')
-                                <input type="image" src="/trash.png" alt="Delete" height="15px" width="15px" class="opacity-50 hover:opacity-100" title="Delete Note" />
+                                <input type="image" src="images/trash.png" alt="Delete" height="15px" width="15px" class="opacity-50 hover:opacity-100" title="Delete Note" />
                             </form>
                         </div>
                         <form action="/notes/{{ $note->id }}/notelette" id="notelette" method="POST" x-data="noteletteForm()" @contextmenu="formData.body = window.getSelection().toString()" @submit.prevent="submitData">
@@ -128,7 +128,7 @@
             </x-panel>
             {{-- Inventory Sidebar --}}
             <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'lg:min-w-[25%] max-w-[25%] h-screen ml-8' : 'ml-2 h-fit'" class="bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-l shadow bg-white overflow-y-auto overflow-hidden border-r-0" x-transition>
-                <img src="backpack.png" :class="open ? 'm-3 h-6 absolute' : 'm-3 h-6'" @click="toggle()" />
+                <img src="images/backpack.png" :class="open ? 'm-3 h-6 absolute' : 'm-3 h-6'" @click="toggle()" />
                 <div x-show="open">
                     <livewire:inventory />
                 </div>
@@ -136,8 +136,8 @@
         </div>
     @else
     {{-- Guest view --}}
-        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner" style="background-image: url('wizard.jpg');padding-left:736px;">
-            <img src="hero-logo.png" class="h-96" />
+        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner" style="background-image: url('images/wizard.jpg');padding-left:736px;">
+            <img src="images/hero-logo.png" class="h-96" />
         </div>
         <div class="text-3xl font-bold text-center m-10">Note-taking app for the meticulous tabletop player</div>
 
