@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\InventoryItem;
 use App\Models\Location;
 use App\Models\NPC;
 use App\Models\Quest;
@@ -43,6 +44,8 @@ class Modal extends Component
             $category = NPC::all()->where('id', $cid);
         }elseif ($catName === 'locations'){
             $category = Location::all()->where('id', $cid);
+        }elseif ($catName === 'inventory-items'){
+            $category = InventoryItem::all()->where('id', $cid);
         }
 
         $this->category = $category->first();

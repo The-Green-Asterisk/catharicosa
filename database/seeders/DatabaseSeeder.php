@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\NPC::factory(5)->create();
         \App\Models\Quest::factory(7)->create();
         \App\Models\Notelette::factory(100)->create();
+        \App\Models\InventoryItem::factory(10)->create();
     }
 }

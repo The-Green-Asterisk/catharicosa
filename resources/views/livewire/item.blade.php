@@ -16,18 +16,43 @@
                         <option name="quest" label="Quest" value="quest" />
                         <option name="npc" label="NPC" value="npc" />
                         <option name="location" label="Location" value="location" />
+                        <option name="item" label="Item" value="item" />
                     </select>
                 @error('category') <span class="error block text-xs text-red-600">{{ $message }}</span> @enderror
-                </div>
-                @if ($category === "npc")
+                    @if ($category === "npc")
+                        <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
+                            <option label="Where do they live?" />
+                            @foreach ($locations as $location)
+                                <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
+                            @endforeach
+                            <option name="idk" label="I don't know" value="idk" />
+                        </select>
+                    @endif
+                    @if ($category === "item")
                     <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
-                        <option label="Where do they live?" />
+                        <option label="Where is this item?" />
                         @foreach ($locations as $location)
                             <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
                         @endforeach
-                        <option name="idk" label="I don't know" value="idk" />
+                        <option name="idk" label="I don't know" />
                     </select>
-                @endif
+                    <select wire:model='quest' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
+                        <option label="Is this item part of a quest?" />
+                        @foreach ($quests as $quest)
+                            <option name="{{ $quest->title }}" label="{{ $quest->title }}" value="{{ $quest->id }}" />
+                        @endforeach
+                        <option name="idk" label="I don't know" />
+                    </select>
+                    <select wire:model='npc' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
+                        <option label="Who owns this item?" />
+                        @foreach ($npcs as $npc)
+                            <option name="{{ $npc->name }}" label="{{ $npc->name }}" value="{{ $npc->id }}" />
+                        @endforeach
+                        <option name="me" label="Me" />
+                        <option name="idk" label="I don't know" />
+                    </select>
+                    @endif
+                </div>
             </div>
 
             <hr />

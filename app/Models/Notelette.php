@@ -9,7 +9,7 @@ class Notelette extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['body', 'user_id', 'note_id', 'n_p_c_id', 'quest_id', 'location_id'];
+    protected $fillable = ['body', 'user_id', 'note_id', 'n_p_c_id', 'quest_id', 'location_id', 'inventory_item_id'];
 
     public function note()
     {

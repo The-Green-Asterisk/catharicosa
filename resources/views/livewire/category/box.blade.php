@@ -1,6 +1,4 @@
-<div
-    x-data="{}" x-on:click="$wire.emit('showModal', '{{ $catName }}', {{ $category->id }})"
-    class="cursor-pointer">
+<div x-data="{}" x-on:click="$wire.emit('showModal', '{{ $catName }}', {{ $category->id }})" class="cursor-pointer">
     @if (request()->getQueryString() != null)
         <div x-init="$wire.emit('showModal', '{{ $catName }}', {{ $category->id }})"></div>
     @endif

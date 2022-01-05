@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotelettesTable extends Migration
+class CreateInventoryItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateNotelettesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notelettes', function (Blueprint $table) {
+        Schema::create('inventory_items', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id');
-            $table->foreignId('note_id');
+            $table->text('name');
+            $table->text('description');
+            $table->foreignId('npc_id')->nullable();
             $table->foreignId('location_id')->nullable();
-            $table->foreignId('n_p_c_id')->nullable();
             $table->foreignId('quest_id')->nullable();
-            $table->foreignId('inventory_item_id')->nullable();
-            $table->text('body');
         });
     }
 
@@ -33,6 +32,6 @@ class CreateNotelettesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notelettes');
+        Schema::dropIfExists('inventory_items');
     }
 }

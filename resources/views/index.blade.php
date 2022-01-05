@@ -50,7 +50,7 @@
                                 x-transition
                                 @click.away="open = false">
                                 <ul class="menu-options">
-                                    <lh class="text-sm uppercase font-bold">Quest {{ $note->id }}<hr /></lh>
+                                    <lh class="text-sm uppercase font-bold">Quest<hr /></lh>
                                     @foreach ($quests as $quest)
                                         <li class="menu-option hover:bg-gray-200 cursor-default"
                                             @click="formData.quest_id = {{ $quest->id }}; submitData()">{{ $quest->title }}</li>
@@ -66,6 +66,12 @@
                                     @foreach ($locations as $location)
                                         <li class="menu-option hover:bg-gray-200 cursor-default"
                                             @click="formData.location_id = {{ $location->id }}; submitData()">{{ $location->name }}</li>
+                                    @endforeach
+                                    <br />
+                                    <lh class="text-sm uppercase font-bold">Item<hr /></lh>
+                                    @foreach ($inventoryItems as $item)
+                                        <li class="menu-option hover:bg-gray-200 cursor-default"
+                                            @click="formData.inventory_item_id = {{ $item->id }}; submitData()">{{ $item->name }}</li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -96,13 +102,14 @@
 
                     var csrf = document.querySelector('meta[name="csrf-token"]').content;
 
-                    function noteletteForm(note_id, body, quest_id, npc_id, location_id) {
+                    function noteletteForm(note_id, body, quest_id, npc_id, location_id, inventory_item_id) {
                         return {
                             formData: {
                                 body: body,
                                 quest_id: quest_id,
                                 npc_id: npc_id,
-                                location_id: location_id
+                                location_id: location_id,
+                                inventory_item_id: inventory_item_id
                             },
                             message: '',
 
@@ -130,7 +137,7 @@
             <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'lg:min-w-[25%] max-w-[25%] h-screen ml-8' : 'ml-2 h-fit'" class="bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-l shadow bg-white overflow-y-auto overflow-hidden border-r-0" x-transition>
                 <img src="images/backpack.png" :class="open ? 'm-3 h-6 absolute' : 'm-3 h-6'" @click="toggle()" />
                 <div x-show="open">
-                    <livewire:inventory />
+                    <livewire:inventory :catName="'inventory-items'" />
                 </div>
             </div>
         </div>

@@ -2,26 +2,39 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\InventoryItem;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Livewire\Component;
 
 class Inventory extends Component
 {
     public $savedDDB;
-    public $inv;
     public $showInv = false;
     public $sheetNumber;
     public $error;
     public $name;
-    public $toggle = 0;
+
+    public $catName;
+
+    public $toggle;
+
+    public $inventoryItems;
 
     public function mount()
     {
+        $this->toggle = auth()->user()->inv ?? 0;
+
         if (isset(auth()->user()->ddb)){
             $this->sheetNumber = auth()->user()->ddb;
             $this->savedDDB = true;
         }
         $this->getInv();
+    }
+
+    public function prev()
+    {
+        User::where('id', auth()->user()->id)->update(['inv' => $this->toggle]);
     }
 
     public function getInv()
@@ -37,7 +50,7 @@ class Inventory extends Component
             $fileURL = 'https://character-service.dndbeyond.com/character/v3/character/' . $this->sheetNumber;
             if (preg_match('/^[0-9]{8}$/', $this->sheetNumber))
             {
-                $charFile = file_get_contents($fileURL);
+                $charFile = @file_get_contents($fileURL);
                 $char = json_decode($charFile, false);
                 $this->showInv = true;
             }
@@ -58,6 +71,25 @@ class Inventory extends Component
             $this->error = null;
             $this->showInv = false;
         }
+
+        $this->inventoryItems = InventoryItem::all();
+    }
+
+    public function import()
+    {
+        if (isset($this->inv)){
+            foreach ($this->inv as $item){
+                InventoryItem::create([
+                    'name' => Arr::get($item['definition'], 'name', 'testing'),
+                    'description' => Arr::get($item['definition'], 'description', 'testing'),
+                    'user_id' => auth()->user()->id
+                ]);
+            }
+            $this->toggle = 1;
+            $this->getInv();
+        }else{
+            $this->error = "There's nothing to import.";
+        }
     }
 
     public function save()
@@ -77,6 +109,12 @@ class Inventory extends Component
         User::where('id', auth()->user()->id)->update(['ddb' => null]);
         $this->savedDDB = false;
         $this->sheetNumber = null;
+        $this->getInv();
+    }
+
+    public function deleteInvItem($id)
+    {
+        InventoryItem::where('id', $id)->delete();
         $this->getInv();
     }
 

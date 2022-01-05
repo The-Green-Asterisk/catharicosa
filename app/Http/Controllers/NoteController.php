@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InventoryItem;
 use App\Models\Location;
 use App\Models\Note;
 use App\Models\Notelette;
@@ -20,6 +21,7 @@ class NoteController extends Controller
                 'quests' => Quest::all()->where('user_id', $user),
                 'npcs' => NPC::all()->where('user_id', $user),
                 'locations' => Location::all()->where('user_id', $user),
+                'inventoryItems' => InventoryItem::all()->where('user_id', $user),
             ];
         }else{
             $data = ['coconut' => 'lime'];
@@ -36,7 +38,8 @@ class NoteController extends Controller
             'body' => $request->input('body'),
             'quest_id' => $request->input('quest_id'),
             'n_p_c_id' => $request->input('npc_id'),
-            'location_id' => $request->input('location_id')
+            'location_id' => $request->input('location_id'),
+            'inventory_item_id' => $request->input('inventory_item_id')
         ]);
 
         return redirect('/')->with('success', 'Your new notelette has been saved!');

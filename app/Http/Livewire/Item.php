@@ -14,6 +14,10 @@ class Item extends Component
     public $category;
     public $locations;
     public $location;
+    public $npcs;
+    public $npc;
+    public $quests;
+    public $quest;
 
     protected $rules = [
         'heading' => 'required|max:255',
@@ -49,6 +53,14 @@ class Item extends Component
                 'description' => $this->description,
                 'user_id' => auth()->user()->id
             ]);
+        }elseif ($this->category === 'item'){
+            Item::create([
+                'name' => $this->heading,
+                'description' => $this->description,
+                'user_id' => auth()->user()->id,
+                'npc_id' => $this->npc,
+                'quest' => $this->quest
+            ]);
         }
 
         return redirect('/');
@@ -57,6 +69,8 @@ class Item extends Component
     public function mount()
     {
         $this->locations = Location::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->npcs = NPC::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
     }
 
     public function render()
