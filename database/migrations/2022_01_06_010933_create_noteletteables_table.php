@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotelettesTable extends Migration
+class CreateNoteletteablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateNotelettesTable extends Migration
      */
     public function up()
     {
-        Schema::create('notelettes', function (Blueprint $table) {
-            $table->id();
+        Schema::create('noteletteables', function (Blueprint $table) {
+            $table->integer('notelette_id');
+            $table->integer('noteletteable_id');
+            $table->string('noteletteable_type');
             $table->timestamps();
-            $table->foreignId('user_id');
-            $table->text('body');
         });
     }
 
@@ -28,6 +28,6 @@ class CreateNotelettesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notelettes');
+        Schema::dropIfExists('noteletteables');
     }
 }

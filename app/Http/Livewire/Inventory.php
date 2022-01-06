@@ -112,16 +112,15 @@ class Inventory extends Component
         $this->getInv();
     }
 
-    public function deleteInvItem($id)
-    {
-        InventoryItem::where('id', $id)->delete();
-        $this->getInv();
-    }
+    // public function deleteInvItem($id)
+    // {
+    //     InventoryItem::where('id', $id)->delete();
+    //     $this->getInv();
+    // }
 
     public function render()
     {
         return view('livewire.inventory', [
-            'inv' => $this->inv,
             'name' => $this->name
         ]);
     }

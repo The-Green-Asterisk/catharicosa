@@ -30,17 +30,24 @@ class NoteController extends Controller
         return view('index', $data);
     }
 
-    public function addNotelette(Request $request, Note $note)
+    public function addNotelette(Request $request, Note $note, Quest $quest, NPC $npc, Location $location, InventoryItem $item)
     {
-        $note->notelettes()->create([
+        $notelette = $note->notelettes()->create([
             'user_id' => auth()->user()->id,
-            'note_id' => $request->input('note_id'),
-            'body' => $request->input('body'),
-            'quest_id' => $request->input('quest_id'),
-            'n_p_c_id' => $request->input('npc_id'),
-            'location_id' => $request->input('location_id'),
-            'inventory_item_id' => $request->input('inventory_item_id')
+            'body' => $request->input('body')
         ]);
+        if ($request->input('quest_id') !== null){
+            $quest->find($request->input('quest_id'))->notelettes()->attach($notelette->id);
+        }
+        if ($request->input('npc_id') !== null){
+            $npc->find($request->input('npc_id'))->notelettes()->attach($notelette->id);
+        }
+        if ($request->input('location_id') !== null){
+            $location->find($request->input('location_id'))->notelettes()->attach($notelette->id);
+        }
+        if ($request->input('inventory_item_id') !== null){
+            $item->find($request->input('inventory_item_id'))->notelettes()->attach($notelette->id);
+        }
 
         return redirect('/')->with('success', 'Your new notelette has been saved!');
     }

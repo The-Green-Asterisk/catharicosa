@@ -51,6 +51,12 @@ class Modal extends Component
         $this->category = $category->first();
     }
 
+    public function deleteItem()
+    {
+        $this->category->delete();
+        return redirect('/')->with('succes', 'Item has been deleted!');
+    }
+
     public function render()
     {
         return view('livewire.modal', [

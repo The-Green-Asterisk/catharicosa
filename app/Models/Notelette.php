@@ -11,28 +11,28 @@ class Notelette extends Model
 
     protected $fillable = ['body', 'user_id', 'note_id', 'n_p_c_id', 'quest_id', 'location_id', 'inventory_item_id'];
 
+    public function location()
+    {
+        return $this->morphedByMany(Location::class, 'noteletteable');
+    }
+
     public function note()
     {
-        return $this->belongsTo(Note::class);
+        return $this->morphedByMany(Note::class, 'noteletteable');
     }
 
-    public function npcs()
+    public function npc()
     {
-        return $this->belongsToMany(NPC::class);
+        return $this->morphedByMany(NPC::class, 'noteletteable');
     }
 
-    public function quests()
+    public function quest()
     {
-        return $this->belongsToMany(Quest::class);
+        return $this->morphedByMany(Quest::class, 'noteletteable');
     }
 
-    public function locations()
+    public function item()
     {
-        return $this->belongsToMany(Location::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->morphedByMany(InventoryItem::class, 'noteletteable');
     }
 }

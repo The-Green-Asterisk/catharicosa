@@ -13,7 +13,7 @@ class NPC extends Model
 
     public function notelettes()
     {
-        return $this->hasMany(Notelette::class);
+        return $this->morphToMany(Notelette::class, 'noteletteable');
     }
 
     public function location()
