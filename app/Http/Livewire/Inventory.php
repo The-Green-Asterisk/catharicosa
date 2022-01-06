@@ -25,7 +25,7 @@ class Inventory extends Component
 
     public function mount()
     {
-        $this->toggle = auth()->user()->inv ?? 0;
+        auth()->user()->inv ? $this->toggle = auth()->user()->inv : $this->toggle = 0;
 
         if (isset(auth()->user()->ddb)){
             $this->sheetNumber = auth()->user()->ddb;
@@ -33,7 +33,7 @@ class Inventory extends Component
         }
 
         $this->getInv();
-        
+
         $this->query = url('/item?').\Illuminate\Support\Arr::query(['c' => $this->catName]);
 
     }

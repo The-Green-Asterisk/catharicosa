@@ -11,6 +11,8 @@ class Session extends Component
 
     public $password;
 
+    public $remember = false;
+
     protected $rules = [
         'email' => 'required|email|exists:users,email',
         'password' => 'required'
@@ -25,8 +27,8 @@ class Session extends Component
 
     public function store()
     {
-
-        if (auth()->attempt($this->validate())) {
+        if (auth()->attempt($this->validate(), $this->remember)) {
+            session()->regenerate();
             redirect('/')->with('success', 'Welcome back, traveler! I\'ve kept your seat warm, and your stein cold!');
         }else{
             throw ValidationException::withMessages([

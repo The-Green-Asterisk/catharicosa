@@ -13,6 +13,9 @@
                         <input type="password" id="password" name="password" wire:model="password" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="password" autocomplete="current-password">
                         @error('password') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
 
+                        <input type="checkbox" id="remember" name="remember" wire:model="remember">
+                        <label for="remember">Remember Me</label>
+
                         <hr />
 
                         <x-form-button>Log In</x-form-button>
