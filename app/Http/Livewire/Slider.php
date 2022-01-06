@@ -10,6 +10,13 @@ class Slider extends Component
 
     public $catName;
 
+    public $query;
+
+    public function mount()
+    {
+        $this->query = url('/item?').\Illuminate\Support\Arr::query(['c' => $this->catName]);
+    }
+
     public function render()
     {
         return view('livewire.slider', [

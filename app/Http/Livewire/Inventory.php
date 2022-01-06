@@ -21,6 +21,8 @@ class Inventory extends Component
 
     public $inventoryItems;
 
+    public $query;
+
     public function mount()
     {
         $this->toggle = auth()->user()->inv ?? 0;
@@ -29,7 +31,11 @@ class Inventory extends Component
             $this->sheetNumber = auth()->user()->ddb;
             $this->savedDDB = true;
         }
+
         $this->getInv();
+        
+        $this->query = url('/item?').\Illuminate\Support\Arr::query(['c' => $this->catName]);
+
     }
 
     public function prev()

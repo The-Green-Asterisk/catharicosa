@@ -18,12 +18,15 @@ class Item extends Component
     public $npc;
     public $quests;
     public $quest;
+    public $c;
 
     protected $rules = [
         'heading' => 'required|max:255',
         'description' => 'required',
         'category' => 'required'
     ];
+
+    protected $queryString = ['c' => ['except', '']];
 
     public function updated($propertyName)
     {
@@ -53,7 +56,7 @@ class Item extends Component
                 'description' => $this->description,
                 'user_id' => auth()->user()->id
             ]);
-        }elseif ($this->category === 'item'){
+        }elseif ($this->category === 'inventory-item'){
             Item::create([
                 'name' => $this->heading,
                 'description' => $this->description,
@@ -71,6 +74,8 @@ class Item extends Component
         $this->locations = Location::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
         $this->npcs = NPC::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
         $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+
+        $this->category = preg_replace('/[s]$/','', $this->c);
     }
 
     public function render()

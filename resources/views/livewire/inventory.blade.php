@@ -74,7 +74,7 @@
                 </div>
             </div>
             @endforeach
-            <div class="rounded border border-slate-500 bg-slate-200 font-bold p-1 flex flex-row flex flex-col justify-center shadow text-slate-500 hover:bg-slate-300 active:bg-slate-400 cursor-pointer text-center text-9xl font-black">+</div>
+            <a href="{{ $query }}" class="rounded border border-slate-500 bg-slate-200 font-bold p-1 flex flex-row flex flex-col justify-center shadow text-slate-500 hover:bg-slate-300 active:bg-slate-400 cursor-pointer text-center text-9xl font-black">+</a>
         </div>
     @endif
 </div>

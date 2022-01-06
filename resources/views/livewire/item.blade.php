@@ -16,7 +16,7 @@
                         <option name="quest" label="Quest" value="quest" />
                         <option name="npc" label="NPC" value="npc" />
                         <option name="location" label="Location" value="location" />
-                        <option name="item" label="Item" value="item" />
+                        <option name="inventory-item" label="Inventory Item" value="inventory-item" />
                     </select>
                 @error('category') <span class="error block text-xs text-red-600">{{ $message }}</span> @enderror
                     @if ($category === "npc")
@@ -28,7 +28,7 @@
                             <option name="idk" label="I don't know" value="idk" />
                         </select>
                     @endif
-                    @if ($category === "item")
+                    @if ($category === "inventory-item")
                     <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
                         <option label="Where is this item?" />
                         @foreach ($locations as $location)
@@ -42,6 +42,7 @@
                             <option name="{{ $quest->title }}" label="{{ $quest->title }}" value="{{ $quest->id }}" />
                         @endforeach
                         <option name="idk" label="I don't know" />
+                        <option name="no" label="No" />
                     </select>
                     <select wire:model='npc' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
                         <option label="Who owns this item?" />
@@ -49,6 +50,7 @@
                             <option name="{{ $npc->name }}" label="{{ $npc->name }}" value="{{ $npc->id }}" />
                         @endforeach
                         <option name="me" label="Me" />
+                        <option name="noone" label="No one" />
                         <option name="idk" label="I don't know" />
                     </select>
                     @endif

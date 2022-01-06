@@ -19,7 +19,7 @@
                 <livewire:new-note />
                 @foreach ($notes as $note)
                     <div x-data="{ open: false, toggle() { this.open =! this.open } }" class="mx-32 my-10 transition-all" x-on:mouseleave="open = false">
-                        <div class="flex items-center">
+                        <div class="flex items-center space-x-2">
                             <h2 class="font-bold">{{ $note->title }}</h2>
                             <div class="grow"></div>
                             <p class="text-sm italic text-gray-400">created {{ $note->created_at->diffForHumans() }}</p>
