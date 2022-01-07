@@ -11,7 +11,7 @@
             <p class="mb-6">{{ $category->location->name }}</p>
         @endif
         @if ($catName == 'inventory-items' and isset($category->npc))
-            <span class="text-xs italic text-red-800">This item is not in your position. {{ $category->npc->name }} has it.</span>
+            <span class="text-xs italic text-red-800">This item is not yours. {{ $category->npc->name }} owns it.</span>
         @endif
         @if ($catName == 'inventory-items' and isset($category->quest))
             <span class="text-xs italic text-red-800">This item is a part of the "{{ $category->quest->title }}" quest.</span>

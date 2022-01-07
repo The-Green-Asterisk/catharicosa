@@ -52,5 +52,6 @@
         @endif
         @livewireScripts
         @livewire('modal')
+        @livewire('notelette-editor')
     </body>
 </html>
