@@ -34,7 +34,7 @@
                 <p class="text-sm mb-4">{!! $name ? "Manage " . $name . "'s inventory on <a class='hover:text-blue-800 hover:underline' target='_blank' href='https://www.dndbeyond.com/my-characters'>D&D Beyond.com</a>" : "" !!}</p>
             <div class="flex flex-col space-y-4">
                 @foreach ($inv as $item)
-                    <div class="mb-4 inv">
+                    <div class="mb-4 inv bg-gradient-to-br from-white via-white to-gray-100">
                         @if (isset($item->definition->name))
                         <div class="rounded-t border border-slate-500 bg-slate-200 border-b-none font-bold p-1">
                             {{ $item->definition->name }}</p>
@@ -53,7 +53,7 @@
     @elseif ($toggle == 1)
         <div class="flex flex-col space-y-4">
             @foreach ($inventoryItems as $item)
-            <div x-data="{}" x-on:click="$wire.emit('showModal', '{{ $catName }}', {{ $item->id }})" class="cursor-pointer">
+            <div x-data="{}" x-on:click="$wire.emit('showModal', '{{ $catName }}', {{ $item->id }})" class="cursor-pointer bg-gradient-to-br from-white via-white to-gray-100">
                 @if (request()->getQueryString() != null)
                     <div x-init="$wire.emit('showModal', '{{ $catName }}', {{ $item->id }})"></div>
                 @endif

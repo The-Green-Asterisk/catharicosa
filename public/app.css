@@ -12,3 +12,8 @@ body {
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
+.slider-shadow {
+    -moz-box-shadow:    inset 0 0 7px #00000091;
+    -webkit-box-shadow: inset 0 0 7px #00000091;
+    box-shadow:         inset 0 0 7px #00000091;
+ }
