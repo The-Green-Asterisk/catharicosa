@@ -45,38 +45,37 @@ class Inventory extends Component
 
     public function getInv()
     {
-        if (isset($this->sheetNumber))
-        {
-            if ($this->sheetNumber == "")
-            {
+        cache()->remember('ddb.{auth()->user()->id}', now()->addHours(3), function () {
+            if (isset($this->sheetNumber)){
+                if ($this->sheetNumber == ""){
+                    $this->error = null;
+                    $this->showInv = false;
+                    return;
+                }
+                $fileURL = 'https://character-service.dndbeyond.com/character/v3/character/' . $this->sheetNumber;
+                if (preg_match('/^[0-9]{8}$/', $this->sheetNumber)){
+                    $charFile = @file_get_contents($fileURL);
+                    $char = json_decode($charFile, false);
+                    $this->showInv = true;
+                }
+                if (isset($char->success)){
+                    $this->inv = $char->data->inventory;
+                }else{
+                    $this->error = "That's not a valid number";
+                    $this->showInv = false;
+                }
+                if (isset($char->data->name)){
+                    $this->name = $char->data->name;
+                }else{
+                    $this->name = null;
+                    $this->showInv = false;
+                }
+            }else{
+                $this->sheetNumber = "";
                 $this->error = null;
                 $this->showInv = false;
-                return;
             }
-            $fileURL = 'https://character-service.dndbeyond.com/character/v3/character/' . $this->sheetNumber;
-            if (preg_match('/^[0-9]{8}$/', $this->sheetNumber))
-            {
-                $charFile = @file_get_contents($fileURL);
-                $char = json_decode($charFile, false);
-                $this->showInv = true;
-            }
-            if (isset($char->success)){
-                $this->inv = $char->data->inventory;
-            }else{
-                $this->error = "That's not a valid number";
-                $this->showInv = false;
-            }
-            if (isset($char->data->name)){
-                $this->name = $char->data->name;
-            }else{
-                $this->name = null;
-                $this->showInv = false;
-            }
-        }else{
-            $this->sheetNumber = "";
-            $this->error = null;
-            $this->showInv = false;
-        }
+        });
 
         $this->inventoryItems = InventoryItem::all();
     }

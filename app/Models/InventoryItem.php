@@ -9,7 +9,7 @@ class InventoryItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'user_id'];
+    protected $fillable = ['name', 'description', 'user_id', 'quest_id', 'npc_id', 'location_id'];
 
     public function user()
     {

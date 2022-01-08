@@ -1,7 +1,7 @@
 <div>
     <x-panel class="w-1/4 min-w-min mt-20 text-center p-4">
-        Do tell the tail of this fantastic new entry into your journal!
-        <form wire:submit.prevent="submit">
+        Which part of your story would you like to change?
+        <form wire:submit.prevent="update">
             <input type="text" wire:model="heading" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="Name and/or Title">
             @error('heading') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
 
@@ -19,6 +19,15 @@
                         <option name="inventory-item" label="Inventory Item" value="inventory-item" />
                     </select>
                 @error('category') <span class="error block text-xs text-red-600">{{ $message }}</span> @enderror
+                    @if ($category === "npc")
+                        <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
+                            <option label="Where do they live?" />
+                            @foreach ($locations as $location)
+                                <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
+                            @endforeach
+                            <option name="idk" label="I don't know" value="idk" />
+                        </select>
+                    @endif
                     @if ($category === "quest")
                         <select wire:model='npc' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
                             <option label="Who sent you on this quest?" />
@@ -28,8 +37,6 @@
                             <option name="idk" label="I don't know" />
                             <option name="noone" label="No one" />
                         </select>
-                    @endif
-                    @if ($category === "quest")
                         <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
                             <option label="Where do you need to go to complete this quest?" />
                             @foreach ($locations as $location)
@@ -37,15 +44,6 @@
                             @endforeach
                             <option name="idk" label="I don't know" />
                             <option name="nowhere" label="Nowhere in particular" />
-                        </select>
-                    @endif
-                    @if ($category === "npc")
-                        <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
-                            <option label="Where do they live?" />
-                            @foreach ($locations as $location)
-                                <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
-                            @endforeach
-                            <option name="idk" label="I don't know" />
                         </select>
                     @endif
                     @if ($category === "inventory-item")
@@ -80,7 +78,7 @@
 
             <hr />
 
-            <x-form-button>Enter</x-form-button>
+            <x-form-button>Update</x-form-button>
             <x-secondary-button href="/">Nevermind</x-secondary-button>
         </form>
     </x-panel>

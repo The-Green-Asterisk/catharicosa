@@ -10,11 +10,17 @@
             <p class="text-xs uppercase font-bold">Location:</p>
             <p class="mb-6">{{ $category->location->name }}</p>
         @endif
-        @if ($catName == 'inventory-items' and isset($category->npc))
+        @if ($catName == 'inventory-items' and isset($category->npc) and $category->pluck('npc_id')->first() !== 0)
             <span class="text-xs italic text-red-800">This item is not yours. {{ $category->npc->name }} owns it.</span>
+        @endif
+        @if ($catName == 'inventory-items' and $category->pluck('location_id')->first() === 0)
+            <span class="text-xs italic text-red-800">This item is in your possession.</span>
         @endif
         @if ($catName == 'inventory-items' and isset($category->quest))
             <span class="text-xs italic text-red-800">This item is a part of the "{{ $category->quest->title }}" quest.</span>
+        @endif
+        @if ($catName == 'quests' and isset($category->npc))
+            <span class="text-xs italic text-red-800">{{ $category->npc->name }} sent you on this quest.</span>
         @endif
         <p class="text-xs uppercase font-bold">Notelettes:</p>
         <hr/>
@@ -25,6 +31,9 @@
         @else
             <p class="mb-6">No notelettes yet!</p>
         @endif
+        <div class="flex justify-end">
+            <x-anchor-button href="item/{{ $catName }}/{{ $category->id }}/edit">Edit</x-anchor-button>
+        </div>
     </x-dialog>
     @endif
 </div>

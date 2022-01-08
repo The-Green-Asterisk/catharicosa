@@ -9,7 +9,7 @@ class Quest extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'user_id'];
+    protected $fillable = ['title', 'description', 'user_id', 'npc_id', 'location_id'];
 
     public function notelettes()
     {
@@ -21,9 +21,9 @@ class Quest extends Model
         return $this->belongsTo(NPC::class);
     }
 
-    public function locations()
+    public function location()
     {
-        return $this->hasMany(Location::class);
+        return $this->belongsTo(Location::class);
     }
 
     public function user()

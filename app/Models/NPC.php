@@ -9,7 +9,7 @@ class NPC extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'user_id'];
+    protected $fillable = ['name', 'description', 'user_id', 'location_id'];
 
     public function notelettes()
     {

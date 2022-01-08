@@ -41,6 +41,8 @@ class Item extends Component
             Quest::create([
                 'title' => $this->heading,
                 'description' => $this->description,
+                'npc_id' => $this->npc,
+                'location_id' => $this->location,
                 'user_id' => auth()->user()->id
             ]);
         }elseif ($this->category === 'npc'){

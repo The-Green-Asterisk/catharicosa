@@ -84,10 +84,12 @@ class NoteletteEditor extends Component
 
     public function mount()
     {
-        $this->quests = Quest::all()->where('user_id', auth()->user()->id);
-        $this->locations = Location::all()->where('user_id', auth()->user()->id);
-        $this->npcs = NPC::all()->where('user_id', auth()->user()->id);
-        $this->inventoryItems = InventoryItem::all()->where('user_id', auth()->user()->id);
+        if (auth()->check() === true){
+            $this->quests = Quest::all()->where('user_id', auth()->user()->id);
+            $this->locations = Location::all()->where('user_id', auth()->user()->id);
+            $this->npcs = NPC::all()->where('user_id', auth()->user()->id);
+            $this->inventoryItems = InventoryItem::all()->where('user_id', auth()->user()->id);
+        }
     }
 
     public function render()
