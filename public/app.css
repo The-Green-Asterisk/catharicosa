@@ -1,0 +1,14 @@
+body {
+    font-family: 'Nunito', sans-serif;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.inv p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}

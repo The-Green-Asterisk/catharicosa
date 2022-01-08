@@ -1,10 +1,4 @@
 <div class="m-10">
-    <style>
-        .inv p {
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-        }
-    </style>
     <details class="mb-4 flex text-center">
         <summary class=""><div class="text-lg inline underline font-bold decoration-4 my-4">Inventory</div></summary>
         <div class="flex justify-center" x-data="{ toggle: @entangle('toggle') }">

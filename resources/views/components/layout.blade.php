@@ -4,27 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
-
+        
         <title>Catharicosa Notes</title>
 
-        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-            .no-scrollbar::-webkit-scrollbar {
-                display: none;
-            }
-            .no-scrollbar {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-        </style>
-
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="/app.js"></script>
+        <link rel="stylesheet" href="/app.css">
 
         @livewireStyles
     </head>
