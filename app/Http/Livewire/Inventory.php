@@ -77,7 +77,7 @@ class Inventory extends Component
             }
         });
 
-        $this->inventoryItems = InventoryItem::all();
+        $this->inventoryItems = InventoryItem::all()->where('user_id', auth()->user()->id);
     }
 
     public function import()

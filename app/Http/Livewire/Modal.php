@@ -35,17 +35,17 @@ class Modal extends Component
     public function showModal($catName, $cid)
     {
         $this->show = true;
-        $this->catName = $catName;
-        $this->cid = $cid;
+        $this->catName ?? $this->catName = $catName;
+        $this->cid ?? $this->cid = $cid;
 
-        if ($catName === 'quests'){
-            $category = Quest::all()->where('id', $cid);
-        }elseif ($catName === 'npcs'){
-            $category = NPC::all()->where('id', $cid);
-        }elseif ($catName === 'locations'){
-            $category = Location::all()->where('id', $cid);
-        }elseif ($catName === 'inventory-items'){
-            $category = InventoryItem::all()->where('id', $cid);
+        if ($this->catName === 'quests'){
+            $category = Quest::all()->where('id', $this->cid);
+        }elseif ($this->catName === 'npcs'){
+            $category = NPC::all()->where('id', $this->cid);
+        }elseif ($this->catName === 'locations'){
+            $category = Location::all()->where('id', $this->cid);
+        }elseif ($this->catName === 'inventory-items'){
+            $category = InventoryItem::all()->where('id', $this->cid);
         }
 
         $this->category = $category->first();
@@ -59,8 +59,6 @@ class Modal extends Component
 
     public function render()
     {
-        return view('livewire.modal', [
-            'category' => $this->category
-        ]);
+        return view('livewire.modal');
     }
 }
