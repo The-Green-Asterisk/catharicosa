@@ -52,7 +52,7 @@
                         @foreach ($locations as $location)
                             <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
                         @endforeach
-                        <option name="me" label="I have it" value="0" />
+                        <option name="me" label="I have it" />
                         <option name="idk" label="I don't know" />
                     </select>
                     <select wire:model='quest' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
@@ -68,7 +68,7 @@
                         @foreach ($npcs as $npc)
                             <option name="{{ $npc->name }}" label="{{ $npc->name }}" value="{{ $npc->id }}" />
                         @endforeach
-                        <option name="me" label="Me" value="0" />
+                        <option name="me" label="Me" />
                         <option name="noone" label="No one" />
                         <option name="idk" label="I don't know" />
                     </select>

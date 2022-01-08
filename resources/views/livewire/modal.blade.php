@@ -13,9 +13,6 @@
         @if ($catName == 'inventory-items' and isset($category->npc) and $category->pluck('npc_id')->first() !== 0)
             <span class="text-xs italic text-red-800">This item is not yours. {{ $category->npc->name }} owns it.</span>
         @endif
-        @if ($catName == 'inventory-items' and $category->pluck('location_id')->first() === 0)
-            <span class="text-xs italic text-red-800">This item is in your possession.</span>
-        @endif
         @if ($catName == 'inventory-items' and isset($category->quest))
             <span class="text-xs italic text-red-800">This item is a part of the "{{ $category->quest->title }}" quest.</span>
         @endif
