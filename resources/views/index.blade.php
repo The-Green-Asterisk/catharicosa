@@ -2,9 +2,13 @@
     @auth
         <div class="flex">
             {{-- Category Sidebar --}}
-            <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'pr-10 md:pr-0 lg:min-w-[25%] lg:max-w-[25%] md:w-72 w-full h-screen mr-8' : 'h-fit mr-2'" class="absolute lg:static transition-all bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-r shadow-lg bg-white overflow-y-auto overflow-hidden border-l-0 z-10">
-                <img src="images/scrollicon.png" class="float-right m-3 h-6" @click="toggle()" />
-                <div x-show="open" class="m-10" x-transition>
+            <div x-data="{ open: true, toggle() { this.open =! this.open }}"
+                :class="open ? 'pr-10 md:pr-0 lg:min-w-[25%] lg:max-w-[25%] md:w-72 w-full h-screen mr-8' : 'h-fit mr-2'"
+                class="sidebar absolute lg:static transition-all bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-r shadow-lg bg-white overflow-y-auto overflow-hidden border-l-0 z-10 transition-all"
+                @resize.window="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width < 1020) {open = false}else{open = true}"
+                x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width < 1020) {open = false}else{open = true}" x-transition.scale>
+                <img src="images/scrollicon.png" class="float-right m-3 h-6 cursor-pointer" @click="toggle()" />
+                <div x-show="open" class="m-10 transition-all duration-1000">
                     <h1 class="text-lg underline font-bold decoration-4">Quests</h1>
                         <livewire:slider :categories="$quests" :catName="'quests'" />
                     <h1 class="text-lg underline font-bold decoration-4">NPCs</h1>
@@ -18,7 +22,7 @@
                 {{-- Notes --}}
                 <livewire:new-note />
                 @foreach ($notes as $note)
-                    <div x-data="{ open: false, toggle() { this.open =! this.open } }" class="lg:mx-10 2xl:mx-32 mx-32 my-10 transition-all" x-on:mouseleave="open = false">
+                    <div x-data="{ open: false, toggle() { this.open =! this.open } }" class="lg:mx-10 2xl:mx-32 md:mx-32 mx-10 my-10 transition-all" x-on:mouseleave="open = false">
                         <div class="flex items-center space-x-2">
                             <h2 class="font-bold">{{ $note->title }}</h2>
                             <div class="grow"></div>
@@ -55,9 +59,13 @@
                 @endforeach
             </x-panel>
             {{-- Inventory Sidebar --}}
-            <div x-data="{ open: true, toggle() { this.open =! this.open } }" :class="open ? 'lg:min-w-[25%] lg:max-w-[25%] md:w-min w-full h-screen ml-8' : 'ml-2 h-fit'" class="absolute lg:static right-0 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded shadow-lg bg-white overflow-y-auto overflow-hidden border-r-0 z-10" x-transition>
-                <img src="images/backpack.png" :class="open ? 'm-3 h-6 absolute' : 'm-3 h-6'" @click="toggle()" />
-                <div x-show="open">
+            <div x-data="{ open: true, toggle() { this.open =! this.open }}"
+                :class="open ? 'lg:min-w-[25%] lg:max-w-[25%] md:w-min w-full h-screen ml-8' : 'ml-2 h-fit'"
+                class="absolute lg:static right-0 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-l shadow-lg bg-white overflow-y-auto overflow-hidden border-r-0 z-10 transition-all"
+                @resize.window="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width < 1020) {open = false}else{open = true}"
+                x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width < 1020) {open = false}else{open = true}" x-transition.scale>
+                <img src="images/backpack.png" :class="open ? 'm-3 h-6 absolute' : 'm-3 h-6'" @click="toggle()" class="cursor-pointer" />
+                <div x-show="open" class="transition-all duration-1000">
                     <livewire:inventory :catName="'inventory-items'" />
                 </div>
             </div>

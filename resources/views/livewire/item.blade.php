@@ -21,58 +21,46 @@
                 @error('category') <span class="error block text-xs text-red-600">{{ $message }}</span> @enderror
                     @if ($category === "quest")
                         <select wire:model='npc' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
-                            <option label="Who sent you on this quest?" />
+                            <option label="Did someone send you on this quest?" />
                             @foreach ($npcs as $npc)
                                 <option name="{{ $npc->name }}" label="{{ $npc->name }}" value="{{ $npc->id }}" />
                             @endforeach
-                            <option name="idk" label="I don't know" />
-                            <option name="noone" label="No one" />
                         </select>
                     @endif
                     @if ($category === "quest")
                         <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
-                            <option label="Where do you need to go to complete this quest?" />
+                            <option label="Do you need to go somewhere to complete this quest?" />
                             @foreach ($locations as $location)
                                 <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
                             @endforeach
-                            <option name="idk" label="I don't know" />
-                            <option name="nowhere" label="Nowhere in particular" />
                         </select>
                     @endif
                     @if ($category === "npc")
                         <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
-                            <option label="Where do they live?" />
+                            <option label="Do you know where they live?" />
                             @foreach ($locations as $location)
                                 <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
                             @endforeach
-                            <option name="idk" label="I don't know" />
                         </select>
                     @endif
                     @if ($category === "inventory-item")
                     <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
-                        <option label="Where is this item?" />
+                        <option label="If you don't have this item, where is it?" />
                         @foreach ($locations as $location)
                             <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
                         @endforeach
-                        <option name="me" label="I have it" />
-                        <option name="idk" label="I don't know" />
                     </select>
                     <select wire:model='quest' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
                         <option label="Is this item part of a quest?" />
                         @foreach ($quests as $quest)
                             <option name="{{ $quest->title }}" label="{{ $quest->title }}" value="{{ $quest->id }}" />
                         @endforeach
-                        <option name="idk" label="I don't know" />
-                        <option name="no" label="No" />
                     </select>
                     <select wire:model='npc' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2">
-                        <option label="Who owns this item?" />
+                        <option label="Does anyone own this item? (Be honest!)" />
                         @foreach ($npcs as $npc)
                             <option name="{{ $npc->name }}" label="{{ $npc->name }}" value="{{ $npc->id }}" />
                         @endforeach
-                        <option name="me" label="Me" />
-                        <option name="noone" label="No one" />
-                        <option name="idk" label="I don't know" />
                     </select>
                     @endif
                 </div>

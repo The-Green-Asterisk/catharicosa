@@ -35,20 +35,25 @@ class Modal extends Component
     public function showModal($catName, $cid)
     {
         $this->show = true;
-        $this->catName ?? $this->catName = $catName;
-        $this->cid ?? $this->cid = $cid;
 
-        if ($this->catName === 'quests'){
-            $category = Quest::all()->where('id', $this->cid);
-        }elseif ($this->catName === 'npcs'){
-            $category = NPC::all()->where('id', $this->cid);
-        }elseif ($this->catName === 'locations'){
-            $category = Location::all()->where('id', $this->cid);
-        }elseif ($this->catName === 'inventory-items'){
-            $category = InventoryItem::all()->where('id', $this->cid);
+        if ($this->catName == null && $this->catName != $catName){
+            $this->catName = $catName;
+        }
+        if ($this->cid == null && $this->cid != $cid){
+            $this->cid = $cid;
         }
 
-        $this->category = $category->first();
+        if ($this->catName === 'quests'){
+            $category = Quest::all()->where('id', $this->cid)->first();
+        }elseif ($this->catName === 'npcs'){
+            $category = NPC::all()->where('id', $this->cid)->first();
+        }elseif ($this->catName === 'locations'){
+            $category = Location::all()->where('id', $this->cid)->first();
+        }elseif ($this->catName === 'inventory-items'){
+            $category = InventoryItem::all()->where('id', $this->cid)->first();
+        }
+
+        $this->category = $category;
     }
 
     public function deleteItem()
