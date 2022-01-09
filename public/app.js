@@ -33,7 +33,7 @@ window.noteletteForm = (note_id, body, quest_id, npc_id, location_id, inventory_
         submitData() {
             this.message = ''
 
-            if (body == null){
+            if (body === null){
                 this.open = false;
                 this.message = 'Please select a portion of the note to create a notelette.';
                 setTimeout(() => {this.message = ''}, 3000);

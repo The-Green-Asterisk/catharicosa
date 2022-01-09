@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\InventoryItem;
 use App\Models\Location;
 use App\Models\NPC;
 use App\Models\Quest;
@@ -59,12 +60,13 @@ class Item extends Component
                 'user_id' => auth()->user()->id
             ]);
         }elseif ($this->category === 'inventory-item'){
-            Item::create([
+            InventoryItem::create([
                 'name' => $this->heading,
                 'description' => $this->description,
                 'user_id' => auth()->user()->id,
                 'npc_id' => $this->npc,
-                'quest' => $this->quest
+                'location_id' => $this->location,
+                'quest_id' => $this->quest
             ]);
         }
 

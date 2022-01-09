@@ -17,7 +17,7 @@
     @if ($toggle == 0)
         <span class="text-sm">Copy the number from your <a href="https://www.dndbeyond.com" target="_blank"><img src="images/ddb.jpg" class="inline h-4" /></a> character sheet's URL.</span>
         <div class="flex border border-gray-200 rounded-full shadow-inner" x-init="$wire.getInv()">
-            <input style="margin-right: -4px" class="border-none indent-2 outline-none focus:outline-none bg-transparent grow text-sm rounded-l-full" wire:model="sheetNumber" wire:input="getInv()" type="text" placeholder="Paste number here" />
+            <input style="margin-right: -4px" class="border-none indent-2 outline-none focus:outline-none bg-transparent min-w-0 grow text-sm rounded-l-full" wire:model="sheetNumber" wire:input="getInv()" type="text" placeholder="Paste number here" />
             @if ($sheetNumber != auth()->user()->ddb)
                 <x-anchor-button href="#" class="text-sm m-1" wire:click="save()">Save</x-anchor-button>
             @endif
@@ -51,7 +51,7 @@
             </div>
         @endif
     @elseif ($toggle == 1)
-        <div class="flex flex-col lg:min-w-0 md:min-w-[300px] space-y-4">
+        <div class="flex flex-col lg:min-w-0 min-w-[300px] space-y-4">
             @foreach ($inventoryItems as $item)
             <div x-data="{}" x-on:click="$wire.emit('showModal', '{{ $catName }}', {{ $item->id }})" class="cursor-pointer bg-gradient-to-br from-white via-white to-gray-100">
                 @if (request()->getQueryString() != null)
