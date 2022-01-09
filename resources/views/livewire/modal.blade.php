@@ -1,6 +1,6 @@
 <div>
     @if ($show)
-    <x-dialog class="w-1/3 px-10 text-left overflow-y-auto overflow-hidden" @click.away="$wire.emit('closeModal')">
+    <x-dialog class="md:w-1/3 w-screen px-10 text-left overflow-y-auto overflow-hidden" @click.away="$wire.emit('closeModal')">
         <div @click="$wire.emit('closeModal')" class="float-right bg-gray-200 rounded-full cursor-default px-2 shadow-lg hover:bg-gray-300 active:bg-gray-500 active:shadow active:scale-95">X</div>
         <span class="text-lg font-bold leading-10">{{ $category->title ?? $category->name }}</span>
         <input type="image" src="images/trash.png" wire:click="deleteItem('{{ $category->id }}')" height="15px" width="15px" class="opacity-50 hover:opacity-100 inline" title="Delete Item" />
