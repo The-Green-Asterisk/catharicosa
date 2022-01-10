@@ -6,48 +6,48 @@
                 <p class="text-lg font-bold text-slate-400 mt-6 px-4">Quests</p>
                 <hr />
                 @foreach ($questOutput as $quest)
-                    <p x-data="{}" 
-                        x-on:click="$wire.emit('showModal', 'quests', {{ $quest->id }})"
-                        class="px-4 hover:underline hover:text-blue-400 hover:cursor-pointer">
-                        {{ $quest->title }}
-                    </p>
-                    <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($quest->description), 0, 150) }}...</p>
+                    <div x-data="{}" x-on:click="$wire.emit('showModal', 'quests', {{ $quest->id }})" class="hover:cursor-pointer">
+                        <p class="px-4 hover:underline hover:text-blue-400">
+                            {{ $quest->title }}
+                        </p>
+                        <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($quest->description), 0, 150) }}...</p>
+                    </div>
                 @endforeach
             @endif
             @if ($npcOutput->isNotEmpty())
                 <p class="text-lg font-bold text-slate-400 mt-6 px-4">NPCs</p>
                 <hr />
                 @foreach ($npcOutput as $npc)
-                    <p x-data="{}" 
-                        x-on:click="$wire.emit('showModal', 'npcs', {{ $npc->id }})"
-                        class="px-4 hover:underline hover:text-blue-400 hover:cursor-pointer">
-                        {{ $npc->name }}
-                    </p>
-                    <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($npc->description), 0, 150) }}...</p>
+                    <div x-data="{}" x-on:click="$wire.emit('showModal', 'npcs', {{ $npc->id }})" class="hover:cursor-pointer">
+                        <p class="px-4 hover:underline hover:text-blue-400">
+                            {{ $npc->name }}
+                        </p>
+                        <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($npc->description), 0, 150) }}...</p>
+                    </div>
                 @endforeach
             @endif
             @if ($locationOutput->isNotEmpty())
                 <p class="text-lg font-bold text-slate-400 mt-6 px-4">Locations</p>
                 <hr />
                 @foreach ($locationOutput as $location)
-                    <p x-data="{}" 
-                        x-on:click="$wire.emit('showModal', 'locations', {{ $location->id }})"
-                        class="px-4 hover:underline hover:text-blue-400 hover:cursor-pointer">
-                        {{ $location->name }}
-                    </p>
-                    <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($location->description), 0, 150) }}...</p>
+                    <div x-data="{}" x-on:click="$wire.emit('showModal', 'locations', {{ $location->id }})" class="hover:cursor-pointer">
+                        <p class="px-4 hover:underline hover:text-blue-400">
+                            {{ $location->name }}
+                        </p>
+                        <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($location->description), 0, 150) }}...</p>
+                    </div>
                 @endforeach
             @endif
             @if ($invItemOutput->isNotEmpty())
                 <p class="text-lg font-bold text-slate-400 mt-6 px-4">Inventory Items</p>
                 <hr />
                 @foreach ($invItemOutput as $item)
-                    <p x-data="{}" 
-                        x-on:click="$wire.emit('showModal', 'inventory-items', {{ $item->id }})"
-                        class="px-4 hover:underline hover:text-blue-400 hover:cursor-pointer">
-                        {{ $item->name }}
-                    </p>
-                    <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($item->description), 0, 150) }}...</p>
+                    <div x-data="{}" x-on:click="$wire.emit('showModal', 'inventory-items', {{ $item->id }})" class="hover:cursor-pointer">
+                        <p class="px-4 hover:underline hover:text-blue-400">
+                            {{ $item->name }}
+                        </p>
+                        <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($item->description), 0, 150) }}...</p>
+                    </div>
                 @endforeach
             @endif
         </div>
