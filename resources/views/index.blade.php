@@ -3,12 +3,13 @@
         <div class="flex">
             {{-- Category Sidebar --}}
             <div x-data="{ open: true, toggle() { this.open =! this.open }}"
-                :class="open ? 'pr-10 md:pr-0 lg:min-w-[25%] lg:max-w-[25%] md:w-72 w-full h-screen mr-8' : 'h-fit mr-2'"
+                :class="open ? 'lg:min-w-[25%] lg:max-w-[25%] md:w-72 w-full h-screen mr-8' : 'h-fit mr-2'"
                 class="sidebar absolute lg:static transition-all bg-gradient-to-br from-white via-white to-gray-100 border border-gray-500 rounded-r shadow-lg bg-white overflow-y-auto overflow-hidden border-l-0 z-10 transition-all"
                 @resize.window="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width < 1020) {open = false}else{open = true}"
                 x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width < 1020) {open = false}else{open = true}" x-transition.scale>
-                <img src="images/scrollicon.png" class="float-right m-3 h-6 cursor-pointer" @click="toggle()" />
+                <img src="images/scrollicon.png" :class="open ? 'md:mr-3 mr-14' : ''" class="float-right m-3 h-6 cursor-pointer" @click="toggle()" />
                 <div x-show="open" class="m-10 transition-all duration-1000">
+                    <a href="/item" class="mx-auto border border-slate-500 shrink-0 bg-slate-200 rounded text-center font-black w-7 h-7 flex flex-col justify-center shadow text-slate-500 hover:bg-slate-300 active:bg-slate-400 cursor-pointer" title="New Journal Entry">+</a>
                     <h1 class="text-lg underline font-bold decoration-4">Quests</h1>
                         <livewire:slider :categories="$quests" :catName="'quests'" />
                     <h1 class="text-lg underline font-bold decoration-4">NPCs</h1>
@@ -72,9 +73,10 @@
         </div>
     @else
     {{-- Guest view --}}
-        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner" style="background-image: url('images/wizard.jpg');padding-left:736px;">
+        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner hidden md:visible" style="background-image: url('images/wizard.jpg');padding-left:736px;">
             <img src="images/hero-logo.png" class="h-96" />
         </div>
+        <img src="images/hero-logo.png" class="md:hidden" />
         <div class="text-3xl font-bold text-center m-10">Note-taking app for the meticulous tabletop player</div>
 
         <div class="flex justify-evenly">

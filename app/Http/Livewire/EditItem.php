@@ -10,6 +10,8 @@ use Livewire\Component;
 
 class EditItem extends Component
 {
+    public $pageHeading = 'What would you like to change about your story?';
+
     public $heading;
     public $description;
     public $category;
@@ -109,6 +111,6 @@ class EditItem extends Component
 
     public function render()
     {
-        return view('livewire.edit-item')->layout('components.layout');
+        return view('livewire.item')->layout('components.layout');
     }
 }

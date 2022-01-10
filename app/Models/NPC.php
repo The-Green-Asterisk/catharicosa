@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class NPC extends Model
 {
     use HasFactory;
+    use Search;
+
+    protected $searchable = ['name', 'description'];
 
     protected $fillable = ['name', 'description', 'user_id', 'location_id'];
 

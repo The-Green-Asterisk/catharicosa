@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class InventoryItem extends Model
 {
     use HasFactory;
+    use Search;
+
+    protected $searchable = ['name', 'description'];
 
     protected $fillable = ['name', 'description', 'user_id', 'quest_id', 'npc_id', 'location_id'];
 

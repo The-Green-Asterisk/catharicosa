@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     use HasFactory;
+    use Search;
+
+    protected $searchable = ['title', 'body'];
 
     protected $fillable = ['title', 'body', 'user_id'];
 

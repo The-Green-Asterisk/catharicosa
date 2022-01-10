@@ -10,6 +10,8 @@ use Livewire\Component;
 
 class Item extends Component
 {
+    public $pageHeading = 'Do tell the tail of this fantastic new entry into your journal!';
+
     public $heading;
     public $description;
     public $category;

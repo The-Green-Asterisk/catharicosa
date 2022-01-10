@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     use HasFactory;
+    use Search;
+
+    protected $searchable = ['name', 'description'];
 
     protected $fillable = ['name', 'description', 'user_id'];
 

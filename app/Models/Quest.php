@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Quest extends Model
 {
     use HasFactory;
+    use Search;
+
+    protected $searchable = ['title', 'description'];
 
     protected $fillable = ['title', 'description', 'user_id', 'npc_id', 'location_id'];
 

@@ -1,6 +1,6 @@
 <div>
     <x-panel class="md:w-1/4 w-full md:min-w-min mt-20 text-center p-4">
-        Do tell the tail of this fantastic new entry into your journal!
+        {{ $pageHeading }}
         <form wire:submit.prevent="submit">
             <input type="text" wire:model="heading" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="Name and/or Title">
             @error('heading') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
@@ -18,7 +18,7 @@
                         <option name="location" label="Location" value="location" />
                         <option name="inventory-item" label="Inventory Item" value="inventory-item" />
                     </select>
-                @error('category') <span class="error block text-xs text-red-600">{{ $message }}</span> @enderror
+                    @error('category') <span class="error block text-xs text-red-600">{{ $message }}</span> @enderror
                     @if ($category === "quest")
                         <select wire:model='npc' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2 w-full md:w-auto">
                             <option label="Did someone send you on this quest?" />
