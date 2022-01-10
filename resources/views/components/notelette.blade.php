@@ -6,7 +6,7 @@
         <form method="POST" id="{{ 'delete' . $notelette->id }}" action="/notelette/{{ $notelette->id }}/delete">
             @csrf
             @method('DELETE')
-            <input type="image" src="images/trash.png" alt="Delete" height="15px" width="15px" class="opacity-50 hover:opacity-100" title="Delete Notelette" />
+            <input type="image" src="/images/trash.png" alt="Delete" height="15px" width="15px" class="opacity-50 hover:opacity-100" title="Delete Notelette" />
         </form>
     </div>
     <span class="text-xs italic">Associated with:</span>
