@@ -1,14 +1,14 @@
-<div x-data="{}" x-on:click="$wire.emit('showModal', '{{ $catName }}', {{ $category->id }})" class="cursor-pointer">
+<div x-data="{}" x-on:click="$wire.emit('showModal', '{{ $catName }}', {{ $category->id }})" class="cursor-pointer bg-gradient-to-br from-white via-white to-gray-100">
     @if (request()->getQueryString() != null)
         <div x-init="$wire.emit('showModal', '{{ $catName }}', {{ $category->id }})"></div>
     @endif
-    <div class="bg-gradient-to-br from-white via-white to-gray-100 w-48 h-48 grow border rounded border-gray-500 shadow flex flex-col flex-none">
-        <div class="bg-slate-200 flex overflow-x-auto p-2">
-            <p class="flex-shrink-0 text-sm font-bold uppercase underline">{{ $category->title ?? $category->name }}</p>
+    <div class="shadow flex flex-col flex-none">
+        <div class="rounded-t border border-slate-500 bg-slate-200 border-b-none font-bold p-1 h-8 w-48 flex overflow-x-auto overflow-y-hidden">
+            <div class="flex-shrink-0">{{ $category->title ?? $category->name }}</div>
         </div>
-        <div class="overflow-y-auto overflow-hidden p-2">
+        <div class="rounded-b border border-slate-500 border-t-none p-2 h-40 w-48 overflow-y-auto">
             <p class="text-xs uppercase font-bold">Description:</p>
-            <p class="text-sm">{{ $category->description }}</p>
+            {!! $category->description !!}
         </div>
     </div>
 </div>

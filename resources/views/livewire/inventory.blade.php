@@ -1,6 +1,6 @@
 <div class="m-10">
     <details class="mb-4 flex text-center">
-        <summary class=""><div class="text-lg inline underline font-bold decoration-4 my-4">Inventory</div></summary>
+        <summary class=""><a href="/item/inventory-items/index"><div class="text-lg inline underline font-bold decoration-4 my-4">Inventory</div></a></summary>
         <div class="flex justify-center" x-data="{ toggle: @entangle('toggle') }">
             <img src="images/ddb-icon.png" class="inline h-6" title="D&D Beyond inventory" />
             <div class="relative w-12 h-6 transition duration-200 ease-linear rounded-full"
