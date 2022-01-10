@@ -10,11 +10,11 @@
                 <img src="images/scrollicon.png" :class="open ? 'md:mr-3 mr-14' : ''" class="float-right m-3 h-6 cursor-pointer" @click="toggle()" />
                 <div x-show="open" class="m-10 transition-all duration-1000">
                     <a href="/item" class="mx-auto border border-slate-500 shrink-0 bg-slate-200 rounded text-center font-black w-7 h-7 flex flex-col justify-center shadow text-slate-500 hover:bg-slate-300 active:bg-slate-400 cursor-pointer" title="New Journal Entry">+</a>
-                    <h1 class="text-lg underline font-bold decoration-4">Quests</h1>
+                    <a href="/item/quests/index"><h1 class="text-lg underline font-bold decoration-4">Quests</h1></a>
                         <livewire:slider :categories="$quests" :catName="'quests'" />
-                    <h1 class="text-lg underline font-bold decoration-4">NPCs</h1>
+                    <a href="/item/npcs/index"><h1 class="text-lg underline font-bold decoration-4">NPCs</h1></a>
                         <livewire:slider :categories="$npcs" :catName="'npcs'" />
-                    <h1 class="text-lg underline font-bold decoration-4">Locations</h1>
+                    <a href="/item/locations/index"><h1 class="text-lg underline font-bold decoration-4">Locations</h1></a>
                         <livewire:slider :categories="$locations" :catName="'locations'" />
                 </div>
             </div>
@@ -80,10 +80,10 @@
         <div class="h-60 overflow-hidden flex items-center"><img src="images/wizard.jpg" class="xl:hidden w-full bg-fixed bg-auto" /></div>
         <div class="text-3xl font-bold text-center m-10">Note-taking app for the meticulous tabletop player</div>
 
-        <div class="flex justify-evenly space-x-16">
-            <div class="w-96 text-xl">Write notes as usual and then highlight details to mark them as "notelettes"</div>
-            <div class="w-96 text-xl">Attach notelettes to NPCs, Locations, or Quests</div>
-            <div class="w-96 text-xl">Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</div>
+        <div class="flex justify-evenly">
+            <div class="w-96 text-xl m-2">Write notes as usual and then highlight details to mark them as "notelettes"</div>
+            <div class="w-96 text-xl m-2">Attach notelettes to NPCs, Locations, or Quests</div>
+            <div class="w-96 text-xl m-2">Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</div>
         </div>
     @endauth
 </x-layout>
