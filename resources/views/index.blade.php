@@ -73,13 +73,14 @@
         </div>
     @else
     {{-- Guest view --}}
-        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner hidden md:visible" style="background-image: url('images/wizard.jpg');padding-left:736px;">
+        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner hidden xl:block" style="background-image: url('images/wizard.jpg');padding-left:736px;">
             <img src="images/hero-logo.png" class="h-96" />
         </div>
-        <img src="images/hero-logo.png" class="md:hidden" />
+        <img src="images/hero-logo.png" class="xl:hidden" />
+        <div class="h-60 overflow-hidden flex items-center"><img src="images/wizard.jpg" class="xl:hidden w-full bg-fixed bg-auto" /></div>
         <div class="text-3xl font-bold text-center m-10">Note-taking app for the meticulous tabletop player</div>
 
-        <div class="flex justify-evenly">
+        <div class="flex justify-evenly space-x-16">
             <div class="w-96 text-xl">Write notes as usual and then highlight details to mark them as "notelettes"</div>
             <div class="w-96 text-xl">Attach notelettes to NPCs, Locations, or Quests</div>
             <div class="w-96 text-xl">Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</div>

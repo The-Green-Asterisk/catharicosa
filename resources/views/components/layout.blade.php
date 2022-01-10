@@ -36,7 +36,7 @@
                 x-init="setTimeout(() => show = false, 3000)"
                 x-show="show"
                 class="w-screen h-screen absolute sticky inset-0 z-60 backdrop-blur flex content-center">
-                <x-panel @click.away="show = false" class="z-50 w-72 p-4 font-bold text-center">{!! session('success') !!}</x-panel>
+                <x-panel @click.away="show = false" class="z-[90] w-72 p-4 font-bold text-center">{!! session('success') !!}</x-panel>
             </div>
         @endif
         @livewireScripts
