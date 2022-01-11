@@ -12,6 +12,7 @@ use Livewire\Component;
 class NoteletteEditor extends Component
 {
     public $body;
+    public $orig;
     public $notelette;
 
     public $quests;
@@ -32,6 +33,7 @@ class NoteletteEditor extends Component
     {
         $this->showNoteletteEditor = true;
         $this->body = $notelette->body;
+        $this->orig = $notelette->body;
         $this->notelette = $notelette;
 
         if ($notelette->quest()->pluck('id')->toArray() !== null){
@@ -58,6 +60,10 @@ class NoteletteEditor extends Component
 
     public function save()
     {
+        $newNote = str_replace($this->orig, $this->body, $this->notelette->note()->pluck('body')->first());
+        $this->notelette->note()->update(['body' => $newNote]);
+        $this->notelette->update(['body' => $this->body]);
+
         $this->notelette->quest()->detach();
         $this->notelette->location()->detach();
         $this->notelette->npc()->detach();
