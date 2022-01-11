@@ -11,10 +11,12 @@ use Livewire\Component;
 class ItemIndex extends Component
 {
     public $catName;
+    public $query;
 
     public function mount($category)
     {
         $this->catName = $category;
+        $this->query = url('/item?').\Illuminate\Support\Arr::query(['c' => $this->catName]);
     }
     public function render()
     {
