@@ -18,18 +18,18 @@
     </head>
     <x-loading />
     <body class="bg-gradient-to-br from-stone-100 to-slate-100 bg-fixed">
-        <div name="header" class="w-screen flex justify-between content-center">
-            <a href="/"><img src="/images/catharicosa-logo.png" class="h-28 m-5" /></a>
-            <div class="flex flex-col justify-center text-center mr-10">
+        <div name="header" class="w-screen flex justify-between content-center flex-wrap">
+            <div class="w-1/2 md:w-auto"><a href="/"><img src="/images/catharicosa-logo.png" class="h-28 w-28 m-5" /></a></div>
+            @livewire('search-bar')
+            <div class="flex flex-col justify-center text-center md:mr-10 w-1/2 md:w-32">
                 @auth
                     <span>Welcome, {{ auth()->user()->name }}</span>
                 @else
-                    <x-anchor-button href="/register">Sign Up</x-anchor-button>
+                    <x-anchor-button href="/register" class="max-w-max mx-auto">Sign Up</x-anchor-button>
                 @endauth
                 <livewire:session />
             </div>
         </div>
-        @livewire('search-bar')
         {{ $slot }}
         @if (session()->has('success'))
             <div x-data="{ show: true }"

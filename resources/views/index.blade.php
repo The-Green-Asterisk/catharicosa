@@ -39,14 +39,14 @@
                             <div class="note" @contextmenu="formData.note_id = {{ $note->id }};$event.preventDefault();toggle()">
                                 @foreach ($note->notelettes as $notelette)
                                     @php
-                                        $noteletteBodies[] = "/$notelette->body/";
-                                        $replacements[] = "<span class='italic bg-red-100 rounded border border-red-300'>$notelette->body</span>";
+                                        $noteletteBodies[] = $notelette->body;
+                                        $replacements[] = "<span contenteditable='false' class='italic bg-red-100 rounded border border-red-300'>$notelette->body</span>";
                                     @endphp
                                 @endforeach
                                 @if (isset($noteletteBodies))
-                                    {!! preg_replace($noteletteBodies, $replacements, $note->body) !!}
+                                    <p contenteditable='true'>{!! str_replace($noteletteBodies, $replacements, $note->body) !!}</p>
                                 @else
-                                    {!! $note->body !!}
+                                    <p contenteditable='true'>{!! $note->body !!}</p>
                                 @endif
                             </div>
                             <p x-text="message" class="text-xs text-red-600"></p>
