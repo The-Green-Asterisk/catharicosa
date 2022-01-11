@@ -30,6 +30,14 @@ class NoteController extends Controller
         return view('index', $data);
     }
 
+    public function updateNote(Request $request, Note $note)
+    {
+        $note->update([
+            'note_id' => $request->input('note_id'),
+            'body' => $request->input('body')
+        ]);
+    }
+
     public function addNotelette(Request $request, Note $note, Quest $quest, NPC $npc, Location $location, InventoryItem $item)
     {
         $notelette = $note->notelettes()->create([

@@ -26,6 +26,6 @@ Route::get('/item', Item::class)->middleware('auth');
 Route::get('/item/{category}/{item}/edit', EditItem::class)->middleware('auth');
 Route::get('/item/{category}/index', ItemIndex::class)->middleware('auth');
 Route::post('/notes/{note}/notelette', [NoteController::class, 'addNotelette'])->middleware('auth')->name('addNotelette');
-Route::delete('/notelette/{notelette}/delete', [NoteController::class, 'destroyNotelette'])->middleware('auth')->name('destroyNotelette');
+Route::patch('/notes/{note}/update', [NoteController::class, 'updateNote'])->middleware('auth')->name('updateNote');
 Route::delete('/note/{note}/delete', [NoteController::class, 'destroyNote'])->middleware('auth')->name('destroyNote');
-
+Route::delete('/notelette/{notelette}/delete', [NoteController::class, 'destroyNotelette'])->middleware('auth')->name('destroyNotelette');

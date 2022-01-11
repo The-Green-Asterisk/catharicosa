@@ -19,7 +19,7 @@
                 </div>
             </div>
             {{-- Main Body --}}
-            <x-panel class="h-screen lg:w-3/4 overflow-y-auto overflow-hidden flex-col" id="notes">
+            <x-panel class="h-screen lg:w-3/4 overflow-y-auto overflow-hidden flex-col">
                 {{-- Notes --}}
                 <livewire:new-note />
                 @foreach ($notes as $note)
@@ -40,18 +40,25 @@
                                 @foreach ($note->notelettes as $notelette)
                                     @php
                                         $noteletteBodies[] = $notelette->body;
-                                        $replacements[] = "<span contenteditable='false' class='italic bg-red-100 rounded border border-red-300'>$notelette->body</span>";
+                                        $replacements[] = "<span contenteditable='false' class='italic bg-red-100 rounded border border-red-300 cursor-pointer' x-data='{}' x-on:click='Livewire.emit(\"editNotelette\", $notelette)'>$notelette->body</span>";
                                     @endphp
                                 @endforeach
                                 @if (isset($noteletteBodies))
-                                    <p contenteditable='true'>{!! str_replace($noteletteBodies, $replacements, $note->body) !!}</p>
+                                    <p contenteditable='true'id="note{{ $note->id }}" class="focus:outline-0">{!! str_replace($noteletteBodies, $replacements, $note->body) !!}</p>
                                 @else
-                                    <p contenteditable='true'>{!! $note->body !!}</p>
+                                    <p contenteditable='true' id="note{{ $note->id }}" class="focus:outline-0">{!! $note->body !!}</p>
                                 @endif
                             </div>
                             <p x-text="message" class="text-xs text-red-600"></p>
                             <x-notelette-menu
                                 :quests="$quests" :npcs="$npcs" :locations="$locations" :inventoryItems="$inventoryItems" />
+                        </form>
+                        <form action="/notes/{{ $note->id }}/update" id="update{{ $note->id }}" method="POST" x-data="noteForm()" @submit.prevent="submitData">
+                            @csrf
+                            @method('PATCH')
+                            <div class="flex justify-end">
+                                <x-form-button @click="formData.note_id = {{ $note->id }}" class="text-sm" title="Make changes to your note. NOTICE: You can only update notelettes by clicking on them first.">Update</x-form-button>
+                            </div>
                         </form>
                         @foreach ($note->notelettes as $notelette)
                             <x-notelette :notelette="$notelette" />

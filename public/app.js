@@ -18,6 +18,36 @@ window.addEventListener("contextmenu", e => {
 
 var csrf = document.querySelector('meta[name="csrf-token"]').content;
 
+window.noteForm = (note_id) => {
+
+    return {
+        formData: {
+            note_id: note_id,
+        },
+        message: '',
+
+        submitData() {
+            body = document.getElementById('note' + this.formData.note_id).innerText
+            console.log(body)
+            this.formData.body = body
+            this.message = ''
+
+            fetch('/notes/' + this.formData.note_id + '/update', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf },
+                body: JSON.stringify(this.formData)
+            })
+            .then(() => {
+                this.message = 'Your note is saved!',
+                location.reload()
+            })
+            .catch(() => {
+                this.message = 'Oops! Something went wrong!'
+            })
+        }
+    }
+}
+
 window.noteletteForm = (note_id, body, quest_id, npc_id, location_id, inventory_item_id) => {
     return {
         formData: {
