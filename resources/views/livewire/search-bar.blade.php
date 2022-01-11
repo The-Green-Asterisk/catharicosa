@@ -3,6 +3,27 @@
         <div class="absolute flex flex-col border border-gray-200 rounded-xl bg-white w-screen md:w-1/3 m-auto shadow-lg z-30" >
             <input type="text" style="font-size:20px;" class="placeholder:text-xl placeholder:italic border-none indent-2 outline-none focus:outline-none bg-transparent min-w-0 grow text-sm rounded-full" wire:model="term" placeholder="Search through your adventure..." x-data="{}" @click.away="$wire.clear()"/>
             <div class="max-h-[60vh] overflow-auto">
+                @if ($noteOutput->isNotEmpty())
+                    <p class="text-lg font-bold text-red-500 mt-6 px-4">Notes</p>
+                    <hr />
+                    @foreach ($noteOutput as $note)
+                        <a href="#note{{ $note->id }}">
+                            <p class="px-4 font-semibold hover:underline hover:text-blue-400">
+                                {{ $note->title }}
+                            </p>
+                        </a>
+                        <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($note->body), 0, 225) }}...</p>
+                    @endforeach
+                @endif
+                @if ($noteletteOutput->isNotEmpty())
+                    <p class="text-lg font-bold text-red-500 mt-6 px-4">Notelettes</p>
+                    <hr />
+                    @foreach ($noteletteOutput as $notelette)
+                        <div class="px-4 mb-2">
+                            <x-notelette :notelette="$notelette" />
+                        </div>
+                    @endforeach
+                @endif
                 @if ($questOutput->isNotEmpty())
                     <p class="text-lg font-bold text-slate-500 mt-6 px-4">Quests</p>
                     <hr />
@@ -11,7 +32,7 @@
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
                                 {{ $quest->title }}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($quest->description), 0, 150) }}...</p>
+                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($quest->description), 0, 225) }}...</p>
                         </div>
                     @endforeach
                 @endif
@@ -23,7 +44,7 @@
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
                                 {{ $npc->name }}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($npc->description), 0, 150) }}...</p>
+                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($npc->description), 0, 225) }}...</p>
                         </div>
                     @endforeach
                 @endif
@@ -35,7 +56,7 @@
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
                                 {{ $location->name }}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($location->description), 0, 150) }}...</p>
+                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($location->description), 0, 225) }}...</p>
                         </div>
                     @endforeach
                 @endif
@@ -47,7 +68,7 @@
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
                                 {{ $item->name }}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($item->description), 0, 150) }}...</p>
+                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($item->description), 0, 225) }}...</p>
                         </div>
                     @endforeach
                 @endif

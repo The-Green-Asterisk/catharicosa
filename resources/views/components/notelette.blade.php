@@ -11,9 +11,11 @@
     </div>
     <span class="text-xs italic">Associated with:</span>
     @foreach ($notelette->note as $note)
-        <span class="text-xs italic bg-slate-200 rounded border border-slate-400 m-1">
-            {{ $note->title }}
-        </span>
+        <a href="/#note{{ $note->id }}">
+            <span class="text-xs italic bg-slate-200 rounded border border-slate-400 m-1">
+                {{ $note->title }}
+            </span>
+        </a>
     @endforeach
     @foreach ($notelette->location as $location)
         <span  x-data="{}" x-on:click="Livewire.emit('showModal', 'locations', {{ $location->id }})" class="text-xs italic bg-slate-200 rounded border border-slate-400 m-1 cursor-pointer">
