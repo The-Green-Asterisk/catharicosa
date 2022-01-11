@@ -57,7 +57,7 @@
                             @csrf
                             @method('PATCH')
                             <div class="flex justify-end">
-                                <x-form-button @click="formData.note_id = {{ $note->id }}" class="text-sm" title="Make changes to your note. NOTICE: You can only update notelettes by clicking on them first.">Update</x-form-button>
+                                <x-form-button @click="formData.note_id = {{ $note->id }}" class="text-sm" title="Save changes to your note. NOTICE: You can only update notelettes by clicking on them first.">Save</x-form-button>
                             </div>
                         </form>
                         @foreach ($note->notelettes as $notelette)

@@ -20,7 +20,7 @@ class NewNote extends Component
     {
         Note::create([
             'title' => $this->title,
-            'body' => $this->body,
+            'body' => nl2br($this->body),
             'user_id' => auth()->user()->id
         ]);
 
