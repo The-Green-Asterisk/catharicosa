@@ -34,6 +34,7 @@ class NoteController extends Controller
     {
         $note->update([
             'note_id' => $request->input('note_id'),
+            'title' => $request->input('title'),
             'body' => nl2br($request->input('body'))
         ]);
     }

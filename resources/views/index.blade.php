@@ -26,7 +26,7 @@
                     @foreach ($notes as $note)
                         <div x-data="{ open: false, toggle() { this.open =! this.open } }" class="lg:mx-10 2xl:mx-32 md:mx-32 mx-10 my-10 transition-all" x-on:mouseleave="open = false">
                             <div class="flex items-center space-x-2">
-                                <h2 class="font-bold" id="note{{ $note->id }}">{{ $note->title }}</h2>
+                                <h2 class="font-bold focus:outline-0" id="notetitle{{ $note->id }}" contenteditable="true">{{ $note->title }}</h2>
                                 <div class="grow"></div>
                                 <p class="text-sm italic text-gray-400">created {{ $note->created_at->diffForHumans() }}</p>
                                 <form method="POST" id="{{ 'delete' . $note->id }}" action="/note/{{ $note->id }}/delete">
