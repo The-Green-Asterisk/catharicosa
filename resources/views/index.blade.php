@@ -24,7 +24,8 @@
                 <livewire:new-note />
                 @if ($notes->isNotEmpty())
                     @foreach ($notes as $note)
-                        <div x-data="{ open: false, toggle() { this.open =! this.open } }" class="lg:mx-10 2xl:mx-32 md:mx-32 mx-10 my-10 transition-all" x-on:mouseleave="open = false">
+                        <hr id="note{{ $note->id }}" />
+                        <div x-data="{ open: false, toggle() { this.open =! this.open } }" class="lg:mx-10 2xl:mx-32 md:mx-32 mx-10 my-20 transition-all" x-on:mouseleave="open = false">
                             <div class="flex items-center space-x-2">
                                 <h2 class="font-bold focus:outline-0" id="notetitle{{ $note->id }}" contenteditable="true">{{ $note->title }}</h2>
                                 <div class="grow"></div>
@@ -58,12 +59,18 @@
                                 @csrf
                                 @method('PATCH')
                                 <div class="flex justify-end">
-                                    <x-form-button @click="formData.note_id = {{ $note->id }}" class="text-sm" title="Save changes to your note. NOTICE: You can only update notelettes by clicking on them first.">Save</x-form-button>
+                                    <x-form-button @click="formData.note_id = {{ $note->id }}" class="text-sm" title="Save changes to your note. You can only update notelettes by clicking on them first.">Save</x-form-button>
                                 </div>
                             </form>
-                            @foreach ($note->notelettes as $notelette)
-                                <x-notelette :notelette="$notelette" />
-                            @endforeach
+                            <p class="text-xs uppercase font-bold">Notelettes:</p>
+                            <hr/>
+                            @if ($note->notelettes->first() !== null)
+                                @foreach ($note->notelettes as $notelette)
+                                    <x-notelette :notelette="$notelette" />
+                                @endforeach
+                            @else
+                                <p class="mb-6">No notelettes yet!</p>
+                            @endif
                         </div>
                     @endforeach
                 @else
