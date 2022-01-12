@@ -13,6 +13,8 @@
 
             <input type="password" id="password_confirmation" name="password_confirmation" wire:model="password_confirmation" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="confirm password">
 
+            <input type="hidden" name="timezone" id="timezone" wire:model="timezone" x-init="$wire.timezone = moment.tz.guess()">
+
             <hr />
 
             <x-form-button>Venture Forth</x-form-button>

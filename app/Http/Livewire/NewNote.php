@@ -13,7 +13,7 @@ class NewNote extends Component
 
     public function mount()
     {
-        $this->title = 'Notes for ' . now()->toDayDateTimeString();
+        $this->title = 'Notes for ' . now()->tz(auth()->user()->timezone)->toDayDateTimeString();
     }
 
     public function submit()

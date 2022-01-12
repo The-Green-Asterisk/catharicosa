@@ -28,7 +28,7 @@
                             <div class="flex items-center space-x-2">
                                 <h2 class="font-bold focus:outline-0" id="notetitle{{ $note->id }}" contenteditable="true">{{ $note->title }}</h2>
                                 <div class="grow"></div>
-                                <p class="text-sm italic text-gray-400">created {{ $note->created_at->diffForHumans() }}</p>
+                                <p class="text-sm italic text-gray-400" title="{{ $note->created_at->tz(auth()->user()->timezone)->toDayDateTimeString() }}">created {{ $note->created_at->tz(auth()->user()->timezone)->diffForHumans() }}</p>
                                 <form method="POST" id="{{ 'delete' . $note->id }}" action="/note/{{ $note->id }}/delete">
                                     @csrf
                                     @method('DELETE')

@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
@@ -10,6 +12,8 @@ class Session extends Component
     public $email;
 
     public $password;
+
+    public $timezone;
 
     public $remember = false;
 
@@ -29,6 +33,9 @@ class Session extends Component
     {
         if (auth()->attempt($this->validate(), $this->remember)) {
             session()->regenerate();
+            DB::table('users')->where('email', $this->email)->update([
+                'timezone' => $this->timezone,
+            ]);
             redirect('/')->with('success', 'Welcome back, traveler! I\'ve kept your seat warm, and your stein cold!');
         }else{
             throw ValidationException::withMessages([

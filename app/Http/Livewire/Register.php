@@ -11,6 +11,7 @@ class Register extends Component
     public $email;
     public $password;
     public $password_confirmation;
+    public $timezone;
 
     protected $rules = [
         'name' => 'required|min:3|max:255',
@@ -35,6 +36,7 @@ class Register extends Component
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
+            'timezone' => $this->timezone
         ]);
 
         auth()->login($user);

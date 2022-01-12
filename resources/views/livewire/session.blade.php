@@ -16,6 +16,8 @@
                         <input type="checkbox" id="remember" name="remember" wire:model="remember">
                         <label for="remember">Remember Me</label>
 
+                        <input type="hidden" name="timezone" id="timezone" wire:model="timezone" x-init="$wire.timezone = moment.tz.guess()">
+
                         <hr />
 
                         <x-form-button>Log In</x-form-button>
