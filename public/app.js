@@ -27,7 +27,7 @@ window.noteForm = (note_id) => {
         message: '',
 
         submitData() {
-            body = document.getElementById('note' + this.formData.note_id).innerText
+            body = document.getElementById('notebody' + this.formData.note_id).innerText
             console.log(body)
             this.formData.body = body
             this.message = ''

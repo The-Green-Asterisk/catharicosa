@@ -1,9 +1,9 @@
 <div>
     @if ($showNoteletteEditor)
-    <x-dialog class="w-1/3 px-10 text-left overflow-y-auto overflow-hidden" @click.away="$wire.emit('closeNotelette')">
+    <x-dialog class="w-screen md:w-1/3 px-10 text-left overflow-y-auto overflow-hidden" @click.away="$wire.emit('closeNotelette')">
         <div @click="$wire.emit('closeNotelette')" class="float-right bg-gray-200 rounded-full cursor-default px-2 shadow-lg hover:bg-gray-300 active:bg-gray-500 active:shadow active:scale-95">X</div>
         <div class="flex items-center">
-            <input type="text" wire:model="body" class="bg-red-100 outline-red-200 grow shadow-inner rounded-full indent-2" />
+            <input type="text" wire:model="body" class="bg-red-100 border border-red-300 outline-red-200 grow shadow-inner rounded indent-2" />
             <input type="image" src="images/trash.png" wire:click="deleteNotelette()" height="15px" width="15px" class="opacity-50 hover:opacity-100 inline" title="Delete Notelette" />
         </div>
         <div><p class="w-full text-center font-bold">Associations</p>
