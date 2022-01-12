@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateInventoryItemsTable extends Migration
@@ -23,6 +24,10 @@ class CreateInventoryItemsTable extends Migration
             $table->foreignId('location_id')->nullable();
             $table->foreignId('quest_id')->nullable();
         });
+
+        DB::statement(
+            'ALTER TABLE inventory_items ADD FULLTEXT fulltext_index(name, description)'
+        );
     }
 
     /**

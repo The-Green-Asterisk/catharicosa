@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateQuestsTable extends Migration
@@ -22,6 +23,10 @@ class CreateQuestsTable extends Migration
             $table->string('title');
             $table->text('description');
         });
+
+        DB::statement(
+            'ALTER TABLE quests ADD FULLTEXT fulltext_index(title, description)'
+        );
     }
 
     /**

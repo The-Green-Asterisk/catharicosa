@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateLocationsTable extends Migration
@@ -20,6 +21,10 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->text('description');
         });
+
+        DB::statement(
+            'ALTER TABLE locations ADD FULLTEXT fulltext_index(name, description)'
+        );
     }
 
     /**

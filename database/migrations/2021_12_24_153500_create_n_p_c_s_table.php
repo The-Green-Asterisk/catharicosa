@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateNPCSTable extends Migration
@@ -21,6 +22,10 @@ class CreateNPCSTable extends Migration
             $table->string('name');
             $table->text('description');
         });
+
+        DB::statement(
+            'ALTER TABLE n_p_c_s ADD FULLTEXT fulltext_index(name, description)'
+        );
     }
 
     /**

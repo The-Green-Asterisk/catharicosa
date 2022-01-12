@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateNotelettesTable extends Migration
@@ -19,6 +20,10 @@ class CreateNotelettesTable extends Migration
             $table->foreignId('user_id');
             $table->text('body');
         });
+
+        DB::statement(
+            'ALTER TABLE notelettes ADD FULLTEXT fulltext_index(title, body)'
+        );
     }
 
     /**

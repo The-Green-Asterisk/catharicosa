@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateNotesTable extends Migration
@@ -20,6 +21,10 @@ class CreateNotesTable extends Migration
             $table->string('title');
             $table->text('body');
         });
+
+        DB::statement(
+            'ALTER TABLE notes ADD FULLTEXT fulltext_index(title, body)'
+        );
     }
 
     /**
