@@ -18,11 +18,13 @@ class NewNote extends Component
 
     public function submit()
     {
-        Note::create([
-            'title' => $this->title,
-            'body' => nl2br($this->body),
-            'user_id' => auth()->user()->id
-        ]);
+        if ($this->body && $this->title !== null) {
+            Note::create([
+                'title' => $this->title,
+                'body' => nl2br($this->body),
+                'user_id' => auth()->user()->id
+            ]);
+        }else{return;}
 
         return redirect('/');
     }
