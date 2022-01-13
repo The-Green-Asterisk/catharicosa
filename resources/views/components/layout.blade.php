@@ -7,22 +7,22 @@
 
         <title>Catharicosa Notes</title>
 
-        <link rel="icon" type="image/png" href="/favicon.png">
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link href="/manifest.json" rel="manifest">
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+        <link href="/manifest.json" rel="manifest" />
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="/app.js"></script>
         <script src="/moment.js"></script>
         <script src="/moment-timezone-with-data.js"></script>
-        <link rel="stylesheet" href="/app.css">
-
-        @livewireStyles
         <script type="module">
             import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
             const el = document.createElement('pwa-update');
             document.body.appendChild(el);
         </script>
+
+        <link rel="stylesheet" href="/app.css">
+        @livewireStyles
     </head>
     <x-loading />
     <body class="bg-gradient-to-br from-stone-100 to-slate-100 bg-fixed">
