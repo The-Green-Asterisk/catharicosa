@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Register extends Component
@@ -40,6 +41,10 @@ class Register extends Component
         ]);
 
         auth()->login($user);
+
+        DB::table('users')->where('email', $user->email)->update([
+            'timezone' => $this->timezone,
+        ]);
 
         return redirect('/')->with('success', 'Welcome, traveler!<br />Your information has been recorded. Now, go! Enjoy yourself!');
     }
