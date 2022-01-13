@@ -1,6 +1,6 @@
-// This is the "Offline copy of assets" service worker
+// This is the service worker with the Cache-first network
 
-const CACHE = "pwabuilder-offline";
+const CACHE = "pwabuilder-precache";
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
@@ -12,7 +12,7 @@ self.addEventListener("message", (event) => {
 
 workbox.routing.registerRoute(
   new RegExp('/*'),
-  new workbox.strategies.StaleWhileRevalidate({
+  new workbox.strategies.CacheFirst({
     cacheName: CACHE
   })
 );
