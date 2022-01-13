@@ -44,11 +44,14 @@ class Session extends Component
         };
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
         auth()->logout();
-        session()->invalidate();
-        $this->middleware('guest', ['except' => ['logout', 'getLogout']]);
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
 
         return redirect('/')->with('success', 'Safe journies, friend! You\'ll always have an open tab here!');
     }
