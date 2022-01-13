@@ -14,6 +14,7 @@ class CreateNotelettesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('notelettes');
         Schema::create('notelettes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
