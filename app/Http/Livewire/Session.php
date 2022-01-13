@@ -48,6 +48,7 @@ class Session extends Component
     {
         auth()->logout();
         session()->invalidate();
+        $this->middleware('guest', ['except' => ['logout', 'getLogout']]);
 
         return redirect('/')->with('success', 'Safe journies, friend! You\'ll always have an open tab here!');
     }
