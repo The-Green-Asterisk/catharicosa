@@ -6,7 +6,11 @@ self.addEventListener("install", function(event) {
     console.log("Installing web app");
     return caches.open("offline").then(function(cache) {
       console.log("caching index and important routes");
+<<<<<<< HEAD
       return cache.addAll(["/", "/images/"]);
+=======
+      return cache.addAll(["/"]);
+>>>>>>> 80c63d523ca15d43ff197f6fe578ef18d39e4650
     });
   };
 
