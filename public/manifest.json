@@ -5,7 +5,7 @@
     "background_color": "#f3f4f6",
     "display": "standalone",
     "scope": "/",
-    "start_url": "http://65.33.68.24:8000/",
+    "start_url": "https://catharicosa.com/",
     "icons": [
         {
             "src": "/images/catharicosa-icon.jpg",
