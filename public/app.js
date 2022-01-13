@@ -86,3 +86,6 @@ window.noteletteForm = (note_id, body, quest_id, npc_id, location_id, inventory_
         }
     }
 }
+navigator.serviceWorker.register('sw.js', {
+    scope: './'
+});
