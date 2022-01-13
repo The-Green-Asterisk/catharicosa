@@ -18,6 +18,12 @@
         <link rel="stylesheet" href="/app.css">
 
         @livewireStyles
+
+        <script type="module">
+            import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+            const el = document.createElement('pwa-update');
+            document.body.appendChild(el);
+        </script>
     </head>
     <x-loading />
     <body class="bg-gradient-to-br from-stone-100 to-slate-100 bg-fixed">
@@ -45,12 +51,5 @@
         @livewireScripts
         @livewire('modal')
         @livewire('notelette-editor')
-        <script>
-            if (!navigator.serviceWorker.controller) {
-                navigator.serviceWorker.register("/sw.js").then(function(reg) {
-                    console.log("Service worker has been registered for scope: " + reg.scope);
-                });
-            }
-        </script>
     </body>
 </html>
