@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -46,7 +47,7 @@ class Session extends Component
 
     public function destroy(Request $request)
     {
-        auth()->logout();
+        Auth::logout();
 
         $request->session()->invalidate();
 
