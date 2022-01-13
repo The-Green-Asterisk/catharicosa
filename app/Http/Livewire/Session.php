@@ -45,13 +45,13 @@ class Session extends Component
         };
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
         Auth::logout();
 
-        session()->invalidate();
+        $request->session()->invalidate();
 
-        session()->regenerateToken();
+        $request->session()->regenerateToken();
 
 
         return redirect('/')->with('success', 'Safe journies, friend! You\'ll always have an open tab here!');

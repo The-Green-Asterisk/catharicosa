@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [NoteController::class, 'show'])->name('home');
 Route::get('/register', Register::class)->middleware('guest');
 Route::get('/login', Session::class)->middleware('guest');
+Route::post('/logout', [Session::class, 'destroy'])->middleware('auth');
 Route::get('/item', Item::class)->middleware('auth');
 Route::get('/item/{category}/{item}/edit', EditItem::class)->middleware('auth');
 Route::get('/item/{category}/index', ItemIndex::class)->middleware('auth');
