@@ -9,6 +9,7 @@
 
         <link rel="icon" type="image/png" href="/favicon.png">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="/manifest.json" rel="manifest">
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="/app.js"></script>
@@ -44,5 +45,12 @@
         @livewireScripts
         @livewire('modal')
         @livewire('notelette-editor')
+        <script>
+            if (!navigator.serviceWorker.controller) {
+                navigator.serviceWorker.register("/sw.js").then(function(reg) {
+                    console.log("Service worker has been registered for scope: " + reg.scope);
+                });
+            }
+        </script>
     </body>
 </html>

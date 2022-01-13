@@ -22,7 +22,7 @@ class CreateNotelettesTable extends Migration
         });
 
         DB::statement(
-            'ALTER TABLE notelettes ADD FULLTEXT fulltext_index(title, body)'
+            'ALTER TABLE notelettes ADD FULLTEXT fulltext_index(body)'
         );
     }
 

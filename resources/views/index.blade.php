@@ -9,7 +9,7 @@
                 x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width < 1020) {open = false}else{open = true}" x-transition.scale>
                 <img src="images/scrollicon.png" :class="open ? 'md:mr-3 mr-14' : ''" class="float-right m-3 h-6 cursor-pointer" @click="toggle()" />
                 <div x-show="open" class="m-10 transition-all duration-1000">
-                    <a href="/item" class="mx-auto border border-slate-500 shrink-0 bg-slate-200 rounded text-center font-black w-7 h-7 flex flex-col justify-center shadow text-slate-500 hover:bg-slate-300 active:bg-slate-400 cursor-pointer" title="New Library Item">+</a>
+                    <a href="/item" class="mx-auto border border-slate-500 shrink-0 bg-slate-200 rounded text-center font-black w-7 h-7 flex flex-col justify-center shadow-lg active:shadow active:scale-95 text-slate-500 hover:bg-slate-300 active:bg-slate-400 cursor-pointer" title="New Library Item">+</a>
                     <a href="/item/quests/index"><h1 class="text-lg underline font-bold decoration-4">Quests</h1></a>
                         <livewire:slider :categories="$quests" :catName="'quests'" />
                     <a href="/item/npcs/index"><h1 class="text-lg underline font-bold decoration-4">NPCs</h1></a>
