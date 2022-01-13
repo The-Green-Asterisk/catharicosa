@@ -46,9 +46,8 @@ class Session extends Component
 
     public function destroy()
     {
-        session()->flush();
         auth()->logout();
-        session()->save();
+        session()->invalidate();
 
         return redirect('/')->with('success', 'Safe journies, friend! You\'ll always have an open tab here!');
     }
