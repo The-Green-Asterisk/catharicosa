@@ -34,13 +34,15 @@ class NoteController extends Controller
     {
         $note->update([
             'note_id' => $request->input('note_id'),
-            'title' => $request->input('title'),
-            'body' => nl2br($request->input('body'))
+            'title' => $request->input('note_title'),
+            'body' => nl2br($request->input('note_body'))
         ]);
     }
 
     public function addNotelette(Request $request, Note $note, Quest $quest, NPC $npc, Location $location, InventoryItem $item)
     {
+        $this->updateNote($request, $note);
+
         $notelette = $note->notelettes()->create([
             'user_id' => auth()->user()->id,
             'body' => $request->input('body')

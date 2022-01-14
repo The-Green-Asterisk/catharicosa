@@ -35,10 +35,8 @@ window.noteForm = (note_id) => {
         message: '',
 
         submitData() {
-            title = document.getElementById('notetitle' + this.formData.note_id).innerText
-            body = document.getElementById('notebody' + this.formData.note_id).innerText
-            this.formData.title = title
-            this.formData.body = body
+            this.formData.note_title = document.getElementById('notetitle' + this.formData.note_id).innerText
+            this.formData.note_body = document.getElementById('notebody' + this.formData.note_id).innerText
             this.message = ''
 
             fetch('/notes/' + this.formData.note_id + '/update', {
@@ -70,6 +68,8 @@ window.noteletteForm = (note_id, body, quest_id, npc_id, location_id, inventory_
         message: '',
 
         submitData() {
+            this.formData.note_title = document.getElementById('notetitle' + this.formData.note_id).innerText
+            this.formData.note_body = document.getElementById('notebody' + this.formData.note_id).innerText
             this.message = ''
 
             if (body === null){
