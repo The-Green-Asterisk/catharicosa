@@ -38,7 +38,7 @@
                             </div>
                             <form action="/notes/{{ $note->id }}/notelette" id="notelette" method="POST" x-data="noteletteForm()" @contextmenu="formData.body = window.getSelection().toString()" @submit.prevent="submitData">
                                 @csrf
-                                <div class="note" @contextmenu="formData.note_id = {{ $note->id }};$event.preventDefault();toggle()">
+                                <div class="note" @contextmenu="formData.note_id = {{ $note->id }};$event.preventDefault();open = true">
                                     @foreach ($note->notelettes as $notelette)
                                         @php
                                             $noteletteBodies[] = $notelette->body;

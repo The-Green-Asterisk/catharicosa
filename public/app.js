@@ -7,11 +7,19 @@ const setPosition = ({ top, left }) => {
 };
 
 window.addEventListener("contextmenu", e => {
-    const origin = {
-        left: e.pageX,
-        top: e.pageY
-    };
-    setPosition(origin);
+    if (window.innerWidth > 640) {
+        const origin = {
+            left: e.pageX,
+            top: e.pageY
+        };
+        setPosition(origin);
+    }else{
+        const origin = {
+            left: e.pageX,
+            top: 14
+        };
+        setPosition(origin);
+    }
 
     return false;
 });

@@ -1,5 +1,5 @@
 <div>
-    <x-panel class="w-1/4 mt-20 text-center p-4">
+    <x-panel class="w-screen md:w-1/4 mt-20 text-center p-4">
         Thank you for patronizing this humble tavern! Please enter the following information so we can personalize your experience here at Catharicosa Notes!
         <form wire:submit.prevent="submit">
             <input type="text" wire:model="name" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="name" autocomplete="name">

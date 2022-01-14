@@ -12,6 +12,7 @@
         <link href="/manifest.json" rel="manifest" />
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="/long-press-event.min.js"></script>
         <script src="/app.js"></script>
         <script src="/moment.js"></script>
         <script src="/moment-timezone-with-data.js"></script>
