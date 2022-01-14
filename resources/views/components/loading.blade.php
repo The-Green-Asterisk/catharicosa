@@ -1,4 +1,4 @@
-<div x-data="{ loading: true }" x-show="loading" @loading.debounce.window="loading = $event.detail.loading">
+<div x-data="{ loading: true }" x-show="loading" @loading.debounce.500ms.window="loading = $event.detail.loading">
     <style>
         .loader {
             border-top-color: #db3434;
