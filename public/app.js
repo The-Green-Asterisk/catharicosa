@@ -91,6 +91,35 @@ window.noteletteForm = (note_id, body, quest_id, npc_id, location_id, inventory_
                     this.message = 'Ooops! Something went wrong!'
                 })
             }
+        },
+
+        submitDataWithItem() {
+            this.formData.note_title = document.getElementById('notetitle' + this.formData.note_id).innerText
+            this.formData.note_body = document.getElementById('notebody' + this.formData.note_id).innerText
+            this.message = ''
+
+            if (body === null){
+                this.open = false;
+                this.message = 'Please select a portion of the note to create a notelette.';
+                setTimeout(() => {this.message = ''}, 3000);
+            }else{
+                this.open = false;
+                fetch('/notes/' + this.formData.note_id + '/notelette-with-item', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf },
+                    body: JSON.stringify(this.formData)
+                })
+                .then((response) => {
+                    if (response.redirected = true){
+                        window.location.href = response.url
+                    }else{
+                        this.message = 'Oops! Something went wrong!'
+                    }
+                })
+                .catch(() => {
+                    this.message = 'Ooops! Something went wrong!'
+                })
+            }
         }
     }
 }

@@ -63,6 +63,28 @@ class NoteController extends Controller
         return redirect('/')->with('success', 'Your new notelette has been saved!');
     }
 
+    public function addNoteletteWithItem(Request $request, Note $note)
+    {
+        $this->updateNote($request, $note);
+        $item = Quest::create([
+            'title' => 'Create a new item!',
+            'description' => 'Your quest: to change all the fields in this form to create a brand new Library Item for the Notelette you just created.',
+            'user_id' => auth()->user()->id
+        ]);
+
+        $notelette = $note->notelettes()->create([
+            'user_id' => auth()->user()->id,
+            'body' => $request->input('body')
+        ]);
+
+        $item->notelettes()->attach($notelette);
+
+        return redirect()->route('edit-item', [
+            'category' => 'quests',
+            'item' => $item->id
+        ]);
+    }
+
     public function destroyNotelette(Notelette $notelette)
     {
         $notelette->delete();

@@ -39,40 +39,77 @@ class EditItem extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function update()
+    public function submit()
     {
         $this->validate();
-
-        if ($this->category === 'quest'){
-            $this->libraryItem->update([
-                'user_id' => auth()->user()->id,
-                'title' => $this->heading,
-                'description' => $this->description,
-                'npc_id' => $this->npc,
-                'location_id' => $this->location,
-            ]);
-        }elseif ($this->category === 'npc'){
-            $this->libraryItem->update([
-                'user_id' => auth()->user()->id,
-                'name' => $this->heading,
-                'description' => $this->description,
-                'location_id' => $this->location
-            ]);
-        }elseif ($this->category === 'location'){
-            $this->libraryItem->update([
-                'user_id' => auth()->user()->id,
-                'name' => $this->heading,
-                'description' => $this->description,
-            ]);
-        }elseif ($this->category === 'inventory-item'){
-            $this->libraryItem->update([
-                'user_id' => auth()->user()->id,
-                'name' => $this->heading,
-                'description' => $this->description,
-                'npc_id' => $this->npc,
-                'quest_id' => $this->quest,
-                'location_id' => $this->location
-            ]);
+        if ($this->category != $this->c){
+            if ($this->category === 'quest'){
+                $newItem = Quest::create([
+                    'title' => $this->heading,
+                    'description' => $this->description,
+                    'npc_id' => $this->npc,
+                    'location_id' => $this->location,
+                    'user_id' => auth()->user()->id
+                ]);
+            }elseif ($this->category === 'npc'){
+                $newItem = NPC::create([
+                    'name' => $this->heading,
+                    'description' => $this->description,
+                    'user_id' => auth()->user()->id,
+                    'location_id' => $this->location
+                ]);
+            }elseif ($this->category === 'location'){
+                $newItem = Location::create([
+                    'name' => $this->heading,
+                    'description' => $this->description,
+                    'user_id' => auth()->user()->id
+                ]);
+            }elseif ($this->category === 'inventory-item'){
+                $newItem = InventoryItem::create([
+                    'name' => $this->heading,
+                    'description' => $this->description,
+                    'user_id' => auth()->user()->id,
+                    'npc_id' => $this->npc,
+                    'location_id' => $this->location,
+                    'quest_id' => $this->quest
+                ]);
+            }
+            foreach($this->libraryItem->notelettes as $notelette){
+                $newItem->notelettes()->attach($notelette);
+            }
+            $this->libraryItem->delete();
+        }else{
+            if ($this->category === 'quest'){
+                $this->libraryItem->update([
+                    'user_id' => auth()->user()->id,
+                    'title' => $this->heading,
+                    'description' => $this->description,
+                    'npc_id' => $this->npc,
+                    'location_id' => $this->location,
+                ]);
+            }elseif ($this->category === 'npc'){
+                $this->libraryItem->update([
+                    'user_id' => auth()->user()->id,
+                    'name' => $this->heading,
+                    'description' => $this->description,
+                    'location_id' => $this->location
+                ]);
+            }elseif ($this->category === 'location'){
+                $this->libraryItem->update([
+                    'user_id' => auth()->user()->id,
+                    'name' => $this->heading,
+                    'description' => $this->description,
+                ]);
+            }elseif ($this->category === 'inventory-item'){
+                $this->libraryItem->update([
+                    'user_id' => auth()->user()->id,
+                    'name' => $this->heading,
+                    'description' => $this->description,
+                    'npc_id' => $this->npc,
+                    'quest_id' => $this->quest,
+                    'location_id' => $this->location
+                ]);
+            }
         }
 
         return redirect('/')->with('success', 'Your adventure journal has been successfully updated!');
