@@ -22,7 +22,7 @@
                 <span class="text-xs italic text-red-800">{{ $category->npc->name }} sent you on this quest.</span>
             @endif
         </div>
-        @if ($category->items->first() !== null)
+        @if (isset($category->items) && $category->items->first() !== null)
             <p class="text-xs uppercase font-bold">Inventory Items:</p>
             <hr />
             @foreach ($category->items as $item)
