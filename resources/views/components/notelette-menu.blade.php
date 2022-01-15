@@ -5,7 +5,7 @@
     <div class="menu z-50 absolute bg-white block shadow-lg p-2 w-56 border border-gray-400"
         @click.away="open = false">
         <ul class="menu-options">
-            <lh @click="submitDataWithItem()" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
+            <lh @click="submitDataWithItem('quest')" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
                 <div>Quest</div>
                 <div class="grow"></div>
                 <div class="text-xs italic font-light lowercase px-2" x-show="open">+add new</div>
@@ -15,7 +15,7 @@
                     @click="formData.quest_id = {{ $quest->id }}; submitData()">{{ $quest->title }}</li>
             @endforeach
             <br />
-            <lh @click="submitDataWithItem()" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
+            <lh @click="submitDataWithItem('npc')" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
                 <div>NPC</div>
                 <div class="grow"></div>
                 <div class="text-xs italic font-light lowercase px-2" x-show="open">+add new</div>
@@ -25,7 +25,7 @@
                     @click="formData.npc_id = {{ $npc->id }}; submitData()">{{ $npc->name }}</li>
             @endforeach
             <br />
-            <lh @click="submitDataWithItem()" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
+            <lh @click="submitDataWithItem('location')" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
                 <div>Location</div>
                 <div class="grow"></div>
                 <div class="text-xs italic font-light lowercase px-2" x-show="open">+add new</div>
@@ -35,7 +35,7 @@
                     @click="formData.location_id = {{ $location->id }}; submitData()">{{ $location->name }}</li>
             @endforeach
             <br />
-            <lh @click="submitDataWithItem()" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
+            <lh @click="submitDataWithItem('inventory-item')" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
                 <div>Inventory Item</div>
                 <div class="grow"></div>
                 <div class="text-xs italic font-light lowercase px-2" x-show="open">+add new</div>

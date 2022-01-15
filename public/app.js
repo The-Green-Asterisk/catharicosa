@@ -93,9 +93,10 @@ window.noteletteForm = (note_id, body, quest_id, npc_id, location_id, inventory_
             }
         },
 
-        submitDataWithItem() {
+        submitDataWithItem(category) {
             this.formData.note_title = document.getElementById('notetitle' + this.formData.note_id).innerText
             this.formData.note_body = document.getElementById('notebody' + this.formData.note_id).innerText
+            this.formData.category = category
             this.message = ''
 
             if (body === null){

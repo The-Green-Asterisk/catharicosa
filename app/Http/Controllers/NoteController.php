@@ -66,11 +66,32 @@ class NoteController extends Controller
     public function addNoteletteWithItem(Request $request, Note $note)
     {
         $this->updateNote($request, $note);
-        $item = Quest::create([
-            'title' => 'Create a new item!',
-            'description' => 'Your quest: to change all the fields in this form to create a brand new Library Item for the Notelette you just created. Or delete this item entirely for a completely context-free notelette.',
-            'user_id' => auth()->user()->id
-        ]);
+
+        if ($request->category === 'quest'){
+            $item = Quest::create([
+                'title' => 'Create a new item!',
+                'description' => 'Your quest: to change all the fields in this form to create a brand new Quest for the Notelette you just created. Or delete this item entirely for a completely context-free notelette.',
+                'user_id' => auth()->user()->id
+            ]);
+        }elseif ($request->category === 'npc'){
+            $item = NPC::create([
+                'name' => 'Create a new item!',
+                'description' => 'Your quest: to change all the fields in this form to create a brand new NPC for the Notelette you just created. Or delete this item entirely for a completely context-free notelette.',
+                'user_id' => auth()->user()->id
+            ]);
+        }elseif ($request->category === 'location'){
+            $item = Location::create([
+                'name' => 'Create a new item!',
+                'description' => 'Your quest: to change all the fields in this form to create a brand new Location for the Notelette you just created. Or delete this item entirely for a completely context-free notelette.',
+                'user_id' => auth()->user()->id
+            ]);
+        }elseif ($request->category === 'inventory-item'){
+            $item = InventoryItem::create([
+                'name' => 'Create a new item!',
+                'description' => 'Your quest: to change all the fields in this form to create a brand new Inventory Item for the Notelette you just created. Or delete this item entirely for a completely context-free notelette.',
+                'user_id' => auth()->user()->id
+            ]);
+        }
 
         $notelette = $note->notelettes()->create([
             'user_id' => auth()->user()->id,
@@ -80,7 +101,7 @@ class NoteController extends Controller
         $item->notelettes()->attach($notelette);
 
         return redirect()->route('edit-item', [
-            'category' => 'quests',
+            'category' => $request->category,
             'item' => $item->id
         ]);
     }
