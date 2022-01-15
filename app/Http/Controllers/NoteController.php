@@ -68,7 +68,7 @@ class NoteController extends Controller
         $this->updateNote($request, $note);
         $item = Quest::create([
             'title' => 'Create a new item!',
-            'description' => 'Your quest: to change all the fields in this form to create a brand new Library Item for the Notelette you just created.',
+            'description' => 'Your quest: to change all the fields in this form to create a brand new Library Item for the Notelette you just created. Or delete this item entirely for a completely context-free notelette.',
             'user_id' => auth()->user()->id
         ]);
 

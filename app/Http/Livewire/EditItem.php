@@ -115,6 +115,14 @@ class EditItem extends Component
         return redirect('/')->with('success', 'Your adventure journal has been successfully updated!');
     }
 
+    public function deleteItem()
+    {
+        $name = $this->libraryItem->name ?? $this->libraryItem->title;
+        $this->libraryItem->delete();
+        
+        return redirect('/')->with('success', $name . ' has been deleted!');
+    }
+
     public function mount($category, $item)
     {
         $this->c = $category;

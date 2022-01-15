@@ -2,7 +2,12 @@
     <x-panel class="md:w-1/4 w-full md:min-w-min mt-20 text-center p-4">
         {{ $pageHeading }}
         <form wire:submit.prevent="submit">
-            <input type="text" wire:model="heading" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="Name and/or Title">
+            <div class="flex items-center">
+                <input type="text" wire:model="heading" class="grow outline-gray-200 shadow-inner rounded my-2" placeholder="Name and/or Title">
+                @if (isset($itemId))
+                    <input type="image" src="/images/trash.png" wire:click.prevent="deleteItem" height="15px" width="15px" class="opacity-50 hover:opacity-100 inline" title="Delete Item" />
+                @endif
+            </div>
             @error('heading') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
 
             <textarea type="textarea" wire:model="description" class="w-full h-40 outline-gray-200 shadow-inner rounded my-2" placeholder="Description"></textarea>
