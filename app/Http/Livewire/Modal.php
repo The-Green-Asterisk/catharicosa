@@ -58,8 +58,10 @@ class Modal extends Component
 
     public function deleteItem()
     {
+        $name = $this->category->title ?? $this->category->name;
         $this->category->delete();
-        return redirect('/')->with('success', 'Item has been deleted!');
+
+        return redirect('/')->with('success', $name . ' has been deleted!');
     }
 
     public function render()

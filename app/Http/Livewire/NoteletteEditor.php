@@ -80,6 +80,7 @@ class NoteletteEditor extends Component
     public function deleteNotelette()
     {
         $this->notelette->delete();
+        
         return redirect('/')->with('success', 'Notelette has been deleted!');
     }
 

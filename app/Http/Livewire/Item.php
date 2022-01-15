@@ -72,7 +72,7 @@ class Item extends Component
             ]);
         }
 
-        return redirect('/');
+        return redirect('/')->with('success', $this->heading . ' has been created!');
     }
 
     public function mount()

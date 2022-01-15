@@ -14,10 +14,10 @@
                         @csrf
 
                         <input type="text" wire:model="email" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="email" autocomplete="email">
-                        @error('email') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
+                        @error('email') <span class="error text-xs text-red-600 block w-full">{{ $message }}</span> @enderror
 
                         <input type="password" id="password" name="password" wire:model="password" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="password" autocomplete="current-password">
-                        @error('password') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
+                        @error('password') <span class="error text-xs text-red-600 block w-full">{{ $message }}</span> @enderror
 
                         <input type="checkbox" id="remember" name="remember" wire:model="remember">
                         <label for="remember">Remember Me</label>

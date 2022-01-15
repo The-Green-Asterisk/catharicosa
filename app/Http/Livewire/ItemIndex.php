@@ -37,6 +37,7 @@ class ItemIndex extends Component
             'categories' => $categories,
             'catName' => $this->catName
         ];
+        
         return view('livewire.item-index', $data)->layout('components.layout');
     }
 }
