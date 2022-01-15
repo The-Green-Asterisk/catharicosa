@@ -9,6 +9,7 @@
         <div class="mb-4">
             @if (isset($category->location->name))
                 <p class="text-xs uppercase font-bold">Location:</p>
+                <hr />
                 <p>{{ $category->location->name }}</p>
             @endif
             @if ($catName == 'inventory-items' and isset($category->npc) and $category->pluck('npc_id')->first() !== 0)
@@ -21,6 +22,13 @@
                 <span class="text-xs italic text-red-800">{{ $category->npc->name }} sent you on this quest.</span>
             @endif
         </div>
+        @if ($category->items->first() !== null)
+            <p class="text-xs uppercase font-bold">Inventory Items:</p>
+            <hr />
+            @foreach ($category->items as $item)
+                <p class="mb-4">{{ $item->name }}</p>
+            @endforeach
+        @endif
         <p class="text-xs uppercase font-bold">Notelettes:</p>
         <hr/>
         @if ($category->notelettes->first() !== null)

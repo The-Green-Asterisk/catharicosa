@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Quest::class);
     }
+
+    public function items()
+    {
+        return $this->hasMany(InventoryItem::class);
+    }
 }
