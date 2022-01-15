@@ -119,7 +119,7 @@ class EditItem extends Component
     {
         $name = $this->libraryItem->name ?? $this->libraryItem->title;
         $this->libraryItem->delete();
-        
+
         return redirect('/')->with('success', $name . ' has been deleted!');
     }
 

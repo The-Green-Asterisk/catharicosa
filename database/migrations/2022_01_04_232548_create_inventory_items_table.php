@@ -20,7 +20,7 @@ class CreateInventoryItemsTable extends Migration
             $table->foreignId('user_id');
             $table->text('name');
             $table->text('description');
-            $table->foreignId('n_p_c_id')->nullable();
+            $table->foreignId('npc_id')->nullable();
             $table->foreignId('location_id')->nullable();
             $table->foreignId('quest_id')->nullable();
         });

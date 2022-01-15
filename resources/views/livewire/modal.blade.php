@@ -12,23 +12,25 @@
                 <hr />
                 <p>{{ $category->location->name }}</p>
             @endif
-            @if ($catName == 'inventory-items' and isset($category->npc) and $category->pluck('npc_id')->first() !== 0)
-                <span class="text-xs italic text-red-800">This item is not yours. {{ $category->npc->name }} owns it.</span>
+            @if ($catName == 'inventory-items' and isset($category->npc))
+                <span class="text-sm italic text-red-800">This item is not yours. {{ $category->npc->name }} owns it.</span>
             @endif
             @if ($catName == 'inventory-items' and isset($category->quest))
-                <span class="text-xs italic text-red-800">This item is a part of the "{{ $category->quest->title }}" quest.</span>
+                <span class="text-sm italic text-red-800">This item is a part of the "{{ $category->quest->title }}" quest.</span>
             @endif
             @if ($catName == 'quests' and isset($category->npc))
-                <span class="text-xs italic text-red-800">{{ $category->npc->name }} sent you on this quest.</span>
+                <span class="text-sm italic text-red-800">{{ $category->npc->name }} sent you on this quest.</span>
             @endif
         </div>
-        @if (isset($category->items) && $category->items->first() !== null)
-            <p class="text-xs uppercase font-bold">Inventory Items:</p>
-            <hr />
-            @foreach ($category->items as $item)
-                <p class="mb-4">{{ $item->name }}</p>
-            @endforeach
-        @endif
+        <div class="mb-4">
+            @if (isset($category->items) && $category->items->first() != null)
+                <p class="text-xs uppercase font-bold">Inventory Items:</p>
+                <hr />
+                @foreach ($category->items as $item)
+                    <p>{{ $item->name }}</p>
+                @endforeach
+            @endif
+        </div>
         <p class="text-xs uppercase font-bold">Notelettes:</p>
         <hr/>
         @if ($category->notelettes->first() !== null)

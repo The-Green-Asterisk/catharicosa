@@ -26,7 +26,7 @@ class NPC extends Model
 
     public function quests()
     {
-        return $this->hasMany(Quest::class);
+        return $this->hasMany(Quest::class, 'npc_id');
     }
 
     public function user()
@@ -36,6 +36,6 @@ class NPC extends Model
 
     public function items()
     {
-        return $this->hasMany(InventoryItem::class);
+        return $this->hasMany(InventoryItem::class, 'npc_id');
     }
 }
