@@ -53,7 +53,6 @@ class Session extends Component
 
         $request->session()->regenerateToken();
 
-
         return redirect('/')->with('success', 'Safe journies, friend! You\'ll always have an open tab here!');
     }
 
