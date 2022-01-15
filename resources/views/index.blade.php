@@ -62,15 +62,19 @@
                                     <x-form-button @click="formData.note_id = {{ $note->id }}" class="text-sm" title="Save changes to your note. You can only update notelettes by clicking on them first.">Save</x-form-button>
                                 </div>
                             </form>
-                            <p class="text-xs uppercase font-bold">Notelettes:</p>
-                            <hr/>
-                            @if ($note->notelettes->first() !== null)
-                                @foreach ($note->notelettes as $notelette)
-                                    <x-notelette :notelette="$notelette" />
-                                @endforeach
-                            @else
-                                <p class="mb-6">No notelettes yet!</p>
-                            @endif
+                            <details>
+                                <summary>
+                                    <p class="text-xs uppercase inline font-bold">Notelettes:</p>
+                                    <hr/>
+                                </summary>
+                                @if ($note->notelettes->first() !== null)
+                                    @foreach ($note->notelettes as $notelette)
+                                        <x-notelette :notelette="$notelette" />
+                                    @endforeach
+                                @else
+                                    <p class="mb-6">No notelettes yet!</p>
+                                @endif
+                            </details>
                         </div>
                     @endforeach
                 @else
