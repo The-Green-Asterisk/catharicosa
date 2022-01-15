@@ -8,7 +8,7 @@
             <lh @click="submitDataWithItem()" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
                 <div>Quest</div>
                 <div class="grow"></div>
-                <div class="text-xs italic px-2" x-show="open">+add new</div>
+                <div class="text-xs italic font-light lowercase px-2" x-show="open">+add new</div>
                 </lh><hr />
             @foreach ($quests as $quest)
                 <li class="menu-option hover:bg-slate-200 cursor-default"
@@ -18,7 +18,7 @@
             <lh @click="submitDataWithItem()" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
                 <div>NPC</div>
                 <div class="grow"></div>
-                <div class="text-xs italic px-2" x-show="open">+add new</div>
+                <div class="text-xs italic font-light lowercase px-2" x-show="open">+add new</div>
                 </lh><hr />
             @foreach ($npcs as $npc)
                 <li class="menu-option hover:bg-slate-200 cursor-default"
@@ -28,7 +28,7 @@
             <lh @click="submitDataWithItem()" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
                 <div>Location</div>
                 <div class="grow"></div>
-                <div class="text-xs italic px-2" x-show="open">+add new</div>
+                <div class="text-xs italic font-light lowercase px-2" x-show="open">+add new</div>
                 </lh><hr />
             @foreach ($locations as $location)
                 <li class="menu-option hover:bg-slate-200 cursor-default"
@@ -38,7 +38,7 @@
             <lh @click="submitDataWithItem()" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
                 <div>Inventory Item</div>
                 <div class="grow"></div>
-                <div class="text-xs italic px-2" x-show="open">+add new</div>
+                <div class="text-xs italic font-light lowercase px-2" x-show="open">+add new</div>
                 </lh><hr />
             @foreach ($inventoryItems as $item)
                 <li class="menu-option hover:bg-slate-200 cursor-default"
