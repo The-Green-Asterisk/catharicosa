@@ -1,8 +1,8 @@
 <div class="w-screen">
     @auth
-        <div class="m-3 p-1 items-center overflow-scroll no-scrollbar">
+        <div class="my-3 p-1 items-center">
             <div class="text-xs mx-5 uppercase font-semibold">Notebooks:</div>
-            <div class="flex items-center">
+            <div class="flex items-center overflow-scroll no-scrollbar">
                 @if ($notebookId == null)
                     <div class="rounded-full border border-red-600 bg-red-300 px-3 mx-1 text-lg font-bold cursor-default">All
                     </div>
@@ -19,7 +19,7 @@
                             x-data="{ size: $wire.notebookName.length }" :size="size" />
                     @else
                         <div wire:click="notebookSwitch({{ $notebook->id }})"
-                            class="rounded-full border border-red-500 bg-red-200 px-3 mx-1 h-min cursor-pointer hover:border-red-600 hover:bg-red-300">
+                            class="rounded-full border border-red-500 bg-red-200 px-3 mx-1 h-min cursor-pointer whitespace-nowrap hover:border-red-600 hover:bg-red-300">
                             {{ $notebook->name }}</div>
                     @endif
                 @endforeach
