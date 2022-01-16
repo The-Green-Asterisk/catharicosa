@@ -35,4 +35,9 @@ class Notebook extends Model
     {
         $this->hasMany(Quest::class);
     }
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
+    }
 }

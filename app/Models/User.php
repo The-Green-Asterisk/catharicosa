@@ -77,4 +77,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(InventoryItem::class);
     }
+
+    public function notebooks()
+    {
+        return $this->hasMany(Notebook::class);
+    }
 }
