@@ -38,7 +38,9 @@ class NotebookSwitch extends Component
 
             $this->notebookId = $request->query('n');
 
-            $this->notebookName = Notebook::find($this->notebookId);
+            if (isset($this->notebookId)){
+                $this->notebookName = Notebook::find($this->notebookId)->name;
+            }
 
             $this->notebooks = Notebook::all()->where('user_id', auth()->user()->id);
         }
@@ -52,6 +54,15 @@ class NotebookSwitch extends Component
         ]);
 
         return redirect($this->url . '?n=' . $notebook->id);
+    }
+
+    public function update()
+    {
+        Notebook::find($this->notebookId)->update([
+            'name' => $this->notebookName
+        ]);
+
+        return redirect($this->url . '?n=' . $this->notebookId);
     }
 
     public function delete($id)
