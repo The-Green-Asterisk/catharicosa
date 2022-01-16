@@ -51,7 +51,7 @@ class Item extends Component
                 'npc_id' => $this->npc,
                 'location_id' => $this->location,
                 'user_id' => auth()->user()->id,
-                'notebook_id' => $this->notebook
+                'notebook_id' => $this->notebookId
             ]);
         }elseif ($this->category === 'npc'){
             NPC::create([
@@ -59,14 +59,14 @@ class Item extends Component
                 'description' => $this->description,
                 'user_id' => auth()->user()->id,
                 'location_id' => $this->location,
-                'notebook_id' => $this->notebook
+                'notebook_id' => $this->notebookId
             ]);
         }elseif ($this->category === 'location'){
             Location::create([
                 'name' => $this->heading,
                 'description' => $this->description,
                 'user_id' => auth()->user()->id,
-                'notebook_id' => $this->notebook
+                'notebook_id' => $this->notebookId
             ]);
         }elseif ($this->category === 'inventory-item'){
             InventoryItem::create([
@@ -76,7 +76,7 @@ class Item extends Component
                 'npc_id' => $this->npc,
                 'location_id' => $this->location,
                 'quest_id' => $this->quest,
-                'notebook_id' => $this->notebook
+                'notebook_id' => $this->notebookId
             ]);
         }
 
