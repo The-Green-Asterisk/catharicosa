@@ -12,7 +12,7 @@ class Note extends Model
 
     protected $searchable = ['title', 'body'];
 
-    protected $fillable = ['title', 'body', 'user_id'];
+    protected $fillable = ['title', 'body', 'user_id', 'notebook_id'];
 
     public function notelettes()
     {
@@ -22,5 +22,10 @@ class Note extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function notebook()
+    {
+        return $this->belongsTo(Notebook::class);
     }
 }

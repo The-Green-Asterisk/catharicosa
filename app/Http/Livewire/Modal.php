@@ -44,16 +44,14 @@ class Modal extends Component
         }
 
         if ($this->catName === 'quests'){
-            $category = Quest::all()->where('id', $this->cid)->first();
+            $this->category = Quest::find($this->cid);
         }elseif ($this->catName === 'npcs'){
-            $category = NPC::all()->where('id', $this->cid)->first();
+            $this->category = NPC::find($this->cid);
         }elseif ($this->catName === 'locations'){
-            $category = Location::all()->where('id', $this->cid)->first();
+            $this->category = Location::find($this->cid);
         }elseif ($this->catName === 'inventory-items'){
-            $category = InventoryItem::all()->where('id', $this->cid)->first();
+            $this->category = InventoryItem::find($this->cid);
         }
-
-        $this->category = $category;
     }
 
     public function deleteItem()

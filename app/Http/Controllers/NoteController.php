@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\InventoryItem;
 use App\Models\Location;
 use App\Models\Note;
+use App\Models\Notebook;
 use App\Models\Notelette;
 use App\Models\NPC;
 use App\Models\Quest;
@@ -12,16 +13,29 @@ use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
+        $notebook = $request->query('n');
+
         if (auth()->check() === true ){
             $user = auth()->user()->id;
             $data = [
-                'notes' => Note::all()->where('user_id', $user)->sortBy('created_at', SORT_REGULAR, 1),
-                'quests' => Quest::all()->where('user_id', $user),
-                'npcs' => NPC::all()->where('user_id', $user),
-                'locations' => Location::all()->where('user_id', $user),
-                'inventoryItems' => InventoryItem::all()->where('user_id', $user),
+                'notes' => $notebook
+                    ? Note::all()->where('user_id', $user)->where('notebook_id', $notebook)->sortBy('created_at', SORT_REGULAR, 1)
+                    : Note::all()->where('user_id', $user)->sortBy('created_at', SORT_REGULAR, 1),
+                'quests' => $notebook
+                    ? Quest::all()->where('user_id', $user)->where('notebook_id', $notebook)
+                    : Quest::all()->where('user_id', $user),
+                'npcs' => $notebook
+                    ? NPC::all()->where('user_id', $user)->where('notebook_id', $notebook)
+                    : NPC::all()->where('user_id', $user),
+                'locations' => $notebook
+                    ? Location::all()->where('user_id', $user)->where('notebook_id', $notebook)
+                    : Location::all()->where('user_id', $user),
+                'inventoryItems' => $notebook
+                    ? InventoryItem::all()->where('user_id', $user)->where('notebook_id', $notebook)
+                    : InventoryItem::all()->where('user_id', $user),
+                'notebooks' => Notebook::all()->where('user_id', $user)
             ];
         }else{
             $data = ['coconut' => 'lime'];
@@ -35,7 +49,8 @@ class NoteController extends Controller
         $note->update([
             'note_id' => $request->input('note_id'),
             'title' => $request->input('note_title'),
-            'body' => nl2br($request->input('note_body'))
+            'body' => nl2br($request->input('note_body')),
+            'notebook_id' => $request->input('notebook_id')
         ]);
     }
 

@@ -37,6 +37,7 @@ window.noteForm = (note_id) => {
         submitData() {
             this.formData.note_title = document.getElementById('notetitle' + this.formData.note_id).innerText
             this.formData.note_body = document.getElementById('notebody' + this.formData.note_id).innerText
+            this.formData.notebook_id = document.getElementById('notebook' + this.formData.note_id).value
             this.message = ''
 
             fetch('/notes/' + this.formData.note_id + '/update', {

@@ -54,7 +54,7 @@
         <div class="flex flex-col lg:min-w-0 min-w-[300px] space-y-4">
             @foreach ($inventoryItems as $item)
             <div x-data="{}" x-on:click="$wire.emit('showModal', '{{ $catName }}', {{ $item->id }})" class="cursor-pointer bg-gradient-to-br from-white via-white to-gray-100">
-                @if (request()->getQueryString() != null)
+                @if (preg_match('/(catName)|(cid)/', request()->getQueryString()))
                     <div x-init="$wire.emit('showModal', '{{ $catName }}', {{ $item->id }})"></div>
                 @endif
                 <div class="shadow">

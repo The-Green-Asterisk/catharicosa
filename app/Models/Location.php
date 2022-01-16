@@ -12,7 +12,7 @@ class Location extends Model
 
     protected $searchable = ['name', 'description'];
 
-    protected $fillable = ['name', 'description', 'user_id'];
+    protected $fillable = ['name', 'description', 'user_id', 'notebook_id'];
 
     public function notelettes()
     {
@@ -37,5 +37,10 @@ class Location extends Model
     public function items()
     {
         return $this->hasMany(InventoryItem::class);
+    }
+
+    public function notebook()
+    {
+        return $this->belongsTo(Notebook::class);
     }
 }

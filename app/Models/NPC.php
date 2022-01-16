@@ -12,7 +12,7 @@ class NPC extends Model
 
     protected $searchable = ['name', 'description'];
 
-    protected $fillable = ['name', 'description', 'user_id', 'location_id'];
+    protected $fillable = ['name', 'description', 'user_id', 'location_id', 'notebook_id'];
 
     public function notelettes()
     {
@@ -37,5 +37,10 @@ class NPC extends Model
     public function items()
     {
         return $this->hasMany(InventoryItem::class, 'npc_id');
+    }
+
+    public function notebook()
+    {
+        return $this->belongsTo(Notebook::class);
     }
 }

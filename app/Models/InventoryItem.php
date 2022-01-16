@@ -12,7 +12,7 @@ class InventoryItem extends Model
 
     protected $searchable = ['name', 'description'];
 
-    protected $fillable = ['name', 'description', 'user_id', 'quest_id', 'npc_id', 'location_id'];
+    protected $fillable = ['name', 'description', 'user_id', 'quest_id', 'npc_id', 'location_id', 'notebook_id'];
 
     public function user()
     {
@@ -37,5 +37,10 @@ class InventoryItem extends Model
     public function notelettes()
     {
         return $this->morphToMany(Notelette::class, 'noteletteable');
+    }
+
+    public function notebook()
+    {
+        return $this->belongsTo(Notebook::class);
     }
 }

@@ -1,5 +1,5 @@
 <div x-data="{}" x-on:click="$wire.emit('showModal', '{{ $catName }}', {{ $category->id }})" class="cursor-pointer bg-gradient-to-br from-white via-white to-gray-100">
-    @if (request()->getQueryString() != null)
+    @if (preg_match('/(catName)|(cid)/', request()->getQueryString()))
         <div x-init="$wire.emit('showModal', '{{ $catName }}', {{ $category->id }})"></div>
     @endif
     <div class="shadow flex flex-col flex-none">

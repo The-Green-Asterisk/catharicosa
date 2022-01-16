@@ -12,7 +12,7 @@ class Quest extends Model
 
     protected $searchable = ['title', 'description'];
 
-    protected $fillable = ['title', 'description', 'user_id', 'npc_id', 'location_id'];
+    protected $fillable = ['title', 'description', 'user_id', 'npc_id', 'location_id', 'notebook_id'];
 
     public function notelettes()
     {
@@ -37,5 +37,10 @@ class Quest extends Model
     public function items()
     {
         return $this->hasMany(InventoryItem::class);
+    }
+
+    public function notebook()
+    {
+        return $this->belongsTo(Notebook::class);
     }
 }

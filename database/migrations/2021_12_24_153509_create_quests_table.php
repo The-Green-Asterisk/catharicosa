@@ -20,6 +20,7 @@ class CreateQuestsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('npc_id')->nullable();
             $table->foreignId('location_id')->nullable();
+            $table->foreignId('notebook_id')->nullable();
             $table->string('title');
             $table->text('description');
         });

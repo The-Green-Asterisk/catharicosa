@@ -18,6 +18,7 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id');
+            $table->foreignId('notebook_id')->nullable();
             $table->string('name');
             $table->text('description');
         });

@@ -4,8 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Models\InventoryItem;
 use App\Models\Location;
+use App\Models\Notebook;
 use App\Models\NPC;
 use App\Models\Quest;
+use Illuminate\Http\Request;
 use Livewire\Component;
 
 class Item extends Component
@@ -22,6 +24,8 @@ class Item extends Component
     public $quests;
     public $quest;
     public $c;
+    public $notebooks;
+    public $notebookId;
 
     protected $rules = [
         'heading' => 'required|max:255',
@@ -46,20 +50,23 @@ class Item extends Component
                 'description' => $this->description,
                 'npc_id' => $this->npc,
                 'location_id' => $this->location,
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
+                'notebook_id' => $this->notebook
             ]);
         }elseif ($this->category === 'npc'){
             NPC::create([
                 'name' => $this->heading,
                 'description' => $this->description,
                 'user_id' => auth()->user()->id,
-                'location_id' => $this->location
+                'location_id' => $this->location,
+                'notebook_id' => $this->notebook
             ]);
         }elseif ($this->category === 'location'){
             Location::create([
                 'name' => $this->heading,
                 'description' => $this->description,
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
+                'notebook_id' => $this->notebook
             ]);
         }elseif ($this->category === 'inventory-item'){
             InventoryItem::create([
@@ -68,18 +75,27 @@ class Item extends Component
                 'user_id' => auth()->user()->id,
                 'npc_id' => $this->npc,
                 'location_id' => $this->location,
-                'quest_id' => $this->quest
+                'quest_id' => $this->quest,
+                'notebook_id' => $this->notebook
             ]);
         }
 
         return redirect('/')->with('success', $this->heading . ' has been created!');
     }
 
-    public function mount()
+    public function mount(Request $request)
     {
-        $this->locations = Location::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
-        $this->npcs = NPC::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
-        $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebookId = $request->query('n');
+        $this->notebookId
+        ? $this->locations = Location::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
+        : $this->locations = Location::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebookId
+        ? $this->npcs = NPC::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
+        : $this->npcs = NPC::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebookId
+        ? $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
+        : $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebooks = Notebook::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
 
         $this->category = preg_replace('/[s]$/','', $this->c);
     }

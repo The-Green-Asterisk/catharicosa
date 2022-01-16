@@ -4,6 +4,12 @@
         <form wire:submit.prevent="submit">
             <div class="flex items-center">
                 <input type="text" wire:model="heading" class="grow outline-gray-200 shadow-inner rounded my-2" placeholder="Name and/or Title">
+                <select wire:model='notebook' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2 w-full md:w-auto">
+                    <option label="Which notebook?" />
+                    @foreach ($notebooks as $notebook)
+                        <option name="{{ $notebook->name }}" label="{{ $notebook->name }}" value="{{ $notebook->id }}" />
+                    @endforeach
+                </select>
                 @if (isset($itemId))
                     <input type="image" src="/images/trash.png" wire:click.prevent="deleteItem" height="15px" width="15px" class="opacity-50 hover:opacity-100 inline" title="Delete Item" />
                 @endif

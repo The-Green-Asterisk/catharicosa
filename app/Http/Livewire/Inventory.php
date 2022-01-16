@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\InventoryItem;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Livewire\Component;
 
@@ -23,7 +24,9 @@ class Inventory extends Component
 
     public $query;
 
-    public function mount()
+    public $notebook;
+
+    public function mount(Request $request)
     {
         auth()->user()->inv ? $this->toggle = auth()->user()->inv : $this->toggle = 0;
 
@@ -32,10 +35,11 @@ class Inventory extends Component
             $this->savedDDB = true;
         }
 
+        $this->notebook = $request->query('n');
+
         $this->getInv();
 
-        $this->query = url('/item?').\Illuminate\Support\Arr::query(['c' => $this->catName]);
-
+        $this->query = url('/item?').Arr::query(['c' => $this->catName]);
     }
 
     public function prev()
@@ -77,7 +81,9 @@ class Inventory extends Component
             }
         });
 
-        $this->inventoryItems = InventoryItem::all()->where('user_id', auth()->user()->id);
+        $this->notebook
+        ? $this->inventoryItems = InventoryItem::all()->where('user_id', auth()->user()->id)->where('notebook_id', $this->notebook)
+        : $this->inventoryItems = InventoryItem::all()->where('user_id', auth()->user()->id);
     }
 
     public function import()
@@ -87,7 +93,8 @@ class Inventory extends Component
                 InventoryItem::create([
                     'name' => Arr::get($item['definition'], 'name', 'testing'),
                     'description' => Arr::get($item['definition'], 'description', 'testing'),
-                    'user_id' => auth()->user()->id
+                    'user_id' => auth()->user()->id,
+                    'notebook_id' => $this->notebook
                 ]);
             }
             $this->toggle = 1;
@@ -116,12 +123,6 @@ class Inventory extends Component
         $this->sheetNumber = null;
         $this->getInv();
     }
-
-    // public function deleteInvItem($id)
-    // {
-    //     InventoryItem::where('id', $id)->delete();
-    //     $this->getInv();
-    // }
 
     public function render()
     {

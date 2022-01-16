@@ -36,6 +36,18 @@
                                     <input type="image" src="images/trash.png" alt="Delete" height="15px" width="15px" class="opacity-50 hover:opacity-100" title="Delete Note" />
                                 </form>
                             </div>
+                            <div class="flex items-center text-xs">
+                                <p class="uppercase">Notebook:</p>
+                                <select name='notebook_id' id="notebook{{ $note->id }}" class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2 w-full md:w-auto">
+                                    <option label="Which notebook?" />
+                                    @foreach ($notebooks as $notebook)
+                                        <option name="{{ $notebook->name }}" label="{{ $notebook->name }}" value="{{ $notebook->id }}"
+                                            @if (isset($note->notebook->id) && $notebook->id === $note->notebook->id)
+                                                selected
+                                            @endif />
+                                    @endforeach
+                                </select>
+                            </div>
                             <form action="/notes/{{ $note->id }}/notelette" id="notelette" method="POST" x-data="noteletteForm()" @contextmenu="formData.body = window.getSelection().toString()" @submit.prevent="submitData">
                                 @csrf
                                 <div class="note" @contextmenu="formData.note_id = {{ $note->id }};$event.preventDefault();open = true">

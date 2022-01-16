@@ -4,8 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Models\InventoryItem;
 use App\Models\Location;
+use App\Models\Notebook;
 use App\Models\NPC;
 use App\Models\Quest;
+use Illuminate\Http\Request;
 use Livewire\Component;
 
 class EditItem extends Component
@@ -24,6 +26,9 @@ class EditItem extends Component
     public $c;
     public $itemId;
     public $libraryItem;
+    public $notebooks;
+    public $notebook;
+    public $notebookId;
 
     protected $rules = [
         'heading' => 'required|max:255',
@@ -49,20 +54,23 @@ class EditItem extends Component
                     'description' => $this->description,
                     'npc_id' => $this->npc,
                     'location_id' => $this->location,
-                    'user_id' => auth()->user()->id
+                    'user_id' => auth()->user()->id,
+                    'notebook_id' => $this->notebook
                 ]);
             }elseif ($this->category === 'npc'){
                 $newItem = NPC::create([
                     'name' => $this->heading,
                     'description' => $this->description,
                     'user_id' => auth()->user()->id,
-                    'location_id' => $this->location
+                    'location_id' => $this->location,
+                    'notebook_id' => $this->notebook
                 ]);
             }elseif ($this->category === 'location'){
                 $newItem = Location::create([
                     'name' => $this->heading,
                     'description' => $this->description,
-                    'user_id' => auth()->user()->id
+                    'user_id' => auth()->user()->id,
+                    'notebook_id' => $this->notebook
                 ]);
             }elseif ($this->category === 'inventory-item'){
                 $newItem = InventoryItem::create([
@@ -71,7 +79,8 @@ class EditItem extends Component
                     'user_id' => auth()->user()->id,
                     'npc_id' => $this->npc,
                     'location_id' => $this->location,
-                    'quest_id' => $this->quest
+                    'quest_id' => $this->quest,
+                    'notebook_id' => $this->notebook
                 ]);
             }
             foreach($this->libraryItem->notelettes as $notelette){
@@ -86,19 +95,22 @@ class EditItem extends Component
                     'description' => $this->description,
                     'npc_id' => $this->npc,
                     'location_id' => $this->location,
+                    'notebook_id' => $this->notebook
                 ]);
             }elseif ($this->category === 'npc'){
                 $this->libraryItem->update([
                     'user_id' => auth()->user()->id,
                     'name' => $this->heading,
                     'description' => $this->description,
-                    'location_id' => $this->location
+                    'location_id' => $this->location,
+                    'notebook_id' => $this->notebook
                 ]);
             }elseif ($this->category === 'location'){
                 $this->libraryItem->update([
                     'user_id' => auth()->user()->id,
                     'name' => $this->heading,
                     'description' => $this->description,
+                    'notebook_id' => $this->notebook
                 ]);
             }elseif ($this->category === 'inventory-item'){
                 $this->libraryItem->update([
@@ -107,7 +119,8 @@ class EditItem extends Component
                     'description' => $this->description,
                     'npc_id' => $this->npc,
                     'quest_id' => $this->quest,
-                    'location_id' => $this->location
+                    'location_id' => $this->location,
+                    'notebook_id' => $this->notebook
                 ]);
             }
         }
@@ -123,35 +136,45 @@ class EditItem extends Component
         return redirect('/')->with('success', $name . ' has been deleted!');
     }
 
-    public function mount($category, $item)
+    public function mount($category, $item, Request $request)
     {
+        $this->notebookId = $request->query('n');
         $this->c = $category;
         $this->itemId = $item;
 
-        $this->locations = Location::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
-        $this->npcs = NPC::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
-        $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebookId
+        ? $this->locations = Location::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
+        : $this->locations = Location::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebookId
+        ? $this->npcs = NPC::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
+        : $this->npcs = NPC::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebookId
+        ? $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
+        : $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebooks = Notebook::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
 
         $this->category = preg_replace('/[s]$/','', $this->c);
 
         if ($this->category == 'quest'){
-            $this->libraryItem = Quest::all()->where('id', $this->itemId)->first();
+            $this->libraryItem = Quest::find($this->itemId);
         }
         if ($this->category == 'location'){
-            $this->libraryItem = Location::all()->where('id', $this->itemId)->first();
+            $this->libraryItem = Location::find($this->itemId);
         }
         if ($this->category == 'npc'){
-            $this->libraryItem = NPC::all()->where('id', $this->itemId)->first();
+            $this->libraryItem = NPC::find($this->itemId);
         }
         if ($this->category == 'inventory-item'){
-            $this->libraryItem = InventoryItem::all()->where('id', $this->itemId)->first();
+            $this->libraryItem = InventoryItem::find($this->itemId);
         }
+// dd($this->libraryItem->notebook);
 
         $this->heading = $this->libraryItem->name ?? $this->libraryItem->title;
         $this->description = $this->libraryItem->description;
         $this->location = $this->libraryItem->location->id ?? null;
         $this->npc = $this->libraryItem->npc->id ?? null;
         $this->quest = $this->libraryItem->quest->id ?? null;
+        $this->notebook = $this->libraryItem->notebook->id ?? null;
     }
 
     public function render()
