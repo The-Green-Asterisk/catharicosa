@@ -18,12 +18,13 @@ class CreateInventoryItemsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id');
-            $table->text('name');
+            $table->string('name');
             $table->text('description');
             $table->foreignId('npc_id')->nullable();
             $table->foreignId('location_id')->nullable();
             $table->foreignId('quest_id')->nullable();
             $table->foreignId('notebook_id')->nullable();
+            $table->foreignId('organization_id')->nullable();
         });
 
         DB::statement(

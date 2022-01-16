@@ -8,6 +8,7 @@ use App\Models\Note;
 use App\Models\Notebook;
 use App\Models\Notelette;
 use App\Models\NPC;
+use App\Models\Organization;
 use App\Models\Quest;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,9 @@ class NoteController extends Controller
                 'inventoryItems' => $notebook
                     ? InventoryItem::all()->where('user_id', $user)->where('notebook_id', $notebook)
                     : InventoryItem::all()->where('user_id', $user),
+                'organizations' => $notebook
+                    ? Organization::all()->where('user_id', $user)->where('notebook_id', $notebook)
+                    : Organization::all()->where('user_id', $user),
                 'notebooks' => Notebook::all()->where('user_id', $user)
             ];
         }else{
@@ -54,7 +58,7 @@ class NoteController extends Controller
         ]);
     }
 
-    public function addNotelette(Request $request, Note $note, Quest $quest, NPC $npc, Location $location, InventoryItem $item)
+    public function addNotelette(Request $request, Note $note, Quest $quest, NPC $npc, Location $location, InventoryItem $item, Organization $organization)
     {
         $this->updateNote($request, $note);
 
@@ -73,6 +77,9 @@ class NoteController extends Controller
         }
         if ($request->input('inventory_item_id') !== null){
             $item->find($request->input('inventory_item_id'))->notelettes()->attach($notelette->id);
+        }
+        if ($request->input('organization_id') !== null){
+            $organization->find($request->input('organization_id'))->notelettes()->attach($notelette->id);
         }
 
         return redirect('/')->with('success', 'Your new notelette has been saved!');
@@ -104,6 +111,12 @@ class NoteController extends Controller
             $item = InventoryItem::create([
                 'name' => 'Create a new item!',
                 'description' => 'Your quest: to change all the fields in this form to create a brand new Inventory Item for the Notelette you just created. Or delete this item entirely for a completely context-free notelette.',
+                'user_id' => auth()->user()->id
+            ]);
+        }elseif ($request->category === 'organization'){
+            $item = Organization::create([
+                'name' => 'Create a new item!',
+                'description' => 'Your quest: to change all the fields in this form to create a brand new Organization for the Notelette you just created. Or delete this item entirely for a completely context-free notelette.',
                 'user_id' => auth()->user()->id
             ]);
         }

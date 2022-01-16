@@ -21,6 +21,9 @@
             @if ($catName == 'quests' and isset($category->npc))
                 <span class="text-sm italic text-red-800">{{ $category->npc->name }} sent you on this quest.</span>
             @endif
+            @if ($catName == 'npc' and isset($category->organization))
+                <span class="text-sm italic text-red-800">This person is a member of {{ $category->organization->name }}.</span>
+            @endif
         </div>
         <div class="mb-4">
             @if (isset($category->items) && $category->items->first() != null)

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\InventoryItem;
 use App\Models\Location;
 use App\Models\NPC;
+use App\Models\Organization;
 use App\Models\Quest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -43,6 +44,11 @@ class ItemIndex extends Component
             $this->notebook
             ? $categories = InventoryItem::all()->where('user_id', auth()->user()->id)->where('notebook_id', $this->notebook)
             : $categories = InventoryItem::all()->where('user_id', auth()->user()->id);
+        }
+        if ($this->catName === 'organizations') {
+            $this->notebook
+            ? $categories = Organization::all()->where('user_id', auth()->user()->id)->where('notebook_id', $this->notebook)
+            : $categories = Organization::all()->where('user_id', auth()->user()->id);
         }
 
         $data = [

@@ -12,7 +12,7 @@ class Notelette extends Model
 
     protected $searchable = ['body'];
 
-    protected $fillable = ['body', 'user_id', 'note_id', 'n_p_c_id', 'quest_id', 'location_id', 'inventory_item_id'];
+    protected $fillable = ['body', 'user_id', 'note_id', 'n_p_c_id', 'quest_id', 'location_id', 'inventory_item_id', 'organization_id'];
 
     public function location()
     {
@@ -37,5 +37,10 @@ class Notelette extends Model
     public function item()
     {
         return $this->morphedByMany(InventoryItem::class, 'noteletteable');
+    }
+
+    public function organization()
+    {
+        return $this->morphedByMany(Organization::class, 'noteletteable');
     }
 }

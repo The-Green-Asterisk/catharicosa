@@ -37,4 +37,9 @@
             {{ $item->name }}
         </span>
     @endforeach
+    @foreach ($notelette->organization as $organization)
+        <span  x-data="{}" x-on:click="Livewire.emit('showModal', 'organizations', {{ $organization->id }})" class="text-xs italic bg-slate-200 rounded border border-slate-400 m-1 cursor-pointer">
+            {{ $organization->name }}
+        </span>
+    @endforeach
 </div>

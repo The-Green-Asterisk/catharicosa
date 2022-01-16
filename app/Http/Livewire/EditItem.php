@@ -6,6 +6,7 @@ use App\Models\InventoryItem;
 use App\Models\Location;
 use App\Models\Notebook;
 use App\Models\NPC;
+use App\Models\Organization;
 use App\Models\Quest;
 use Illuminate\Http\Request;
 use Livewire\Component;
@@ -29,6 +30,8 @@ class EditItem extends Component
     public $notebooks;
     public $notebook;
     public $notebookId;
+    public $organizations;
+    public $organization;
 
     protected $rules = [
         'heading' => 'required|max:255',
@@ -82,6 +85,14 @@ class EditItem extends Component
                     'quest_id' => $this->quest,
                     'notebook_id' => $this->notebook
                 ]);
+            }elseif ($this->category === 'organization'){
+                $newItem = Organization::create([
+                    'name' => $this->heading,
+                    'description' => $this->description,
+                    'user_id' => auth()->user()->id,
+                    'location_id' => $this->location,
+                    'notebook_id' => $this->notebook
+                ]);
             }
             foreach($this->libraryItem->notelettes as $notelette){
                 $newItem->notelettes()->attach($notelette);
@@ -122,6 +133,14 @@ class EditItem extends Component
                     'location_id' => $this->location,
                     'notebook_id' => $this->notebook
                 ]);
+            }elseif ($this->category === 'organization'){
+                $this->libraryItem->update([
+                    'user_id' => auth()->user()->id,
+                    'name' => $this->heading,
+                    'description' => $this->description,
+                    'location_id' => $this->location,
+                    'notebook_id' => $this->notebook
+                ]);
             }
         }
 
@@ -151,6 +170,9 @@ class EditItem extends Component
         $this->notebookId
         ? $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
         : $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebookId
+        ? $this->organizations = Organization::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
+        : $this->organizations = Organization::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
         $this->notebooks = Notebook::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
 
         $this->category = preg_replace('/[s]$/','', $this->c);
@@ -167,7 +189,9 @@ class EditItem extends Component
         if ($this->category == 'inventory-item'){
             $this->libraryItem = InventoryItem::find($this->itemId);
         }
-// dd($this->libraryItem->notebook);
+        if ($this->category == 'organization'){
+            $this->libraryItem = Organization::find($this->itemId);
+        }
 
         $this->heading = $this->libraryItem->name ?? $this->libraryItem->title;
         $this->description = $this->libraryItem->description;
@@ -175,6 +199,7 @@ class EditItem extends Component
         $this->npc = $this->libraryItem->npc->id ?? null;
         $this->quest = $this->libraryItem->quest->id ?? null;
         $this->notebook = $this->libraryItem->notebook->id ?? null;
+        $this->organization = $this->libraryItem->organization->id ?? null;
     }
 
     public function render()

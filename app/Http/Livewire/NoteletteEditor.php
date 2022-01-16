@@ -6,6 +6,7 @@ use App\Models\InventoryItem;
 use App\Models\Location;
 use App\Models\Notelette;
 use App\Models\NPC;
+use App\Models\Organization;
 use App\Models\Quest;
 use Livewire\Component;
 
@@ -19,11 +20,13 @@ class NoteletteEditor extends Component
     public $locations;
     public $npcs;
     public $inventoryItems;
+    public $organizations;
 
     public $questArray = [];
     public $locationArray = [];
     public $npcArray = [];
     public $itemArray = [];
+    public $organizationArray = [];
 
     public $showNoteletteEditor = false;
 
@@ -56,6 +59,11 @@ class NoteletteEditor extends Component
                 $this->itemArray[] = '' . $id . '';
             }
         }
+        if ($notelette->organization()->pluck('id')->toArray() !== null){
+            foreach($notelette->organization()->pluck('id')->toArray() as $id){
+                $this->itemArray[] = '' . $id . '';
+            }
+        }
     }
 
     public function save()
@@ -68,11 +76,13 @@ class NoteletteEditor extends Component
         $this->notelette->location()->detach();
         $this->notelette->npc()->detach();
         $this->notelette->item()->detach();
+        $this->notelette->organization()->detach();
 
         $this->notelette->quest()->sync($this->questArray);
         $this->notelette->location()->sync($this->locationArray);
         $this->notelette->npc()->sync($this->npcArray);
         $this->notelette->item()->sync($this->itemArray);
+        $this->notelette->organization()->sync($this->organizationArray);
 
         return redirect('/')->with('success', 'Notelette saved!');
     }
@@ -80,7 +90,7 @@ class NoteletteEditor extends Component
     public function deleteNotelette()
     {
         $this->notelette->delete();
-        
+
         return redirect('/')->with('success', 'Notelette has been deleted!');
     }
 
@@ -96,6 +106,7 @@ class NoteletteEditor extends Component
             $this->locations = Location::all()->where('user_id', auth()->user()->id);
             $this->npcs = NPC::all()->where('user_id', auth()->user()->id);
             $this->inventoryItems = InventoryItem::all()->where('user_id', auth()->user()->id);
+            $this->organizations = Organization::all()->where('user_id', auth()->user()->id);
         }
     }
 

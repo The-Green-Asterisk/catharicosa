@@ -7,6 +7,7 @@ use App\Models\Location;
 use App\Models\Note;
 use App\Models\Notelette;
 use App\Models\NPC;
+use App\Models\Organization;
 use App\Models\Quest;
 use Illuminate\Http\Request;
 use Livewire\Component;
@@ -47,6 +48,9 @@ class SearchBar extends Component
             $this->notebook
             ? $invItemOutput = InventoryItem::search($this->term)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
             : $invItemOutput = InventoryItem::search($this->term)->where('user_id', auth()->user()->id)->paginate(10);
+            $this->notebook
+            ? $organizationOutput = Organization::search($this->term)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
+            : $organizationOutput = Organization::search($this->term)->where('user_id', auth()->user()->id)->paginate(10);
 
             $data = [
                 'noteOutput' => $noteOutput,
@@ -54,7 +58,8 @@ class SearchBar extends Component
                 'npcOutput' => $npcOutput,
                 'questOutput' => $questOutput,
                 'locationOutput' => $locationOutput,
-                'invItemOutput' => $invItemOutput
+                'invItemOutput' => $invItemOutput,
+                'organizationOutput' => $organizationOutput
             ];
         }else{
             $data = ['coconut' => 'lime'];

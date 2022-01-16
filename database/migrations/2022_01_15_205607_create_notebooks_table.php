@@ -15,7 +15,7 @@ class CreateNotebooksTable extends Migration
     {
         Schema::create('notebooks', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
+            $table->string('name');
             $table->foreignId('user_id');
             $table->timestamps();
         });

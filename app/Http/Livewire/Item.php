@@ -6,6 +6,7 @@ use App\Models\InventoryItem;
 use App\Models\Location;
 use App\Models\Notebook;
 use App\Models\NPC;
+use App\Models\Organization;
 use App\Models\Quest;
 use Illuminate\Http\Request;
 use Livewire\Component;
@@ -78,6 +79,15 @@ class Item extends Component
                 'quest_id' => $this->quest,
                 'notebook_id' => $this->notebookId
             ]);
+        }elseif ($this->category === 'organization'){
+            Organization::create([
+                'name' => $this->heading,
+                'description' => $this->description,
+                'user_id' => auth()->user()->id,
+                'npc_id' => $this->npc,
+                'location_id' => $this->location,
+                'notebook_id' => $this->notebookId
+            ]);
         }
 
         return redirect('/')->with('success', $this->heading . ' has been created!');
@@ -95,6 +105,9 @@ class Item extends Component
         $this->notebookId
         ? $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
         : $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        $this->notebookId
+        ? $this->quests = Organization::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
+        : $this->quests = Organization::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
         $this->notebooks = Notebook::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
 
         $this->category = preg_replace('/[s]$/','', $this->c);

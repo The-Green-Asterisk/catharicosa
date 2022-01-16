@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNPCSTable extends Migration
+class CreateOrganizationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,19 +14,18 @@ class CreateNPCSTable extends Migration
      */
     public function up()
     {
-        Schema::create('n_p_c_s', function (Blueprint $table) {
+        Schema::create('organizations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->foreignId('user_id');
-            $table->foreignId('location_id')->nullable();
-            $table->foreignId('notebook_id')->nullable();
-            $table->foreignId('organization_id')->nullable();
             $table->string('name');
             $table->text('description');
+            $table->foreignId('location_id')->nullable();
+            $table->foreignId('notebook_id')->nullable();
+            $table->foreignId('user_id');
+            $table->timestamps();
         });
 
         DB::statement(
-            'ALTER TABLE n_p_c_s ADD FULLTEXT fulltext_index(name, description)'
+            'ALTER TABLE organizations ADD FULLTEXT fulltext_index(name, description)'
         );
     }
 
@@ -37,6 +36,6 @@ class CreateNPCSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('n_p_c_s');
+        Schema::dropIfExists('organizations');
     }
 }

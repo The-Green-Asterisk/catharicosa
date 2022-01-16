@@ -28,6 +28,7 @@
                         <option name="npc" label="NPC" value="npc" />
                         <option name="location" label="Location" value="location" />
                         <option name="inventory-item" label="Inventory Item" value="inventory-item" />
+                        <option name="organization" label="Organization" value="organization" />
                     </select>
                     @error('category') <span class="error block text-xs text-red-600">{{ $message }}</span> @enderror
                     @if ($category === "quest")
@@ -35,6 +36,14 @@
                             <option label="Did someone send you on this quest?" />
                             @foreach ($npcs as $npc)
                                 <option name="{{ $npc->name }}" label="{{ $npc->name }}" value="{{ $npc->id }}" />
+                            @endforeach
+                        </select>
+                    @endif
+                    @if ($category === "organization")
+                        <select wire:model='location' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2 w-full md:w-auto">
+                            <option label="Where is the primary headquarters?" />
+                            @foreach ($locations as $location)
+                                <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
                             @endforeach
                         </select>
                     @endif
@@ -51,6 +60,12 @@
                             <option label="Do you know where they live?" />
                             @foreach ($locations as $location)
                                 <option name="{{ $location->name }}" label="{{ $location->name }}" value="{{ $location->id }}" />
+                            @endforeach
+                        </select>
+                        <select wire:model='organization' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2 w-full md:w-auto">
+                            <option label="Is this person a member of an organization?" />
+                            @foreach ($organizations as $organization)
+                                <option name="{{ $organization->name }}" label="{{ $organization->name }}" value="{{ $organization->id }}" />
                             @endforeach
                         </select>
                     @endif

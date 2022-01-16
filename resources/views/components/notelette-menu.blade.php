@@ -1,4 +1,4 @@
-@props(['quests', 'npcs', 'locations', 'inventoryItems'])
+@props(['quests', 'npcs', 'locations', 'inventoryItems', 'organizations'])
 <div class="fixed inset-0 overflow-scroll z-40 no-scrollbar"
         x-show="open"
         x-transition>
@@ -43,6 +43,16 @@
             @foreach ($inventoryItems as $item)
                 <li class="menu-option hover:bg-slate-200 cursor-default"
                     @click="formData.inventory_item_id = {{ $item->id }}; submitData()">{{ $item->name }}</li>
+            @endforeach
+            <br />
+            <lh @click="submitDataWithItem('organization')" x-data="{open: false}" @mouseenter="open = true" @mouseleave="open = false" class="text-sm hover:bg-slate-200 uppercase font-bold block cursor-default flex items-center">
+                <div>Organization</div>
+                <div class="grow"></div>
+                <div class="text-xs italic font-light lowercase px-2" x-show="open">+add new</div>
+                </lh><hr />
+            @foreach ($organizations as $organization)
+                <li class="menu-option hover:bg-slate-200 cursor-default"
+                    @click="formData.organization_id = {{ $organization->id }}; submitData()">{{ $organization->name }}</li>
             @endforeach
         </ul>
     </div>

@@ -72,6 +72,18 @@
                         </div>
                     @endforeach
                 @endif
+                @if ($organizationOutput->isNotEmpty())
+                    <p class="text-lg font-bold text-slate-500 mt-6 px-4">Organizations</p>
+                    <hr />
+                    @foreach ($organizationOutput as $organization)
+                        <div x-data="{}" x-on:click="$wire.emit('showModal', 'organizations', {{ $organization->id }})" class="hover:cursor-pointer">
+                            <p class="px-4 font-semibold hover:underline hover:text-blue-400">
+                                {{ $organization->name }}
+                            </p>
+                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($organization->description), 0, 225) }}...</p>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     @endauth

@@ -56,7 +56,7 @@ window.noteForm = (note_id) => {
     }
 }
 
-window.noteletteForm = (note_id, body, quest_id, npc_id, location_id, inventory_item_id) => {
+window.noteletteForm = (note_id, body, quest_id, npc_id, location_id, inventory_item_id, organization_id) => {
     return {
         formData: {
             note_id: note_id,
@@ -64,7 +64,8 @@ window.noteletteForm = (note_id, body, quest_id, npc_id, location_id, inventory_
             quest_id: quest_id,
             npc_id: npc_id,
             location_id: location_id,
-            inventory_item_id: inventory_item_id
+            inventory_item_id: inventory_item_id,
+            organization_id: organization_id
         },
         message: '',
 

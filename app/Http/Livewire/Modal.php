@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\InventoryItem;
 use App\Models\Location;
 use App\Models\NPC;
+use App\Models\Organization;
 use App\Models\Quest;
 use Livewire\Component;
 
@@ -51,6 +52,8 @@ class Modal extends Component
             $this->category = Location::find($this->cid);
         }elseif ($this->catName === 'inventory-items'){
             $this->category = InventoryItem::find($this->cid);
+        }elseif ($this->catName === 'organizations'){
+            $this->category = Organization::find($this->cid);
         }
     }
 

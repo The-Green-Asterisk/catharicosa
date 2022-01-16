@@ -16,6 +16,8 @@
                         <livewire:slider :categories="$npcs" :catName="'npcs'" />
                     <a href="/item/locations/index"><h1 class="text-lg underline font-bold decoration-4">Locations</h1></a>
                         <livewire:slider :categories="$locations" :catName="'locations'" />
+                    <a href="/item/organizations/index"><h1 class="text-lg underline font-bold decoration-4">Organizations</h1></a>
+                        <livewire:slider :categories="$organizations" :catName="'organizations'" />
                 </div>
             </div>
             {{-- Main Body --}}
@@ -65,7 +67,7 @@
                                 </div>
                                 <p x-text="message" class="text-xs text-red-600"></p>
                                 <x-notelette-menu
-                                    :quests="$quests" :npcs="$npcs" :locations="$locations" :inventoryItems="$inventoryItems" />
+                                    :quests="$quests" :npcs="$npcs" :locations="$locations" :inventoryItems="$inventoryItems" :organizations="$organizations" />
                             </form>
                             <form action="/notes/{{ $note->id }}/update" id="update{{ $note->id }}" method="POST" x-data="noteForm()" @submit.prevent="submitData">
                                 @csrf
