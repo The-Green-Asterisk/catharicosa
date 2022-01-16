@@ -1,6 +1,6 @@
 <div class="w-screen">
     @auth
-        <div class="my-3 p-1 items-center">
+        <div class="mb-3 p-1 items-center">
             <div class="text-xs mx-5 uppercase font-semibold">Notebooks:</div>
             <div class="flex items-center overflow-scroll no-scrollbar">
                 @if ($notebookId == null)

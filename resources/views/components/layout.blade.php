@@ -30,11 +30,12 @@
         <div name="header" class="w-screen flex justify-between content-center flex-wrap">
             <div class="w-1/2 md:w-auto"><a href="/"><img src="/images/catharicosa-logo.png" class="h-28 w-28 m-5" /></a></div>
             @livewire('search-bar')
-            <div class="flex flex-col justify-center text-center md:mr-10 w-1/2 md:w-32">
+            <div class="flex flex-col justify-evenly text-right md:mr-10 w-1/2 md:w-auto">
                 @auth
-                    <span>Welcome, {{ auth()->user()->name }}</span>
+                    <span class="whitespace-nowrap">Welcome, {{ auth()->user()->name }}!</span>
+                    <a href="mailto://catharicosa-support@thegreenasterisk.com" class="hover:underline whitespace-nowrap">Get Support</a>
                 @else
-                    <x-anchor-button href="/register" class="max-w-max mx-auto">Sign Up</x-anchor-button>
+                    <x-anchor-button href="/register" class="whitespace-nowrap">Sign Up</x-anchor-button>
                 @endauth
                 <livewire:session />
             </div>
