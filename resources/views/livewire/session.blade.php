@@ -20,7 +20,9 @@
                         @error('password') <span class="error text-xs text-red-600 block w-full">{{ $message }}</span> @enderror
 
                         <input type="checkbox" id="remember" name="remember" wire:model="remember">
-                        <label for="remember">Remember Me</label>
+                        <label for="remember">Remember Me</label><br />
+
+                        <a href="/forgot-password" class="text-sm italic hover:underline">I forgot my password...</a>
 
                         <input type="hidden" name="timezone" id="timezone" wire:model="timezone" x-init="$wire.timezone = moment.tz.guess()">
 

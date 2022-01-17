@@ -116,10 +116,11 @@
         <div class="h-60 overflow-hidden flex items-center"><img src="images/wizard.jpg" class="xl:hidden w-full bg-fixed bg-auto" /></div>
         <div class="text-3xl font-bold text-center m-10">Note-taking app for the meticulous tabletop player</div>
 
-        <div class="flex justify-evenly">
+        <div class="flex justify-evenly mb-48">
             <div class="w-96 text-xl m-2">Write notes as usual and then highlight details to mark them as "notelettes"</div>
             <div class="w-96 text-xl m-2">Attach notelettes to NPCs, Locations, or Quests</div>
             <div class="w-96 text-xl m-2">Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</div>
         </div>
+        <div class="h-60 bg-gray-700 border-t-gray-900"></div>
     @endauth
 </x-layout>
