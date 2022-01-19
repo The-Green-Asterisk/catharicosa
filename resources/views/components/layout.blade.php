@@ -27,7 +27,7 @@
     </head>
     <x-loading />
     <body class="bg-gradient-to-br from-stone-100 to-slate-100 bg-fixed">
-        <div name="header" class="w-screen flex justify-between content-center flex-wrap">
+        <div name="header" class="w-full flex justify-between content-center flex-wrap">
             <div class="w-1/2 md:w-auto"><a href="/"><img src="/images/catharicosa-logo.png" class="h-28 w-28 m-5" /></a></div>
             @livewire('search-bar')
             <div class="flex flex-col justify-evenly text-right md:mr-10 w-1/2 md:w-auto">
@@ -47,7 +47,7 @@
             <div x-data="{ show: true }"
                 x-init="setTimeout(() => show = false, 3000)"
                 x-show="show"
-                class="w-screen h-screen absolute sticky inset-0 z-50 backdrop-blur flex content-center">
+                class="w-full h-screen absolute sticky inset-0 z-50 backdrop-blur flex content-center">
                 <x-panel @click.away="show = false" class="w-72 p-4 font-bold text-center">{!! session('success') !!}</x-panel>
             </div>
         @endif
