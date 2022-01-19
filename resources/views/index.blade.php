@@ -122,6 +122,12 @@
             <div class="w-96 text-xl m-2">Attach notelettes to NPCs, Locations, or Quests</div>
             <div class="w-96 text-xl m-2">Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</div>
         </div>
-        <div class="h-60 bg-gray-700 border-t-gray-900"></div>
+        <div class="h-60 bg-gray-700 border-t-gray-900 flex flex-col justify-center">
+            <div class="text-white text-center">
+                <img src="/images/asterisk.png" class="inline w-10 h-10" />
+                <p>A product of <a href="https://thegreenasterisk.com" class="hover:underline">The Green Asterisk</a></p>
+                <a href="https://github.com/lordsteve/catharicosa#readme" class="hover:underline leading-10">About</a>
+            </div>
+        </div>
     @endauth
 </x-layout>
