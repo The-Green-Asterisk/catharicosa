@@ -1,4 +1,4 @@
-<div class="w-screen">
+<div class="w-full">
     @auth
         <div class="mb-3 p-1 items-center">
             <div class="text-xs mx-5 uppercase font-semibold">Notebooks:</div>
