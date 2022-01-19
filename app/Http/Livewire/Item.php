@@ -106,8 +106,8 @@ class Item extends Component
         ? $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
         : $this->quests = Quest::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
         $this->notebookId
-        ? $this->quests = Organization::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
-        : $this->quests = Organization::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
+        ? $this->organizations = Organization::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1)->where('notebook_id', $this->notebookId)
+        : $this->organizations = Organization::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
         $this->notebooks = Notebook::all()->where('user_id', auth()->user()->id)->sortBy('name', SORT_REGULAR, 1);
 
         $this->category = preg_replace('/[s]$/','', $this->c);
