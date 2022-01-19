@@ -10,7 +10,7 @@
                 <img src="images/scrollicon.png" :class="open ? 'md:mr-3 mr-14' : ''" class="float-right m-3 h-6 cursor-pointer" @click="toggle()" />
                 <div x-show="open" class="mx-10 overflow-scroll no-scrollbar h-screen">
                     <a href="/item" class="mx-auto mt-10 border border-slate-500 shrink-0 bg-slate-200 rounded text-center font-black w-7 h-7 flex flex-col justify-center shadow-lg active:shadow active:scale-95 text-slate-500 hover:bg-slate-300 active:bg-slate-400 cursor-pointer" title="New Library Item">+</a>
-                    <a href="/item/quests/index"><h1 class="text-lg underline font-bold decoration-4">Quests</h1></a>
+                    <div class="flex justify-between items-end"><a href="/item/quests/index"><h1 class="text-lg underline font-bold decoration-4">Quests</h1></a> <p class="text-xs text-gray-500">Shift+scroll to scroll horizontally with a mouse wheel</p></div>
                         <livewire:slider :categories="$quests" :catName="'quests'" />
                     <a href="/item/npcs/index"><h1 class="text-lg underline font-bold decoration-4">NPCs</h1></a>
                         <livewire:slider :categories="$npcs" :catName="'npcs'" />
@@ -110,7 +110,7 @@
         </div>
     @else
     {{-- Guest view --}}
-        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner hidden xl:block" style="background-image: url('images/wizard.jpg');padding-left:736px;">
+        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner hidden xl:block no-scrollbar" style="background-image: url('images/wizard.jpg');padding-left:736px;">
             <img src="images/hero-logo.png" class="h-96" />
         </div>
         <img src="images/hero-logo.png" class="xl:hidden" />
