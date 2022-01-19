@@ -81,7 +81,7 @@ If the toggle is on D&D Beyond you will see your D&D Beyond inventory. If it is 
 ### Saving Your D&D Beyond Inventory
 
 When you navigate to your online D&D Beyond character sheet, the URL in your browser's address bar should look something like this:
->https://www.dndbeyond.com/profile/LordSteve/characters/**14644141**
+>https://www.dndbeyond.com/profile/LordSteve/characters/ **14644141**
 
 You want to copy the bold part and paste it into the text field. When you do this, Catharicosa Notes should automatically load your D&D Beyond inventory. If it doesn't, make sure you have the correct number and that your D&D Beyond character profile is set to Public (this will be the very last toggle on the very first page of the character builder).
 
