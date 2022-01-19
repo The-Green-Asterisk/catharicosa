@@ -99,7 +99,7 @@
             {{-- Inventory Sidebar --}}
             <div x-data="{ open: true, toggle() { this.open =! this.open }}"
                 :class="open ? 'lg:min-w-[25%] lg:max-w-[25%] md:w-min w-full h-screen ml-8' : 'ml-2 h-fit'"
-                class="absolute lg:static right-0 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-300 rounded-l shadow-lg bg-white overflow-y-auto overflow-hidden border-r-0 z-10 transition-all"
+                class="absolute lg:static right-0 bg-gradient-to-br from-white via-white to-gray-100 border border-gray-300 no-scrollbar rounded-l shadow-lg bg-white overflow-y-auto overflow-hidden border-r-0 z-10 transition-all"
                 @resize.window="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width < 1020) {open = false}else{open = true}"
                 x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width < 1020) {open = false}else{open = true}" x-transition.scale>
                 <img src="images/backpack.png" :class="open ? 'm-3 h-6 absolute' : 'm-3 h-6'" @click="toggle()" class="cursor-pointer" />
@@ -110,7 +110,7 @@
         </div>
     @else
     {{-- Guest view --}}
-        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner hidden xl:block no-scrollbar" style="background-image: url('images/wizard.jpg');padding-left:736px;">
+        <div class="bg-white bg-fixed bg-no-repeat flex justify-center shadow-inner hidden xl:block" style="background-image: url('images/wizard.jpg');padding-left:736px;">
             <img src="images/hero-logo.png" class="h-96" />
         </div>
         <img src="images/hero-logo.png" class="xl:hidden" />
