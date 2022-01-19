@@ -35,7 +35,8 @@
                                 <form method="POST" id="{{ 'delete' . $note->id }}" action="/note/{{ $note->id }}/delete">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="image" src="images/trash.png" alt="Delete" height="15px" width="15px" class="opacity-50 hover:opacity-100" title="Delete Note" />
+                                    <label hidden for="delete">Delete Note</label>
+                                    <input type="image" name="delete" src="images/trash.png" alt="Delete" height="15px" width="15px" class="opacity-50 hover:opacity-100" title="Delete Note" />
                                 </form>
                             </div>
                             <div class="flex items-center text-xs">

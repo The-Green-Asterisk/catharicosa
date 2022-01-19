@@ -8,17 +8,17 @@
         </div>
         <div><p class="w-full text-center font-bold">Associations</p>
             <div class="flex flex-wrap">
-                <div class="w-1/3"><p class="font-semibold">Quests</p>
+                <div class="w-1/3 mb-5"><p class="font-semibold">Quests</p>
                     @foreach ($quests as $key => $questArray)
                         <input type="checkbox" wire:key="{{ $key }}" wire:model="questArray" value="{{ $questArray->id }}">{{ $questArray->title }}<br />
                     @endforeach
                 </div>
-                <div class="w-1/3"><p class="font-semibold">Locations</p>
+                <div class="w-1/3 mb-5"><p class="font-semibold">Locations</p>
                     @foreach ($locations as $key => $locationArray)
                         <input type="checkbox" wire:key="{{ $key }}" wire:model="locationArray" value="{{ $locationArray->id }}">{{ $locationArray->name }}<br />
                     @endforeach
                 </div>
-                <div class="w-1/3"><p class="font-semibold">NPCs</p>
+                <div class="w-1/3 mb-5"><p class="font-semibold">NPCs</p>
                     @foreach ($npcs as $key => $npcArray)
                         <input type="checkbox" wire:key="{{ $key }}" wire:model="npcArray" value="{{ $npcArray->id }}">{{ $npcArray->name }}<br />
                     @endforeach

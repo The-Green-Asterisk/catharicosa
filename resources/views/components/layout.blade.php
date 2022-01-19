@@ -33,7 +33,8 @@
             <div class="flex flex-col justify-evenly text-right md:mr-10 w-1/2 md:w-auto">
                 @auth
                     <span class="whitespace-nowrap">Welcome, {{ auth()->user()->name }}!</span>
-                    <a href="mailto://catharicosa-support@thegreenasterisk.com" class="hover:underline whitespace-nowrap">Get Support</a>
+                    <a href="https://github.com/lordsteve/catharicosa#readme" class="hover:underline whitespace-nowrap">Help</a>
+                    <a href="mailto:catharicosa-support@thegreenasterisk.com" class="hover:underline whitespace-nowrap">Get Support</a>
                 @else
                     <x-anchor-button href="/register" class="whitespace-nowrap ml-auto">Sign Up</x-anchor-button>
                 @endauth

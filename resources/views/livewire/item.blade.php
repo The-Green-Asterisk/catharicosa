@@ -3,7 +3,8 @@
         {{ $pageHeading }}
         <form wire:submit.prevent="submit">
             <div class="flex items-center">
-                <input type="text" wire:model="heading" class="grow outline-gray-200 shadow-inner rounded my-2" placeholder="Name and/or Title">
+                <label hidden for="heading">Name and/or Title</label>
+                <input type="text" name="heading" wire:model="heading" class="grow outline-gray-200 shadow-inner rounded my-2" placeholder="Name and/or Title">
                 <select wire:model='notebook' class="outline-gray-200 bg-white px-2 shadow-inner rounded my-2 w-full md:w-auto">
                     <option label="Which notebook?" />
                     @foreach ($notebooks as $notebook)
@@ -16,7 +17,8 @@
             </div>
             @error('heading') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
 
-            <textarea type="textarea" wire:model="description" class="w-full h-40 outline-gray-200 shadow-inner rounded my-2" placeholder="Description"></textarea>
+            <label hidden for="description">Description</label>
+            <textarea type="textarea" name="description" wire:model="description" class="w-full h-40 outline-gray-200 shadow-inner rounded my-2" placeholder="Description"></textarea>
             @error('description') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
 
             <div class="flex">

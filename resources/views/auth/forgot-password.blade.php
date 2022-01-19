@@ -5,6 +5,7 @@
             <form action="/forgot-password" method="POST">
                 @csrf
 
+                <label hidden for="email">Email Address</label>
                 <input type="text" name="email" class="w-full outline-gray-200 shadow-inner rounded my-2" placeholder="enter email address" autocomplete="email">
                 @error('email') <span class="error text-xs text-red-600">{{ $message }}</span> @enderror
 
