@@ -35,6 +35,7 @@ Route::post('/notes/{note}/notelette-with-item', [NoteController::class, 'addNot
 Route::patch('/notes/{note}/update', [NoteController::class, 'updateNote'])->middleware('auth')->name('update-note');
 Route::delete('/note/{note}/delete', [NoteController::class, 'destroyNote'])->middleware('auth')->name('destroy-note');
 Route::delete('/notelette/{notelette}/delete', [NoteController::class, 'destroyNotelette'])->middleware('auth')->name('destroy-notelette');
+Route::get('/help', function () { return view('help'); });
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
