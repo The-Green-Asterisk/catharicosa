@@ -119,8 +119,8 @@
         <p>You'll want to copy the bold part and paste it into the text field. When you do this, Catharicosa Notes should automatically load your D&amp;D Beyond inventory. If it doesn't, make sure you have the correct number and that your D&amp;D Beyond character profile is set to Public (this will be the very last toggle on the very first page of the character builder).</p>
         <p>When your D&amp;D Beyond inventory is loaded, you can click &quot;Save&quot; so that it will be re-loaded whenever you load the page and/or toggle over to D&amp;D Beyond in the future.</p>
         <h3 id="importing-your-dd-beyond-inventory">Importing your D&amp;D Beyond Inventory</h3>
-        <p>While your D&amp;D Beyond inventory is loaded, you may click Import and all the items you have in your D&amp;D Beyond inventory will be transferred into your local library of items. A few notes about this process:</p>
-        <ul>
+        <p>While your D&amp;D Beyond inventory is loaded, you may click Import and all the items you have in your D&amp;D Beyond inventory will be transferred into your local library of items. There are a few things to note about this process:</p>
+        <ul class="list-disc list-inside">
             <li>Your items will now be editable! However, they will remain unchanged on D&amp;D Beyond.</li>
             <li>If you gain a new item in D&amp;D Beyond, it will not automatically be transferred to your local library.</li>
             <li>If you import your inventory again in the future without first deleting the original items, you will end up with duplicates.</li>
