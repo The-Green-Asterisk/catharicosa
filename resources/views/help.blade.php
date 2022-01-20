@@ -123,7 +123,7 @@
         <p>An NPC will require a name and a breif description. You may also define where they live if such a location exists in
             your library, or what organization they are a member of if such an organization exists in your library. You may also
             define which notebook the item should be written in.</p>
-        <h3 id="location">Locations</h3>
+        <h3 id="locations">Locations</h3>
         <p>A location only requires a name and a breif description. You may also define which notebook the item should be
             written in.</p>
         <h3 id="organizations">Organizations</h3>
