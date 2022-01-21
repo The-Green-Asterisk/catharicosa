@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="description" content="Note-taking app for the fastidous and meticulous table-top RPG player.">
-        <meta name="keywords" content="D&D, DnD, RPG, TTRPG, notes, Call of Cthulhu 7E, Blades in the Dark, Warhammer Fantasy Roleplay, Deadlands, Cyberpunk Red, Paranoia, Shadow of the Demon Lord, Legend of the Five Rings Roleplaying Game, Star Wars Roleplaying Game, Pathfinder">
+        <meta name="keywords" content="D&D, DnD, RPG, TTRPG, notes, Dungeons and Dragon, Call of Cthulhu, Blades in the Dark, Warhammer Fantasy Roleplay, Deadlands, Cyberpunk, Paranoia, Shadow of the Demon Lord, Legend of the Five Rings Roleplaying Game, Star Wars Roleplaying Game, Pathfinder, Critical Role, Roll20, D&D Beyond, DnD Beyond, Dimension 20, Dimension20">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
