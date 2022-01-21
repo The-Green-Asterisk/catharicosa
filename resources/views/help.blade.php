@@ -113,7 +113,7 @@
         <p>If the toggle is on D&amp;D Beyond you will see your D&amp;D Beyond inventory. If it is on Catharicosa, you will see only your local inventory. The primary difference between the two is that you cannot edit your D&amp;D Beyond inventory from Catharicosa. If you never wish to use your D&amp;D Beyond inventory, you may toggle over to Catharicosa, hide the toggle, and never see it again if you wish.</p>
         <h3 id="saving-your-dd-beyond-inventory">Saving Your D&amp;D Beyond Inventory</h3>
         <p>When you navigate to your online D&amp;D Beyond character sheet, the URL in your browser's address bar should look something like this:</p>
-        <blockquote class="overflow-scroll font-mono">
+        <blockquote class="overflow-scroll font-mono overflow-auto">
             <p>https://www.dndbeyond.com/profile/LordSteve/characters/<strong>14644141</strong></p>
         </blockquote>
         <p>You'll want to copy the bold part and paste it into the text field. When you do this, Catharicosa Notes should automatically load your D&amp;D Beyond inventory. If it doesn't, make sure you have the correct number and that your D&amp;D Beyond character profile is set to Public (this will be the very last toggle on the very first page of the character builder).</p>
