@@ -115,12 +115,12 @@
         </div>
         <img src="images/hero-logo.png" class="xl:hidden" />
         <div class="h-60 overflow-hidden flex items-center"><img src="images/wizard.jpg" class="xl:hidden w-full bg-fixed bg-auto" /></div>
-        <div class="text-3xl font-bold text-center m-10">Note-taking app for the meticulous tabletop player</div>
-
+        <h2 class="text-3xl font-bold text-center m-10">Note-taking app for the meticulous tabletop player</h2>
+        <p class="m-10">When playing a tabletop RPG like Dungeons and Dragons, Pathfinder, Call of Cthulhu or the myrad of other games out there, a player can end up taking a lot of notes. And sometimes you have to flip back dozens of pages to find context for the notes you just took. Catharicosa Notes is here to elimitate that painful experience altogether.</p>
         <div class="flex justify-evenly mb-48">
-            <div class="w-96 text-xl m-2">Write notes as usual and then highlight details to mark them as "notelettes"</div>
-            <div class="w-96 text-xl m-2">Attach notelettes to NPCs, Locations, or Quests</div>
-            <div class="w-96 text-xl m-2">Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</div>
+            <p class="w-96 text-xl m-2">Write notes as usual and then highlight details to mark them as "notelettes"</p>
+            <p class="w-96 text-xl m-2">Attach notelettes to NPCs, Locations, or Quests</p>
+            <p class="w-96 text-xl m-2">Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</p>
         </div>
         <div class="h-60 bg-gray-700 border-t-gray-900 flex flex-col justify-center">
             <div class="text-white text-center">
