@@ -2,10 +2,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
     <head>
         <meta charset="utf-8">
+        <meta name="description" content="Note-taking app for the fastidous and meticulous table-top RPG player.">
+        <meta name="keywords" content="D&D, DnD, RPG, TTRPG, notes, Call of Cthulhu 7E, Blades in the Dark, Warhammer Fantasy Roleplay, Deadlands, Cyberpunk Red, Paranoia, Shadow of the Demon Lord, Legend of the Five Rings Roleplaying Game, Star Wars Roleplaying Game, Pathfinder">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Catharicosa Notes</title>
+        <title>Catharicosa Notes | Note-taking app for TTRPGs</title>
 
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
