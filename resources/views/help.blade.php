@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="mx-5 md:mx-60">
+    <div class="mx-5 md:mx-32 lg:mx-60 xl:mx-72">
         <style>
             p {
                 margin: 1rem;
