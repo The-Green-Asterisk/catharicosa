@@ -110,7 +110,7 @@
             <p>Please note that Catharicosa Notes has no direct affiliation with D&amp;D Beyond, Fandom, or Wizards of the Coast.</p>
             <h3 id="switching-the-inventory-toggle">Switching the Inventory Toggle</h3>
             <p>When you first register and log in to Catharicosa Notes, you will find a text field in the right sidebar with instructions to enter the number found in your D&amp;D Beyond character sheet's URL. Over that text field is a heading with a triangle next to it. Click that triangle and you will find a toggle with the D&amp;D Beyond logo on one side and the Catharicosa logo on the other.</p>
-            <p>If the toggle is on D&amp;D Beyond you will see your D&amp;D Beyond inventory. If it is on Catharicosa, you will see only your local inventory. The primary difference between the two is that you cannot edit your D&amp;D Beyond inventory from Catharicosa. If you never wish to use your D&amp;D Beyond inventory, you may toggle over to Catharicosa, hide the toggle, and never see it again if you wish.</p>
+            <p>If the toggle is on D&amp;D Beyond you will see your D&amp;D Beyond inventory. If it is on Catharicosa, you will see only your local inventory. The primary difference between the two is that you cannot edit your D&amp;D Beyond inventory from Catharicosa and you won't be able to associate it with notelettes. If you never wish to use your D&amp;D Beyond inventory, you may toggle over to Catharicosa, hide the toggle, and never see it again until you reveal the toggle again.</p>
             <h3 id="saving-your-dd-beyond-inventory">Saving Your D&amp;D Beyond Inventory</h3>
             <p>When you navigate to your online D&amp;D Beyond character sheet, the URL in your browser's address bar should look something like this:</p>
             <blockquote class="overflow-scroll font-mono no-scrollbar">
@@ -121,7 +121,7 @@
             <h3 id="importing-your-dd-beyond-inventory">Importing your D&amp;D Beyond Inventory</h3>
             <p>While your D&amp;D Beyond inventory is loaded, you may click Import and all the items you have in your D&amp;D Beyond inventory will be transferred into your local library of items. There are a few things to note about this process:</p>
             <ul class="list-disc list-inside">
-                <li>Your items will now be editable! However, they will remain unchanged on D&amp;D Beyond.</li>
+                <li>Your items will now receive notelettes and be editable! However, they will remain unchanged on D&amp;D Beyond.</li>
                 <li>If you gain a new item in D&amp;D Beyond, it will not automatically be transferred to your local library.</li>
                 <li>If you import your inventory again in the future without first deleting the original items, you will end up with duplicates.</li>
                 <li>Instead of re-importing, it may be easier to simply copy/paste any new D&amp;D Beyond item information into a new Catharicosa item.</li>
