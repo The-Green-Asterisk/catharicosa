@@ -1,5 +1,6 @@
 <x-layout>
     @auth
+    <livewire:notebook-switch />
         <div class="flex">
             {{-- Category Sidebar --}}
             <div x-data="{ open: true, toggle() { this.open =! this.open }}"
