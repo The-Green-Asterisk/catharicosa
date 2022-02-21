@@ -8,11 +8,11 @@
     "start_url": "https://catharicosa.com/",
     "icons": [
         {
-            "src": "/images/catharicosa-icon.jpg",
+            "src": "/images/catharicosa-icon.png",
             "sizes": "512x512"
         },
         {
-            "src": "/images/catharicosa-icon-sm.jpg",
+            "src": "/images/catharicosa-icon-sm.png",
             "sizes": "192x192"
         }
     ]
