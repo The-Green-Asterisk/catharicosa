@@ -39,7 +39,9 @@ class EditItem extends Component
         'category' => 'required',
         'location' => 'nullable',
         'npc' => 'nullable',
-        'quest' => 'nullable'
+        'quest' => 'nullable',
+        'organization' => 'nullable',
+        'notebook' => 'nullable'
     ];
 
     public function updated($propertyName)
@@ -66,6 +68,7 @@ class EditItem extends Component
                     'description' => $this->description,
                     'user_id' => auth()->user()->id,
                     'location_id' => $this->location,
+                    'organization_id' => $this->organization,
                     'notebook_id' => $this->notebook
                 ]);
             }elseif ($this->category === 'location'){
@@ -114,6 +117,7 @@ class EditItem extends Component
                     'name' => $this->heading,
                     'description' => $this->description,
                     'location_id' => $this->location,
+                    'organization_id' => $this->organization,
                     'notebook_id' => $this->notebook
                 ]);
             }elseif ($this->category === 'location'){
@@ -192,14 +196,13 @@ class EditItem extends Component
         if ($this->category == 'organization'){
             $this->libraryItem = Organization::find($this->itemId);
         }
-
         $this->heading = $this->libraryItem->name ?? $this->libraryItem->title;
         $this->description = $this->libraryItem->description;
-        $this->location = $this->libraryItem->location->id ?? null;
-        $this->npc = $this->libraryItem->npc->id ?? null;
-        $this->quest = $this->libraryItem->quest->id ?? null;
-        $this->notebook = $this->libraryItem->notebook->id ?? null;
-        $this->organization = $this->libraryItem->organization->id ?? null;
+        $this->location = $this->libraryItem->location_id ?? null;
+        $this->npc = $this->libraryItem->npc_id ?? null;
+        $this->quest = $this->libraryItem->quest_id ?? null;
+        $this->notebook = $this->libraryItem->notebook_id ?? null;
+        $this->organization = $this->libraryItem->organization_id ?? null;
     }
 
     public function render()

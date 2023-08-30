@@ -28,6 +28,9 @@ class Item extends Component
     public $notebook;
     public $notebooks;
     public $notebookId;
+    public $organization;
+    public $organizations;
+    public $organizationId;
 
     protected $rules = [
         'heading' => 'required|max:255',
@@ -61,7 +64,8 @@ class Item extends Component
                 'description' => $this->description,
                 'user_id' => auth()->user()->id,
                 'location_id' => $this->location,
-                'notebook_id' => $this->notebookId
+                'notebook_id' => $this->notebookId,
+                'organization_id' => $this->organization
             ]);
         }elseif ($this->category === 'location'){
             Location::create([
