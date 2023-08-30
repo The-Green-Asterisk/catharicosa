@@ -1,11 +1,10 @@
 {
     "name": "Catharicosa Notes",
     "short_name": "Catharicosa",
-    "theme_color": "#dc2626",
-    "background_color": "#f3f4f6",
+    "start_url": "/",
     "display": "standalone",
-    "scope": "/",
-    "start_url": "https://catharicosa.com/",
+    "background_color": "#f3f4f6",
+    "theme_color": "#dc2626",
     "icons": [
         {
             "src": "/images/catharicosa-icon.png",
@@ -14,6 +13,17 @@
         {
             "src": "/images/catharicosa-icon-sm.png",
             "sizes": "192x192"
+        },
+        {
+            "src": "/images/catharicosa-icon.png",
+            "sizes": "32x23",
+            "type": "image/png"
         }
-    ]
+    ],
+    "scope": "/",
+    "description": "Catharicosa Notes",
+    "orientation": "natural",
+    "prefer_related_applications": false,
+    "categories": ["games", "productivity", "notes"],
+    "lang": "en-US"
 }
