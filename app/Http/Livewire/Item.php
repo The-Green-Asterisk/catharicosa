@@ -25,6 +25,7 @@ class Item extends Component
     public $quests;
     public $quest;
     public $c;
+    public $notebook;
     public $notebooks;
     public $notebookId;
 
