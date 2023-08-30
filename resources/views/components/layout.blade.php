@@ -19,10 +19,11 @@
         <script src="/app.js"></script>
         <script src="/moment.js"></script>
         <script src="/moment-timezone-with-data.js"></script>
-        <script type="module">
-            import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-            const el = document.createElement('pwa-update');
-            document.body.appendChild(el);
+
+        <script>
+            if (navigator && navigator.serviceWorker) {
+                navigator.serviceWorker.register('/sw.js');
+            }
         </script>
 
         <link rel="stylesheet" href="/app.css">
