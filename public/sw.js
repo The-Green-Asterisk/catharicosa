@@ -5,12 +5,12 @@ let coreAssets = [
     'images/asterisk.png',
     'images/backpack.png',
     'images/ddb-icon.png',
-    'ddb.jpg',
-    'firsttime.png',
-    'hero-logo.png',
-    'scrollicon.png',
-    'trash.png',
-    'wizard.jpg'
+    'images/ddb.jpg',
+    'images/firsttime.png',
+    'images/hero-logo.png',
+    'images/scrollicon.png',
+    'images/trash.png',
+    'images/wizard.jpg'
 ];
 
 // On install, cache core assets
