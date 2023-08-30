@@ -1,47 +1,102 @@
-// This is the "Offline page" service worker
+// Core assets
+let coreAssets = [
+    'app.css',
+    'app.js',
+    'images/asterisk.png',
+    'images/backpack.png',
+    'images/ddb-icon.png',
+    'ddb.jpg',
+    'firsttime.png',
+    'hero-logo.png',
+    'scrollicon.png',
+    'trash.png',
+    'wizard.jpg'
+];
 
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+// On install, cache core assets
+self.addEventListener('install', function (event) {
 
-const CACHE = "pwabuilder-page";
-
-// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
-const offlineFallbackPage = "offline.html";
-
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
-});
-
-self.addEventListener('install', async (event) => {
-  event.waitUntil(
-    caches.open(CACHE)
-      .then((cache) => cache.add(offlineFallbackPage))
-  );
-});
-
-if (workbox.navigationPreload.isSupported()) {
-  workbox.navigationPreload.enable();
-}
-
-self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith((async () => {
-      try {
-        const preloadResp = await event.preloadResponse;
-
-        if (preloadResp) {
-          return preloadResp;
+    // Cache core assets
+    event.waitUntil(caches.open('app').then(function (cache) {
+        for (let asset of coreAssets) {
+            cache.add(new Request(asset));
         }
+        return cache;
+    }));
 
-        const networkResp = await fetch(event.request);
-        return networkResp;
-      } catch (error) {
+});
 
-        const cache = await caches.open(CACHE);
-        const cachedResp = await cache.match(offlineFallbackPage);
-        return cachedResp;
-      }
-    })());
-  }
+// Listen for request events
+self.addEventListener('fetch', function (event) {
+
+    // Get the request
+    let request = event.request;
+
+    // Bug fix
+    // https://stackoverflow.com/a/49719964
+    if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') return;
+
+    // HTML files
+    // Network-first
+    if (request.headers.get('Accept').includes('text/html')) {
+        event.respondWith(
+            fetch(request).then(function (response) {
+
+                // Create a copy of the response and save it to the cache
+                let copy = response.clone();
+                event.waitUntil(caches.open('app').then(function (cache) {
+                    return cache.put(request, copy);
+                }));
+
+                // Return the response
+                return response;
+
+            }).catch(function (error) {
+
+                // If there's no item in cache, respond with a fallback
+                return caches.match(request).then(function (response) {
+                    return response || caches.match('/offline.html');
+                });
+
+            })
+        );
+    }
+
+    // CSS & JavaScript
+    // Offline-first
+    if (request.headers.get('Accept').includes('text/css') || request.headers.get('Accept').includes('text/javascript')) {
+        event.respondWith(
+            caches.match(request).then(function (response) {
+                return response || fetch(request).then(function (response) {
+
+                    // Return the response
+                    return response;
+
+                });
+            })
+        );
+        return;
+    }
+
+    // Images
+    // Offline-first
+    if (request.headers.get('Accept').includes('image')) {
+        event.respondWith(
+            caches.match(request).then(function (response) {
+                return response || fetch(request).then(function (response) {
+
+                    // Save a copy of it in cache
+                    let copy = response.clone();
+                    event.waitUntil(caches.open('app').then(function (cache) {
+                        return cache.put(request, copy);
+                    }));
+
+                    // Return the response
+                    return response;
+
+                });
+            })
+        );
+    }
+
 });
