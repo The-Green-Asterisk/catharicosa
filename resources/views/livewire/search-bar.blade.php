@@ -12,7 +12,7 @@
                                 {!! $note->title !!}
                             </p>
                         </a>
-                        <p class="text-xs italic px-4 mb-2">{!! substr($note->body, 0, 225) !!}...</p>
+                        <p class="text-xs italic px-4 mb-2">{!! $note->body !!}...</p>
                     @endforeach
                 @endif
                 @if ($noteletteOutput !== null && $noteletteOutput->isNotEmpty())
@@ -32,7 +32,7 @@
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
                                 {!! $quest->title !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{!! substr($quest->description, 0, 225) !!}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!! $quest->description !!}...</p>
                         </div>
                     @endforeach
                 @endif
@@ -44,7 +44,7 @@
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
                                 {!! $npc->name !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{!!  substr($npc->description, 0, 225) !!}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!!  $npc->description !!}...</p>
                         </div>
                     @endforeach
                 @endif
@@ -56,7 +56,7 @@
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
                                 {!! $location->name !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{!! substr($location->description, 0, 225) !!}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!! $location->description !!}...</p>
                         </div>
                     @endforeach
                 @endif
@@ -68,7 +68,7 @@
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
                                 {!! $item->name !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{!! substr($item->description, 0, 225) !!}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!! $item->description !!}...</p>
                         </div>
                     @endforeach
                 @endif
@@ -80,7 +80,7 @@
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
                                 {!! $organization->name !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{!! substr($organization->description, 0, 225) !!}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!! $organization->description !!}...</p>
                         </div>
                     @endforeach
                 @endif

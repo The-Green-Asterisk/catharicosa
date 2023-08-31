@@ -31,7 +31,7 @@ class SearchBar extends Component
     {
         if (auth()->check() && $this->term != '' && $this->term != null){
             $searchTerms = explode(' ', $this->term);
-            $searchTerm = str_replace(' ', '%', $this->term);
+            $searchTerm = '%' . str_replace(' ', '%', $this->term) . '%';
 
             $this->notebook
             ? $noteOutput = Note::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
@@ -39,7 +39,7 @@ class SearchBar extends Component
             foreach ($noteOutput as $note){
                 foreach ($searchTerms as $searchTerm){
                     $note->title = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $note->title);
-                    $note->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $note->description);
+                    $note->body = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', substr($note->body, 0, 255));
                 }
             }
 
@@ -59,7 +59,7 @@ class SearchBar extends Component
             foreach ($npcOutput as $npc){
                 foreach ($searchTerms as $searchTerm){
                     $npc->name = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $npc->name);
-                    $npc->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $npc->description);
+                    $npc->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', substr($npc->description, 0, 255));
                 }
             }
             
@@ -69,7 +69,7 @@ class SearchBar extends Component
             foreach ($questOutput as $quest){
                 foreach ($searchTerms as $searchTerm){
                     $quest->title = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $quest->title);
-                    $quest->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $quest->description);
+                    $quest->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', substr($quest->description, 0, 255));
                 }
             }
             
@@ -79,7 +79,7 @@ class SearchBar extends Component
             foreach ($locationOutput as $location){
                 foreach ($searchTerms as $searchTerm){
                     $location->name = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $location->name);
-                    $location->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $location->description);
+                    $location->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', substr($location->description, 0, 255));
                 }
             }
             
@@ -89,7 +89,7 @@ class SearchBar extends Component
             foreach ($invItemOutput as $invItem){
                 foreach ($searchTerms as $searchTerm){
                     $invItem->name = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $invItem->name);
-                    $invItem->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $invItem->description);
+                    $invItem->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', substr($invItem->description, 0, 255));
                 }
             }
             
@@ -99,7 +99,7 @@ class SearchBar extends Component
             foreach ($organizationOutput as $organization){
                 foreach ($searchTerms as $searchTerm){
                     $organization->name = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $organization->name);
-                    $organization->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $organization->description);
+                    $organization->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', substr($organization->description, 0, 255));
                 }
             }
 
