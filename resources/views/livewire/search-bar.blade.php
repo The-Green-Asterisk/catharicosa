@@ -12,7 +12,7 @@
                                 {!! $note->title !!}
                             </p>
                         </a>
-                        <p class="text-xs italic px-4 mb-2">{!! strip_tags($note->body, 0, 225) !!}...</p>
+                        <p class="text-xs italic px-4 mb-2">{!! substr($note->body, 0, 225) !!}...</p>
                     @endforeach
                 @endif
                 @if ($noteletteOutput !== null && $noteletteOutput->isNotEmpty())
