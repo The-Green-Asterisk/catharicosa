@@ -1,7 +1,7 @@
 @props(['notelette'])
 <div>
     <div class="flex items-end flex-wrap">
-        <span class="italic bg-red-100 rounded border border-red-300 m-1 cursor-pointer" x-data="{}" x-on:click="Livewire.emit('editNotelette', {!! $notelette !!})">{{ $notelette->body }}</span>
+        <span class="italic bg-red-100 rounded border border-red-300 m-1 cursor-pointer" x-data="{}" x-on:click="Livewire.emit('editNotelette', {!! $notelette !!})">{!! $notelette->body !!}</span>
         <p class="inline-block grow" />
         <form method="POST" id="{{ 'delete' . $notelette->id }}" action="/notelette/{{ $notelette->id }}/delete">
             @csrf
