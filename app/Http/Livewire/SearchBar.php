@@ -48,8 +48,7 @@ class SearchBar extends Component
             : $noteletteOutput = Notelette::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10);
             foreach ($noteletteOutput as $notelette){
                 foreach ($searchTerms as $searchTerm){
-                    $notelette->title = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $notelette->title);
-                    $notelette->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $notelette->description);
+                    $notelette->body = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $notelette->description);
                 }
             }
 
