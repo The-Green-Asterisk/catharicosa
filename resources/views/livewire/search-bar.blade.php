@@ -3,19 +3,19 @@
         <div class="absolute flex flex-col border border-gray-200 rounded-xl bg-white w-screen md:w-1/3 m-auto shadow-lg z-30" >
             <input type="text" style="font-size:20px;" class="placeholder:text-xl placeholder:italic border-none indent-2 outline-none focus:outline-none bg-transparent min-w-0 grow text-sm rounded-full" wire:model="term" placeholder="Search through your adventure..." x-data="{}" @click.away="$wire.clear()"/>
             <div class="max-h-[60vh] overflow-auto">
-                @if ($noteOutput->isNotEmpty())
+                @if ($noteOutput !== null && $noteOutput->isNotEmpty())
                     <p class="text-lg font-bold text-red-500 mt-6 px-4">Notes</p>
                     <hr />
                     @foreach ($noteOutput as $note)
                         <a href="#note{{ $note->id }}">
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
-                                {{ $note->title }}
+                                {!! $note->title !!}
                             </p>
                         </a>
-                        <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($note->body), 0, 225) }}...</p>
+                        <p class="text-xs italic px-4 mb-2">{!! strip_tags($note->body, 0, 225) !!}...</p>
                     @endforeach
                 @endif
-                @if ($noteletteOutput->isNotEmpty())
+                @if ($noteletteOutput !== null && $noteletteOutput->isNotEmpty())
                     <p class="text-lg font-bold text-red-500 mt-6 px-4">Notelettes</p>
                     <hr />
                     @foreach ($noteletteOutput as $notelette)
@@ -24,63 +24,63 @@
                         </div>
                     @endforeach
                 @endif
-                @if ($questOutput->isNotEmpty())
+                @if ($questOutput !== null && $questOutput->isNotEmpty())
                     <p class="text-lg font-bold text-slate-500 mt-6 px-4">Quests</p>
                     <hr />
                     @foreach ($questOutput as $quest)
                         <div x-data="{}" x-on:click="$wire.emit('showModal', 'quests', {{ $quest->id }})" class="hover:cursor-pointer">
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
-                                {{ $quest->title }}
+                                {!! $quest->title !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($quest->description), 0, 225) }}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!! substr($quest->description, 0, 225) !!}...</p>
                         </div>
                     @endforeach
                 @endif
-                @if ($npcOutput->isNotEmpty())
+                @if ($npcOutput !== null && $npcOutput->isNotEmpty())
                     <p class="text-lg font-bold text-slate-500 mt-6 px-4">NPCs</p>
                     <hr />
                     @foreach ($npcOutput as $npc)
                         <div x-data="{}" x-on:click="$wire.emit('showModal', 'npcs', {{ $npc->id }})" class="hover:cursor-pointer">
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
-                                {{ $npc->name }}
+                                {!! $npc->name !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($npc->description), 0, 225) }}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!!  substr($npc->description, 0, 225) !!}...</p>
                         </div>
                     @endforeach
                 @endif
-                @if ($locationOutput->isNotEmpty())
+                @if ($locationOutput !== null && $locationOutput->isNotEmpty())
                     <p class="text-lg font-bold text-slate-500 mt-6 px-4">Locations</p>
                     <hr />
                     @foreach ($locationOutput as $location)
                         <div x-data="{}" x-on:click="$wire.emit('showModal', 'locations', {{ $location->id }})" class="hover:cursor-pointer">
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
-                                {{ $location->name }}
+                                {!! $location->name !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($location->description), 0, 225) }}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!! substr($location->description, 0, 225) !!}...</p>
                         </div>
                     @endforeach
                 @endif
-                @if ($invItemOutput->isNotEmpty())
+                @if ($invItemOutput !== null && $invItemOutput->isNotEmpty())
                     <p class="text-lg font-bold text-slate-500 mt-6 px-4">Inventory Items</p>
                     <hr />
                     @foreach ($invItemOutput as $item)
                         <div x-data="{}" x-on:click="$wire.emit('showModal', 'inventory-items', {{ $item->id }})" class="hover:cursor-pointer">
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
-                                {{ $item->name }}
+                                {!! $item->name !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($item->description), 0, 225) }}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!! substr($item->description, 0, 225) !!}...</p>
                         </div>
                     @endforeach
                 @endif
-                @if ($organizationOutput->isNotEmpty())
+                @if ($organizationOutput !== null && $organizationOutput->isNotEmpty())
                     <p class="text-lg font-bold text-slate-500 mt-6 px-4">Organizations</p>
                     <hr />
                     @foreach ($organizationOutput as $organization)
                         <div x-data="{}" x-on:click="$wire.emit('showModal', 'organizations', {{ $organization->id }})" class="hover:cursor-pointer">
                             <p class="px-4 font-semibold hover:underline hover:text-blue-400">
-                                {{ $organization->name }}
+                                {!! $organization->name !!}
                             </p>
-                            <p class="text-xs italic px-4 mb-2">{{ substr(strip_tags($organization->description), 0, 225) }}...</p>
+                            <p class="text-xs italic px-4 mb-2">{!! substr($organization->description, 0, 225) !!}...</p>
                         </div>
                     @endforeach
                 @endif

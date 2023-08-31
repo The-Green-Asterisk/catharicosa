@@ -29,28 +29,79 @@ class SearchBar extends Component
 
     public function render()
     {
-        if (auth()->check()){
+        if (auth()->check() && $this->term != '' && $this->term != null){
+            $searchTerms = explode(' ', $this->term);
+            $searchTerm = str_replace(' ', '%', $this->term);
+
             $this->notebook
-            ? $noteOutput = Note::search($this->term)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
-            : $noteOutput = Note::search($this->term)->where('user_id', auth()->user()->id)->paginate(10);
+            ? $noteOutput = Note::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
+            : $noteOutput = Note::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10);
+            foreach ($noteOutput as $note){
+                foreach ($searchTerms as $searchTerm){
+                    $note->title = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $note->title);
+                    $note->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $note->description);
+                }
+            }
+
             $this->notebook
-            ? $noteletteOutput = Notelette::search($this->term)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
-            : $noteletteOutput = Notelette::search($this->term)->where('user_id', auth()->user()->id)->paginate(10);
+            ? $noteletteOutput = Notelette::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
+            : $noteletteOutput = Notelette::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10);
+            foreach ($noteletteOutput as $notelette){
+                foreach ($searchTerms as $searchTerm){
+                    $notelette->title = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $notelette->title);
+                    $notelette->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $notelette->description);
+                }
+            }
+
             $this->notebook
-            ? $npcOutput = NPC::search($this->term)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
-            : $npcOutput = NPC::search($this->term)->where('user_id', auth()->user()->id)->paginate(10);
+            ? $npcOutput = NPC::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
+            : $npcOutput = NPC::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10);
+            foreach ($npcOutput as $npc){
+                foreach ($searchTerms as $searchTerm){
+                    $npc->name = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $npc->name);
+                    $npc->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $npc->description);
+                }
+            }
+            
             $this->notebook
-            ? $questOutput = Quest::search($this->term)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
-            : $questOutput = Quest::search($this->term)->where('user_id', auth()->user()->id)->paginate(10);
+            ? $questOutput = Quest::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
+            : $questOutput = Quest::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10);
+            foreach ($questOutput as $quest){
+                foreach ($searchTerms as $searchTerm){
+                    $quest->title = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $quest->title);
+                    $quest->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $quest->description);
+                }
+            }
+            
             $this->notebook
-            ? $locationOutput = Location::search($this->term)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
-            : $locationOutput = Location::search($this->term)->where('user_id', auth()->user()->id)->paginate(10);
+            ? $locationOutput = Location::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
+            : $locationOutput = Location::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10);
+            foreach ($locationOutput as $location){
+                foreach ($searchTerms as $searchTerm){
+                    $location->name = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $location->name);
+                    $location->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $location->description);
+                }
+            }
+            
             $this->notebook
-            ? $invItemOutput = InventoryItem::search($this->term)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
-            : $invItemOutput = InventoryItem::search($this->term)->where('user_id', auth()->user()->id)->paginate(10);
+            ? $invItemOutput = InventoryItem::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
+            : $invItemOutput = InventoryItem::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10);
+            foreach ($invItemOutput as $invItem){
+                foreach ($searchTerms as $searchTerm){
+                    $invItem->name = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $invItem->name);
+                    $invItem->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $invItem->description);
+                }
+            }
+            
             $this->notebook
-            ? $organizationOutput = Organization::search($this->term)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
-            : $organizationOutput = Organization::search($this->term)->where('user_id', auth()->user()->id)->paginate(10);
+            ? $organizationOutput = Organization::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10)->where('notebook_id', $this->notebook)
+            : $organizationOutput = Organization::search($searchTerm)->where('user_id', auth()->user()->id)->paginate(10);
+            foreach ($organizationOutput as $organization){
+                foreach ($searchTerms as $searchTerm){
+                    $organization->name = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $organization->name);
+                    $organization->description = str_ireplace($searchTerm, '<b>' . $searchTerm . '</b>', $organization->description);
+                }
+            }
 
             $data = [
                 'noteOutput' => $noteOutput,
@@ -62,7 +113,15 @@ class SearchBar extends Component
                 'organizationOutput' => $organizationOutput
             ];
         }else{
-            $data = ['coconut' => 'lime'];
+            $data = [
+                'noteOutput' => null,
+                'noteletteOutput' => null,
+                'npcOutput' => null,
+                'questOutput' => null,
+                'locationOutput' => null,
+                'invItemOutput' => null,
+                'organizationOutput' => null
+            ];
         }
 
         return view('livewire.search-bar', $data);
