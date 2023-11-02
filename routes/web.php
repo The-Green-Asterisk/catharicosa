@@ -23,6 +23,19 @@ use Illuminate\Support\Str;
 |
 */
 
+Route::post('update', function (Request $request) {
+    if ($request->header('X-GitHub-Event') != 'push') {
+        return response('OK', 200);
+    }
+
+    file_put_contents(
+        'update.txt',
+        shell_exec('cd /usr/local/var/www/catharicosa/notes && ./update.sh')
+    );
+
+    return response('OK', 200);
+});
+
 Route::get('/', [NoteController::class, 'show'])->name('home');
 Route::get('/register', Register::class)->middleware('guest');
 Route::get('/login', Session::class)->middleware('guest');
