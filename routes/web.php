@@ -30,7 +30,7 @@ Route::post('update', function (Request $request) {
 
     file_put_contents(
         'update.txt',
-        shell_exec('cd /usr/local/var/www/catharicosa/notes && ./update.sh')
+        shell_exec('sudo .././update.sh')
     );
 
     return response('OK', 200);
