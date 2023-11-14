@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+ 
     <head>
         <meta charset="utf-8">
 
@@ -9,12 +10,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
+        
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
         <link href="/manifest.json" rel="manifest" />
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
         <script src="/long-press-event.min.js"></script>
         <script src="/app.js"></script>
         <script src="/moment.js"></script>
@@ -27,22 +27,24 @@
         </script>
 
         <link rel="stylesheet" href="/app.css">
+        <link rel="stylesheet" href="/welcome_guest_view.css" type="text/css"/>
         @livewireStyles
     </head>
     <x-loading />
-    <body class="bg-gradient-to-br from-stone-100 to-slate-100 bg-fixed">
-        <div name="header" class="w-full flex justify-between content-center flex-wrap">
-            <div class="w-1/2 md:w-auto"><a href="/"><img src="/images/catharicosa-logo.png" class="h-28 w-28 m-5" /></a></div>
-            @livewire('search-bar')
-            <div class="flex flex-col justify-evenly text-right md:mr-10 w-1/2 md:w-auto">
+    <body>
+        @livewire('search-bar') 
+        <div name="header" class="grid-container">
+            <div id="cathoricosa-logo" class="grid-child-1"><a href="/"><img src="/images/catharicosa-logo.png"/></a></div>
+            <div id="help" class="grid-child-2">
+              
                 @auth
-                    <span class="whitespace-nowrap">Welcome, {{ auth()->user()->name }}!</span>
-                    <a href="/help" class="hover:underline whitespace-nowrap">Help</a>
-                    <a href="mailto:catharicosa-support@thegreenasterisk.com" class="hover:underline whitespace-nowrap">Get Support</a>
+                    <span>Welcome, {{ auth()->user()->name }}!</span>
+                    <a href="/help">Help</a>
+                    <a href="mailto:catharicosa-support@thegreenasterisk.com">Get Support</a>
                 @else
-                    <x-anchor-button href="/register" class="whitespace-nowrap ml-auto">Sign Up</x-anchor-button>
+                    <button  onclick="location.href='/register';">Sign Up</button>
                 @endauth
-                <livewire:session />
+            <livewire:session />
             </div>
         </div>
         {{ $slot }}
