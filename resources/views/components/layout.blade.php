@@ -10,6 +10,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/welcome_guest_view.css" type="text/css">
+        <link rel="stylesheet" href="/css/logon.css" type="text/css"/>
         
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -26,8 +29,8 @@
             }
         </script>
 
-        <link rel="stylesheet" href="/app.css">
-        <link rel="stylesheet" href="/welcome_guest_view.css" type="text/css"/>
+        
+
         @livewireStyles
     </head>
     <x-loading />
@@ -51,8 +54,7 @@
         @if (session()->has('success'))
             <div x-data="{ show: true }"
                 x-init="setTimeout(() => show = false, 3000)"
-                x-show="show"
-                class="w-full h-screen absolute sticky inset-0 z-50 backdrop-blur flex content-center">
+                x-show="show">
                 <x-panel @click.away="show = false" class="w-72 p-4 font-bold text-center">{!! session('success') !!}</x-panel>
             </div>
         @endif

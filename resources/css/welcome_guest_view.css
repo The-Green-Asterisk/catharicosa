@@ -1,0 +1,96 @@
+
+#hero-logo {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  justify-content: left;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url('/images/wizard.jpg');
+  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  display: flex;
+  padding-left:736px;
+  max-height: 400px;
+
+}
+#hero-logo img {
+  width: 800px;
+  max-height: 400px;
+}
+
+#wizard img {
+  content-visibility: hidden;
+}
+
+#wizard {
+ --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  justify-content: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url('/images/wizard.jpg');
+  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  display: flex;
+  padding-left:1200px;
+  max-height: 300px;
+}
+div#space {
+  height: 200px;
+}
+
+h2 {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.875rem; /* 30px */
+  line-height: 2.25rem; /* 36px */
+  scroll-margin: 2.5rem; /* 40px */
+}
+
+p#explain {
+  line-height: 2.25rem; /* 36px */
+  margin: 2.5rem;
+}
+div#explain-p {
+  display: flex;
+  justify-content: space-evenly;
+  scroll-margin-bottom: 12rem; /* 192px */
+}
+
+div#explain-p p {
+  width: 24rem; /* 384px */
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+}
+
+div#footer {
+  max-height: 15rem; /* 240px */
+  background-color: rgb(55 65 81);
+  border-top-color: rgb(17 24 39);
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(255 255 255);
+  text-align: center;
+}
+
+div#footer img {
+  display: inline;
+  padding-top:2.5rem; ;
+  width: 2.5rem; /* 40px */
+  height: 2.5rem;
+}
+
+div#text a:hover {
+ text-decoration: underline;
+}
+
+div#text a:link {
+  color: rgb(255 255 255);
+}
+
+div#text a:visited {
+  color: rgb(255 255 255);
+}
+
+
+
+
+

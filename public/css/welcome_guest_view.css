@@ -5,7 +5,7 @@
   justify-content: left;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-image: url('images/wizard.jpg');
+  background-image: url('/images/wizard.jpg');
   box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   display: flex;
   padding-left:736px;
@@ -27,7 +27,7 @@
   justify-content: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-image: url('images/wizard.jpg');
+  background-image: url('/images/wizard.jpg');
   box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   display: flex;
   padding-left:1200px;
@@ -89,6 +89,33 @@ div#text a:link {
 div#text a:visited {
   color: rgb(255 255 255);
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto
+}
+
+button {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+  background-color: #f04848;
+  border-width: 1px;
+  border-color: rgb(153, 56, 27);
+  border-radius: 9999px;
+  scroll-padding-left: 0.5rem; /* 8px */
+  scroll-padding-right: 0.5rem; /* 8px */
+  scroll-margin: 0.5rem; /* 8px */
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  color: rgb(255 255 255);
+  transform: scale(.95);
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-right: 60px;
+}
+
 
 
 
