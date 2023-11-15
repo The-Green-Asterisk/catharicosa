@@ -1,5 +1,5 @@
 html {
-    background-color: rgb(243, 241, 241);
+    background-color: rgb(234, 234, 234);
     width: 100%;
 }
 body {
@@ -23,12 +23,6 @@ div#cathoricosa-logo a img {
     margin-left: 20px;
     margin-right: 20px;
     flex-direction: column;
-}
-div#help {
-   text-align: right;
-   flex-direction: column;
-   scroll-margin-right: 2.5rem;
- 
 }
 
 .no-scrollbar::-webkit-scrollbar {

@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="/css/app.css">
         <link rel="stylesheet" href="/css/welcome_guest_view.css" type="text/css">
         <link rel="stylesheet" href="/css/logon.css" type="text/css"/>
-        
+
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
         <link href="/manifest.json" rel="manifest" />
@@ -35,10 +35,11 @@
     </head>
     <x-loading />
     <body>
+    <div class="center" onclick="hideLogin()"></div>
         @livewire('search-bar') 
         <div name="header" class="grid-container">
             <div id="cathoricosa-logo" class="grid-child-1"><a href="/"><img src="/images/catharicosa-logo.png"/></a></div>
-            <div id="help" class="grid-child-2">
+            <div id="login" class="grid-child-2">
               
                 @auth
                     <span>Welcome, {{ auth()->user()->name }}!</span>

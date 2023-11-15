@@ -112,6 +112,7 @@
         </div>
     @else
     {{-- Guest view --}}
+        <div class="flex">
         <div id="hero-logo">
             <img src="images/hero-logo.png"/>
         </div>
@@ -131,6 +132,7 @@
                 <p>A product of <a href="https://thegreenasterisk.com" >The Green Asterisk</a></p>
                 <a href="/help">About</a>
             </div>
+        </div>
         </div>
     @endauth
 </x-layout>

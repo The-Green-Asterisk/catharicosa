@@ -3,25 +3,65 @@
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */ 
-    left:40%;
-    top: 20%;
-    width: 15%; /* Full width */
-    height: 25%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(234, 234, 234);
-   
+    left:42%;
+    top: 40%;
+    width: 400px; 
+    height: 320px; 
+    overflow: disabled; 
+    background-color: #ffffff;
+    text-align: center !important;
+    box-shadow: 1 1 1 px;
+    border-style: rounded;
+    box-decoration-break: #d9dbdf;
+    border-radius: 10px;
+    scroll-padding-left: 0.5rem; /* 8px */
+    scroll-padding-right: 0.5rem; /* 8px */
+    scroll-margin: 0.5rem; /* 8px */
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
   }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: rgb(234, 234, 234);
-    margin: 15% center; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #0c0c0c;
-    width: 80%; /* Could be more or less, depending on screen size */
-    -webkit-backdrop-filter: blur(8px);
+  .center {
+    display: none;
+    width:100%;
+    height:100%;
+    position:absolute;
+    z-index:0;
     backdrop-filter: blur(8px);
   }
+
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fff;
+    margin: 15% center; /* 15% from the top and centered */
+    padding: 20px;
+    border: 2px solid #0c0c0c;
+    width: 80%; /* Could be more or less, depending on screen size */
+    margin-right: 30%;
+    margin-top: 40%;
+    
+  }
+
+  .login-form {
+    margin-top: 10%;
+    
+  }
+
+  .login-form a {
+    font-style: italic;
+    font-size: small;
+    color: #0c0c0c;
+  }
+
+  .login-inputs {
+    width: 99%;
+    box-shadow: #aaa;
+    border-radius: 0.25rem; /* 4px */
+    outline: 0;
+    border-width: 0 0 0px;
+    padding-bottom: 20px;
+    height: 25px;
+  }
+  
   
   /* The Close Button */
   .close {
@@ -30,6 +70,7 @@
     font-size: 28px;
     font-weight: bold;
     margin-right: 10px;
+    margin-left: 90%;
   }
   
   .close:hover,

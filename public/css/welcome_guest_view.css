@@ -95,7 +95,7 @@ div#text a:visited {
   grid-template-columns: auto auto
 }
 
-button {
+ button {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
   background-color: #f04848;
   border-width: 1px;
@@ -113,7 +113,8 @@ button {
   padding-bottom: 5px;
   margin-top: 10px;
   margin-bottom: 30px;
-  margin-right: 60px;
+  margin-right: 20px;
+  margin-left: 75%;
 }
 
 
