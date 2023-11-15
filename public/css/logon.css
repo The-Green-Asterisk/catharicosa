@@ -1,5 +1,5 @@
-/* The Modal (background) */
-.modal {
+/* The popup (background) */
+.popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */ 
@@ -26,19 +26,7 @@
     position:absolute;
     z-index:0;
     backdrop-filter: blur(8px);
-  }
-
-
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fff;
-    margin: 15% center; /* 15% from the top and centered */
-    padding: 20px;
-    border: 2px solid #0c0c0c;
-    width: 80%; /* Could be more or less, depending on screen size */
-    margin-right: 30%;
-    margin-top: 40%;
-    
+  
   }
 
   .login-form {
@@ -50,6 +38,17 @@
     font-style: italic;
     font-size: small;
     color: #0c0c0c;
+  }
+
+  .login-form :hover {
+    text-decoration: underline;
+  }
+  
+  span .error {
+    font-size: x-small;
+    color: red;
+    width: 100%;
+    font-style: bold;
   }
 
   .login-inputs {

@@ -69,6 +69,7 @@ div#footer {
   justify-content: center;
   color: rgb(255 255 255);
   text-align: center;
+  padding-bottom:20px;
 }
 
 div#footer img {
@@ -76,6 +77,7 @@ div#footer img {
   padding-top:2.5rem; ;
   width: 2.5rem; /* 40px */
   height: 2.5rem;
+  padding-bottom: 10px;
 }
 
 div#text a:hover {
