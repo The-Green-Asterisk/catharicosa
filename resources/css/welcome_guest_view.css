@@ -61,22 +61,7 @@ div#explain-p p {
   line-height: 1.75rem; /* 28px */
 }
 
-div#footer {
-  max-height: 15rem; /* 240px */
-  background-color: rgb(55 65 81);
-  border-top-color: rgb(17 24 39);
-  flex-direction: column;
-  justify-content: center;
-  color: rgb(255 255 255);
-  text-align: center;
-}
 
-div#footer img {
-  display: inline;
-  padding-top:2.5rem; ;
-  width: 2.5rem; /* 40px */
-  height: 2.5rem;
-}
 
 div#text a:hover {
  text-decoration: underline;
@@ -90,6 +75,33 @@ div#text a:visited {
   color: rgb(255 255 255);
 }
 
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto
+}
+
+ button {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+  background-color: #f04848;
+  border-width: 1px;
+  border-color: rgb(153, 56, 27);
+  border-radius: 9999px;
+  scroll-padding-left: 0.5rem; /* 8px */
+  scroll-padding-right: 0.5rem; /* 8px */
+  scroll-margin: 0.5rem; /* 8px */
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  color: rgb(255 255 255);
+  transform: scale(.95);
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-right: 20px;
+  margin-left: 75%;
+}
 
 
 

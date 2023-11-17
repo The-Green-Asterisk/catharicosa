@@ -35,7 +35,7 @@
     </head>
     <x-loading />
     <body>
-    <div class="center" onclick="hideLogin()"></div>
+    
         @livewire('search-bar') 
         <div name="header" class="grid-container">
             <div id="cathoricosa-logo" class="grid-child-1"><a href="/"><img src="/images/catharicosa-logo.png"/></a></div>
@@ -44,11 +44,16 @@
                 @auth
                     <span>Welcome, {{ auth()->user()->name }}!</span>
                     <a href="/help">Help</a>
-                    <a href="mailto:catharicosa-support@thegreenasterisk.com">Get Support</a>
+                    <a href="mailto:catharicosa-support@thegreenasterisk.com">Get Support</a>      
+                    <form method="POST" action="/logout">
+                        @csrf
+                        <button type="submit" class="whitespace-nowrap bg-gradient-to-br from-red-500 via-red-500 to-red-600 border border-red-800 rounded-full px-2 my-2 text-white shadow-lg active:shadow active:scale-95">Log Out</button>
+                </form>
                 @else
                     <button  onclick="location.href='/register';">Sign Up</button>
+                    <button id="loginBtn" onclick="location.href='/login';" >Log in</button>
                 @endauth
-            <livewire:session />
+                
             </div>
         </div>
         {{ $slot }}

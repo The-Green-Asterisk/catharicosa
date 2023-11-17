@@ -1,39 +1,56 @@
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left:40%;
-    top: 20%;
-    width: 15%; /* Full width */
-    height: 25%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(234, 234, 234);
-   
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: rgb(234, 234, 234);
-    margin: 15% center; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #0c0c0c;
-    width: 80%; /* Could be more or less, depending on screen size */
-    backdrop-filter: blur(8px);
-  }
-  
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: top-right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.container {
+  margin-top: 10%;
+  margin-right: 40%;
+  margin-left: 40%;
+  margin-bottom: 16%; 
+}
+
+.login-form  {
+  padding: 5%;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+  border-radius: 5px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.login-inputs {
+  width: 99%;
+  --tw-border-opacity: 1;
+  border: none;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 1%;
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  font-family: 'Nunito', sans-serif;
+}
+
+.login-inputs:focus {
+  outline: none;
+}
+
+.error {
+  font-style: normal;
+    color: rgb(220 38 38);
+    background: none;
+    text-align: center;
+    font-size: small;
+    padding-left: 20%;
+}
+
+a.pass {
+  margin-left: 35%
+}
+
+.remember-checkbox {
+  margin-left: 37%
+}
+
+.login-pg-btn {
+  margin-left: 45% !important;
+}

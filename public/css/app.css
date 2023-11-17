@@ -8,12 +8,13 @@ body {
     justify-content: space-between;
     place-content: center;
     flex-wrap: wrap;
-    margin: 0%;
+    margin-left: 0% !important;
 }
 header {
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-left: 0%;
 }
 
 div#cathoricosa-logo a img {
@@ -24,6 +25,35 @@ div#cathoricosa-logo a img {
     margin-right: 20px;
     flex-direction: column;
 }
+div#help {
+   text-align: right;
+   flex-direction: column;
+   scroll-margin-right: 2.5rem;
+ 
+}
+
+
+div#footer {
+
+    background-color: rgb(55 65 81);
+    border-top-color: rgb(17 24 39);
+    flex-direction: column;
+    justify-content: center;
+    color: rgb(255 255 255);
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+div#footer img {
+    display: inline;
+    padding-top:2rem; ;
+    width: 2.5rem; /* 40px */
+    height: 2.5rem;
+}
+
+
 
 .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -37,7 +67,6 @@ div#cathoricosa-logo a img {
     line-height: 1.25rem;
 }
 .slider-shadow {
-    -moz-box-shadow:    inset 0 0 7px #00000091;
-    -webkit-box-shadow: inset 0 0 7px #00000091;
     box-shadow:         inset 0 0 7px #00000091;
  }
+

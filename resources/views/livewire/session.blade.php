@@ -1,19 +1,9 @@
 <div>
     
-    @auth
-        <form method="POST" action="/logout">
-            @csrf
-
-            <button type="submit" class="whitespace-nowrap bg-gradient-to-br from-red-500 via-red-500 to-red-600 border border-red-800 rounded-full px-2 my-2 text-white shadow-lg active:shadow active:scale-95">Log Out</button>
-        </form>
-    @else
-    <button id="loginBtn" onclick="showLogin()" >Log in</button>
-    <div id="loginPopup" class="popup">
-        <div class="popup-content">
+    <div id="loginContainer" class="container">
+        <div class="content">
             <br>
             <form wire:submit.prevent="$emit('sessionStore')" class="login-form">
-                @csrf
-
                 <label hidden for="email">Email Address</label>
                 <input type="text" id="email" name="email" wire:model="email" class="login-inputs" placeholder="email" autocomplete="email">
                 @error('email') <span class="error">{{ $message }}</span> @enderror
@@ -22,37 +12,31 @@
                 <input type="password" id="password" name="password" wire:model="password" class="login-inputs" placeholder="password" autocomplete="current-password">
                 @error('password') <span class="error">{{ $message }}</span> @enderror
                 <br>
-                <input type="checkbox" id="remember" name="remember" wire:model="remember">
-                <label for="remember">Remember Me</label><br />
+                <input class="remember-checkbox" type="checkbox" id="remember" name="remember" wire:model="remember">
+                <label  for="remember">Remember Me</label><br />
                 <br>
-                <a href="/forgot-password">I forgot my password...</a>
+                <a class="pass" href="/forgot-password">I forgot my password...</a>
                 <br>
                 <input type="hidden" name="timezone" id="timezone" wire:model="timezone" x-init="$wire.timezone = moment.tz.guess()">
 
                 <hr>
-                <x-form-button>Log In</x-form-button>
+                <x-form-button class="login-pg-btn">Log In</x-form-button>
             </form>
         </div>
     </div>
+    <div id="footer">
+        <div id="text">
+            <img src="/images/asterisk.png"/>
+            <p>A product of <a href="https://thegreenasterisk.com" >The Green Asterisk</a></p>
+            <a href="/help">About</a>
+        </div>
+    </div>
+
     <script>
-        // Get the popup
-        var popup = document.getElementById("loginPopup");
-
-        // Get div that blurs the backdrop
-        var center = document.getElementsByClassName("center")[0];
-
-
-        // When the user clicks on the button, open the modal
-        function showLogin() {
-            popup.style.display  = "block";
-            center.style.display = "block";
+        var email = document.getElementById("email");
+        var loginBtn= document.getElementById("loginBtn");
+        if(typeof(email) != 'undefined' && email != null) {
+            loginBtn.style.display  = "none";
         }
-
-        // When the user clicks anywhere outside of the modal, close it
-        function hideLogin() {
-            popup.style.display  = "none";
-            center.style.display = "none";
-        }
-        </script>
-    @endauth
+    </script>
 </div>

@@ -61,24 +61,7 @@ div#explain-p p {
   line-height: 1.75rem; /* 28px */
 }
 
-div#footer {
-  max-height: 15rem; /* 240px */
-  background-color: rgb(55 65 81);
-  border-top-color: rgb(17 24 39);
-  flex-direction: column;
-  justify-content: center;
-  color: rgb(255 255 255);
-  text-align: center;
-  padding-bottom:20px;
-}
 
-div#footer img {
-  display: inline;
-  padding-top:2.5rem; ;
-  width: 2.5rem; /* 40px */
-  height: 2.5rem;
-  padding-bottom: 10px;
-}
 
 div#text a:hover {
  text-decoration: underline;
@@ -91,6 +74,7 @@ div#text a:link {
 div#text a:visited {
   color: rgb(255 255 255);
 }
+
 
 .grid-container {
   display: grid;
@@ -118,7 +102,6 @@ div#text a:visited {
   margin-right: 20px;
   margin-left: 75%;
 }
-
 
 
 

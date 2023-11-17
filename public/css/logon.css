@@ -1,80 +1,56 @@
-/* The popup (background) */
-.popup {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */ 
-    left:42%;
-    top: 40%;
-    width: 400px; 
-    height: 320px; 
-    overflow: disabled; 
-    background-color: #ffffff;
-    text-align: center !important;
-    box-shadow: 1 1 1 px;
-    border-style: rounded;
-    box-decoration-break: #d9dbdf;
-    border-radius: 10px;
-    scroll-padding-left: 0.5rem; /* 8px */
-    scroll-padding-right: 0.5rem; /* 8px */
-    scroll-margin: 0.5rem; /* 8px */
-    filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
-  }
-  .center {
-    display: none;
-    width:100%;
-    height:100%;
-    position:absolute;
-    z-index:0;
-    backdrop-filter: blur(8px);
-  
-  }
+.container {
+  margin-top: 10%;
+  margin-right: 40%;
+  margin-left: 40%;
+  margin-bottom: 16%; 
+}
 
-  .login-form {
-    margin-top: 10%;
-    
-  }
+.login-form  {
+  padding: 5%;
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+  border-radius: 5px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 
-  .login-form a {
-    font-style: italic;
+.login-inputs {
+  width: 99%;
+  --tw-border-opacity: 1;
+  border: none;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 1%;
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  font-family: 'Nunito', sans-serif;
+}
+
+.login-inputs:focus {
+  outline: none;
+}
+
+.error {
+  font-style: normal;
+    color: rgb(220 38 38);
+    background: none;
+    text-align: center;
     font-size: small;
-    color: #0c0c0c;
-  }
+    padding-left: 20%;
+}
 
-  .login-form :hover {
-    text-decoration: underline;
-  }
-  
-  span .error {
-    font-size: x-small;
-    color: red;
-    width: 100%;
-    font-style: bold;
-  }
+a.pass {
+  margin-left: 35%
+}
 
-  .login-inputs {
-    width: 99%;
-    box-shadow: #aaa;
-    border-radius: 0.25rem; /* 4px */
-    outline: 0;
-    border-width: 0 0 0px;
-    padding-bottom: 20px;
-    height: 25px;
-  }
-  
-  
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: top-right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-right: 10px;
-    margin-left: 90%;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.remember-checkbox {
+  margin-left: 37%
+}
+
+.login-pg-btn {
+  margin-left: 45% !important;
+}

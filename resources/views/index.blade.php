@@ -113,26 +113,26 @@
     @else
     {{-- Guest view --}}
         <div class="flex">
-        <div id="hero-logo">
-            <img src="images/hero-logo.png"/>
-        </div>
-        <div id="wizard"><img src="images/wizard.jpg"/></div>
-        <div id="space"></div>
-        <h2>Note-taking app for the meticulous tabletop player</h2>
-        <p id="explain">When playing a tabletop RPG like Dungeons and Dragons, Pathfinder, Call of Cthulhu or the myrad of other games out there, a player can end up taking a lot of notes. And sometimes you have to flip back dozens of pages to find context for the notes you just took. Catharicosa Notes is here to elimitate that painful experience altogether.</p>
-        <div id="explain-p">
-            <p>Write notes as usual and then highlight details to mark them as "notelettes"</p>
-            <p>Attach notelettes to NPCs, Locations, or Quests</p>
-            <p>Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</p>
-        </div>
-        <div id="space"></div>
-        <div id="footer">
-            <div id="text">
-                <img src="/images/asterisk.png"/>
-                <p>A product of <a href="https://thegreenasterisk.com" >The Green Asterisk</a></p>
-                <a href="/help">About</a>
+            <div id="hero-logo">
+                <img src="images/hero-logo.png"/>
             </div>
-        </div>
+            <div id="wizard"><img src="images/wizard.jpg"/></div>
+            <div id="space"></div>
+            <h2>Note-taking app for the meticulous tabletop player</h2>
+            <p id="explain">When playing a tabletop RPG like Dungeons and Dragons, Pathfinder, Call of Cthulhu or the myrad of other games out there, a player can end up taking a lot of notes. And sometimes you have to flip back dozens of pages to find context for the notes you just took. Catharicosa Notes is here to elimitate that painful experience altogether.</p>
+            <div id="explain-p">
+                <p>Write notes as usual and then highlight details to mark them as "notelettes"</p>
+                <p>Attach notelettes to NPCs, Locations, or Quests</p>
+                <p>Easily access notelettes later when looking for details about specific NPCs, Locations, or Quests</p>
+            </div>
+            <div id="space"></div>
+            <div id="footer">
+                <div id="text">
+                    <img src="/images/asterisk.png"/>
+                    <p>A product of <a href="https://thegreenasterisk.com" >The Green Asterisk</a></p>
+                    <a href="/help">About</a>
+                </div>
+            </div>
         </div>
     @endauth
 </x-layout>
