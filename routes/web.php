@@ -27,12 +27,7 @@ Route::post('update', function (Request $request) {
     if ($request->header('X-GitHub-Event') != 'push') {
         return response('OK', 200);
     }
-
-    file_put_contents(
-        'update.txt',
-        shell_exec('sudo .././update.sh')
-    );
-
+    shell_exec('.././update.sh');
     return response('OK', 200);
 });
 
